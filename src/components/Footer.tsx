@@ -19,14 +19,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div>
-            <div className="text-[12px] font-bold tracking-[1px] uppercase text-gold-500 mb-6">Navigation</div>
-            <div className="flex flex-wrap gap-8">
-              {['Solutions', 'Segments', 'Cities', 'Pricing', 'About', 'Contact'].map((link) => (
-                <a key={link} href="#" className="text-sm text-white/70 hover:text-gold-400 transition-colors">{link}</a>
-              ))}
-            </div>
-          </div>
+
 
           <div>
             <div className="text-[12px] font-bold tracking-[1px] uppercase text-gold-500 mb-6">Compliance</div>
