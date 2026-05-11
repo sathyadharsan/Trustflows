@@ -32,6 +32,23 @@ const navItems: NavItem[] = [
     }
   },
   {
+    label: 'Offerings',
+    href: '#offerings',
+    dropdown: {
+      header: 'OUR 8 PRODUCTS',
+      items: [
+        { icon: '🔍', title: 'AI Trust Report', desc: 'Risk score in 48 hours — ₹7,999 onwards', id: 'trust-report', section: '#offerings' },
+        { icon: '🛡️', title: 'Title Insurance', desc: 'IRDAI-aligned — 0.10% to 0.15%', id: 'title-insurance', section: '#offerings' },
+        { icon: '🏠', title: 'Property Insurance', desc: 'Physical structure — ₹2,500/yr onwards', id: 'prop-insurance', section: '#offerings' },
+        { icon: '👤', title: 'Digital Owner Insurance', desc: 'NRI & remote owners — 0.25%/yr', id: 'digital-owner', section: '#offerings' },
+        { icon: '💰', title: 'Escrow Services', desc: 'Safe payment — 0.15% to 0.25%', id: 'escrow', section: '#offerings' },
+        { icon: '🏦', title: 'Loan Guarantees', desc: 'Banks & NBFCs — 0.10% of loan', id: 'loan-guarantee', section: '#offerings' },
+        { icon: '⚖️', title: 'Legal Defense Insurance', desc: 'Court costs — ₹3,000/yr', id: 'legal-defense', section: '#offerings' },
+        { icon: '🚨', title: 'Fraud Monitoring', desc: 'Post-purchase alerts — ₹1,999/yr', id: 'fraud-monitoring', section: '#offerings' },
+      ]
+    }
+  },
+  {
     label: 'Problem',
     href: '#problem',
     dropdown: {
@@ -57,23 +74,6 @@ const navItems: NavItem[] = [
         { icon: '🛡️', title: 'Universal Insurance', desc: 'Works across all segments', id: 'universal-insurance', section: '#solutions' },
         { icon: '💰', title: 'Milestone Escrow', desc: 'Released only on verified docs', id: 'milestone-escrow', section: '#solutions' },
         { icon: '⚖️', title: 'Legal Defense', desc: 'We fight for you if dispute arises', id: 'legal-defense', section: '#solutions' },
-      ]
-    }
-  },
-  {
-    label: 'Offerings',
-    href: '#offerings',
-    dropdown: {
-      header: 'OUR 8 PRODUCTS',
-      items: [
-        { icon: '🔍', title: 'AI Trust Report', desc: 'Risk score in 48 hours — ₹7,999 onwards', id: 'trust-report', section: '#offerings' },
-        { icon: '🛡️', title: 'Title Insurance', desc: 'IRDAI-aligned — 0.10% to 0.15%', id: 'title-insurance', section: '#offerings' },
-        { icon: '🏠', title: 'Property Insurance', desc: 'Physical structure — ₹2,500/yr onwards', id: 'prop-insurance', section: '#offerings' },
-        { icon: '👤', title: 'Digital Owner Insurance', desc: 'NRI & remote owners — 0.25%/yr', id: 'digital-owner', section: '#offerings' },
-        { icon: '💰', title: 'Escrow Services', desc: 'Safe payment — 0.15% to 0.25%', id: 'escrow', section: '#offerings' },
-        { icon: '🏦', title: 'Loan Guarantees', desc: 'Banks & NBFCs — 0.10% of loan', id: 'loan-guarantee', section: '#offerings' },
-        { icon: '⚖️', title: 'Legal Defense Insurance', desc: 'Court costs — ₹3,000/yr', id: 'legal-defense', section: '#offerings' },
-        { icon: '🚨', title: 'Fraud Monitoring', desc: 'Post-purchase alerts — ₹1,999/yr', id: 'fraud-monitoring', section: '#offerings' },
       ]
     }
   },
