@@ -146,7 +146,7 @@ const Problem = () => {
                     <p className="text-[15px] font-bold text-[#0a0a1a]">{activeData.uniqueRisk}</p>
                   </div>
                   <div className="bg-navy-900 rounded-2xl p-6 shadow-xl">
-                    <div className="text-[11px] font-bold text-primary-blue tracking-[1.5px] uppercase mb-2">TYPICAL LOSS</div>
+                    <div className="text-[11px] font-bold text-primary-blue tracking-[1.5px] uppercase mb-2 !text-primary-blue">TYPICAL LOSS</div>
                     <p className="text-[32px] font-bold text-white leading-tight">{activeData.typicalLoss}</p>
                   </div>
                 </div>
@@ -164,13 +164,13 @@ const Problem = () => {
         <div className="bg-navy-900 rounded-[32px] p-10 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-primary-blue/10 to-transparent" />
           <div className="relative z-10">
-            <h4 className="text-white text-[24px] md:text-[32px] font-bold mb-4 leading-tight">
+            <div className="text-white !text-white text-[24px] md:text-[32px] font-bold mb-4 leading-tight">
               Aggregate annual loss due to property fraud & litigation in India:
-            </h4>
+            </div>
             <div className="text-[48px] md:text-[64px] font-bold text-primary-blue leading-none mb-4 tracking-tighter">
               ₹1.5 Lakh Crore+
             </div>
-            <p className="text-white/40 text-[11px] font-bold uppercase tracking-[2px]">SOURCE: TRUSTFLOWS RISK INTELLIGENCE BUREAU</p>
+            <div className="text-white/60 text-[11px] font-bold uppercase tracking-[2px]">SOURCE: TRUSTFLOWS RISK INTELLIGENCE BUREAU</div>
           </div>
         </div>
       </div>

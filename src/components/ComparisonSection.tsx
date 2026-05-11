@@ -28,10 +28,10 @@ const ComparisonSection = () => {
           <table className="w-full min-w-[800px] border-collapse bg-white rounded-3xl overflow-hidden shadow-2xl">
             <thead>
               <tr>
-                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-white bg-[#0a0a1a]">Feature</th>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-white !text-white bg-[#0a0a1a]">Feature</th>
                 <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-[#4a4a6a] bg-[#f1f1f1]">Local Lawyers</th>
                 <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-[#4a4a6a] bg-[#f1f1f1]">Generic PropTech</th>
-                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-white bg-[#185FA5]">TRUSTFLOWS</th>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-white !text-white bg-[#185FA5]">TRUSTFLOWS</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-navy-900/5">
@@ -54,8 +54,8 @@ const ComparisonSection = () => {
             { t: 'The Standard Promise', d: '"Every property type. Every city. One unified standard of trust for India."' }
           ].map((p, i) => (
             <div key={i} className="bg-navy-900 rounded-[32px] p-10 text-center border-b-4 border-primary-blue shadow-xl">
-              <h4 className="text-[11px] font-bold text-primary-blue tracking-[1.5px] uppercase mb-6">{p.t}</h4>
-              <p className="text-white text-[15px] font-normal italic leading-[1.8]">
+              <div className="text-[11px] font-bold text-primary-blue !text-primary-blue tracking-[1.5px] uppercase mb-6">{p.t}</div>
+              <p className="text-white !text-white text-[15px] font-normal italic leading-[1.8]">
                 {p.d}
               </p>
             </div>

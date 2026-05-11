@@ -16,14 +16,11 @@ const FinalCTA = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-blue/30 to-transparent" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-[48px] font-bold text-white mb-10 leading-[1.2]"
+        <div 
+          className="text-[48px] font-bold text-white mb-10 leading-[1.2] !text-white"
         >
           Don't Guess. <span className="text-primary-blue italic">TRUSTFLOWS.</span>
-        </motion.h2>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 mb-12 text-left max-w-4xl mx-auto">
           {ctas.map((item, i) => (

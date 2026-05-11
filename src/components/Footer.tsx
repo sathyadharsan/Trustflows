@@ -20,7 +20,7 @@ const Footer = () => {
                 Trust<span className="text-primary-blue">Flows</span>
               </span>
             </a>
-            <p className="text-[13px] text-white/40 leading-[1.7] font-normal mb-8">
+            <p className="text-[13px] text-white/70 leading-[1.7] font-normal mb-8">
               India's End-to-End Property Trust, Protection & Transaction Infrastructure Platform.
             </p>
             <div className="flex flex-wrap gap-2.5">
@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-primary-blue mb-8">Offerings</div>
             <ul className="space-y-4">
               {['Trust Report', 'Title Insurance', 'Property Insurance', 'Digital Owner Insurance', 'Escrow Services', 'Loan Guarantees', 'Legal Defense', 'Fraud Monitoring'].map(item => (
-                <li key={item}><a href="#offerings" className="text-[13px] text-white/30 hover:text-primary-blue transition-colors font-normal no-underline">{item}</a></li>
+                <li key={item}><a href="#offerings" className="text-[13px] text-white/60 hover:text-primary-blue transition-colors font-normal no-underline">{item}</a></li>
               ))}
             </ul>
           </div>
@@ -47,7 +47,7 @@ const Footer = () => {
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-primary-blue mb-8">Verticals</div>
             <ul className="space-y-4">
               {['Resale Flats', 'Independent Houses', 'Freehold Plots', 'Freehold Layouts', 'Commercial Properties', 'Developer Flats', 'Govt Schemes', 'Mixed-Use'].map(item => (
-                <li key={item}><a href="#segments" className="text-[13px] text-white/30 hover:text-primary-blue transition-colors font-normal no-underline">{item}</a></li>
+                <li key={item}><a href="#segments" className="text-[13px] text-white/60 hover:text-primary-blue transition-colors font-normal no-underline">{item}</a></li>
               ))}
             </ul>
           </div>
@@ -69,7 +69,7 @@ const Footer = () => {
                 <span className="text-white/20 text-[11px] font-bold uppercase tracking-[1.5px]">Global Website</span>
               </li>
             </ul>
-            <div className="mt-10 pt-10 border-t border-white/5 text-[11px] text-white/20 font-normal uppercase tracking-widest leading-loose">
+            <div className="mt-10 pt-10 border-t border-white/5 text-[11px] text-white/40 font-normal uppercase tracking-widest leading-loose">
               IRDAI Corporate Agent | RBI Compliant Escrow | ISO 27001 Certified
             </div>
           </div>
@@ -79,7 +79,7 @@ const Footer = () => {
         <div className="border-y border-white/5 py-8 mb-8">
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             {cities.map((city) => (
-              <span key={city} className="text-[11px] font-normal text-white/10 hover:text-primary-blue transition-colors cursor-default tracking-wider">
+              <span key={city} className="text-[11px] font-normal text-white/40 hover:text-primary-blue transition-colors cursor-default tracking-wider">
                 {city}
               </span>
             ))}
@@ -87,7 +87,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center pt-4">
-          <p className="text-[11px] text-white/20 font-normal tracking-[1px] mb-2 uppercase">
+          <p className="text-[11px] text-white/40 font-normal tracking-[1px] mb-2 uppercase">
             © 2026 TRUSTFLOWS. Building Trust, One Property at a Time.
           </p>
         </div>
