@@ -49,6 +49,23 @@ const navItems: NavItem[] = [
     }
   },
   {
+    label: 'Segments',
+    href: '#segments',
+    dropdown: {
+      header: 'PROPERTY SEGMENTS',
+      items: [
+        { icon: '🏢', title: 'Resale Flats', desc: 'Society built apartments', id: 'resale-flat', section: '#segments' },
+        { icon: '🏡', title: 'Independent Houses', desc: 'Bungalows, villas, row houses', id: 'house', section: '#segments' },
+        { icon: '🌾', title: 'Freehold Plots', desc: 'NA plots, agricultural (Highest Risk)', id: 'plot', section: '#segments' },
+        { icon: '🏘️', title: 'Freehold Layouts', desc: 'Developer plotted developments', id: 'layout', section: '#segments' },
+        { icon: '🏪', title: 'Commercial Properties', desc: 'Offices, shops, warehouses', id: 'commercial', section: '#segments' },
+        { icon: '🏗️', title: 'Developer Flats', desc: 'Under-construction, RERA projects', id: 'dev-flat', section: '#segments' },
+        { icon: '🏛️', title: 'Govt Scheme Properties', desc: 'DDA, MHADA, BDA, LDA', id: 'govt', section: '#segments' },
+        { icon: '🏭', title: 'Resale Commercial', desc: 'Mixed-use, old market shops', id: 'resale-comm', section: '#segments' },
+      ]
+    }
+  },
+  {
     label: 'Problem',
     href: '#problem',
     dropdown: {
@@ -74,23 +91,6 @@ const navItems: NavItem[] = [
         { icon: '🛡️', title: 'Universal Insurance', desc: 'Works across all segments', id: 'universal-insurance', section: '#solutions' },
         { icon: '💰', title: 'Milestone Escrow', desc: 'Released only on verified docs', id: 'milestone-escrow', section: '#solutions' },
         { icon: '⚖️', title: 'Legal Defense', desc: 'We fight for you if dispute arises', id: 'legal-defense', section: '#solutions' },
-      ]
-    }
-  },
-  {
-    label: 'Segments',
-    href: '#segments',
-    dropdown: {
-      header: 'PROPERTY SEGMENTS',
-      items: [
-        { icon: '🏢', title: 'Resale Flats', desc: 'Society built apartments', id: 'resale-flat', section: '#segments' },
-        { icon: '🏡', title: 'Independent Houses', desc: 'Bungalows, villas, row houses', id: 'house', section: '#segments' },
-        { icon: '🌾', title: 'Freehold Plots', desc: 'NA plots, agricultural (Highest Risk)', id: 'plot', section: '#segments' },
-        { icon: '🏘️', title: 'Freehold Layouts', desc: 'Developer plotted developments', id: 'layout', section: '#segments' },
-        { icon: '🏪', title: 'Commercial Properties', desc: 'Offices, shops, warehouses', id: 'commercial', section: '#segments' },
-        { icon: '🏗️', title: 'Developer Flats', desc: 'Under-construction, RERA projects', id: 'dev-flat', section: '#segments' },
-        { icon: '🏛️', title: 'Govt Scheme Properties', desc: 'DDA, MHADA, BDA, LDA', id: 'govt', section: '#segments' },
-        { icon: '🏭', title: 'Resale Commercial', desc: 'Mixed-use, old market shops', id: 'resale-comm', section: '#segments' },
       ]
     }
   },
@@ -177,12 +177,19 @@ const Navbar = () => {
 
               <AnimatePresence>
                 {activeDropdown === item.label && item.dropdown && (
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full left-0 mt-2 min-w-[280px] bg-white border border-navy-900/10 rounded-[14px] p-2 shadow-[0_16px_48px_rgba(0,0,0,0.12)]">
-                    <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#185FA5] mb-2 px-3 pt-2">{item.dropdown.header}</div>
-                    <div className="space-y-0.5">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    exit={{ opacity: 0, y: 10 }} 
+                    className={`absolute top-full mt-2 min-w-[600px] bg-white border border-navy-900/10 rounded-[14px] p-4 shadow-[0_16px_48px_rgba(0,0,0,0.12)] ${
+                      ['Stakeholders', 'Outcomes'].includes(item.label) ? 'right-0' : 'left-0'
+                    }`}
+                  >
+                    <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#185FA5] mb-4 px-2">{item.dropdown.header}</div>
+                    <div className="grid grid-cols-2 gap-2">
                       {item.dropdown.items.map((subItem) => (
-                        <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-blue-light transition-all group/item">
-                          <span className="text-[18px] shrink-0 mt-0.5">{subItem.icon}</span>
+                        <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex items-start gap-3 p-3 rounded-lg hover:bg-blue-light transition-all group/item">
+                          <span className="text-[20px] shrink-0 mt-0.5">{subItem.icon}</span>
                           <div>
                             <div className="text-[13px] font-bold text-navy-900 group-hover/item:text-primary-blue transition-colors">{subItem.title}</div>
                             <div className="text-[11px] text-[#4a4a6a] leading-tight">{subItem.desc}</div>
