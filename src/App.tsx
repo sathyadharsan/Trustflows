@@ -1,32 +1,34 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import TrustBar from './components/TrustBar';
-import CustomerSegments from './components/CustomerSegments';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
+import Offerings from './components/Offerings';
 import PropertySegments from './components/PropertySegments';
-import StatsBar from './components/StatsBar';
-import Pricing from './components/Pricing';
 import CityGrid from './components/CityGrid';
-import CTASection from './components/CTASection';
+import Pricing from './components/Pricing';
+import SuccessStories from './components/SuccessStories';
+import Stakeholders from './components/Stakeholders';
+import ComparisonSection from './components/ComparisonSection';
+import FinalCTA from './components/FinalCTA';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 
 function App() {
   return (
-    <main className="bg-navy-900 selection:bg-gold-500 selection:text-navy-900 font-sans antialiased">
+    <main className="bg-white selection:bg-gold-500 selection:text-navy-900 font-sans antialiased overflow-x-hidden">
       <Navbar />
       <Hero />
-      <TrustBar />
-      <CustomerSegments />
       <Problem />
       <Solution />
+      <Offerings />
       <PropertySegments />
-      <StatsBar />
-      <Pricing />
       <CityGrid />
-      <CTASection />
+      <Pricing />
+      <SuccessStories />
+      <Stakeholders />
+      <ComparisonSection />
+      <FinalCTA />
       <AboutSection />
       <Footer />
     </main>

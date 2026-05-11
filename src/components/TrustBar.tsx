@@ -10,15 +10,15 @@ const TrustBar = () => {
   ];
 
   return (
-    <div className="bg-navy-800 border-y border-gold-500/20 px-[5%] py-5 flex flex-wrap justify-center gap-0">
+    <div className="bg-[#F5F7FA] border-y border-navy-900/10 px-[5%] py-5 flex flex-wrap justify-center gap-0">
       {trustItems.map((item, index) => (
         <div 
           key={index} 
-          className={`flex items-center gap-2 px-6 py-3 text-[13px] text-white/70 ${
-            index !== trustItems.length - 1 ? 'border-r border-white/10' : ''
+          className={`flex items-center gap-2 px-6 py-3 text-[13px] text-navy-900/70 font-medium ${
+            index !== trustItems.length - 1 ? 'border-r border-navy-900/10' : ''
           } max-md:border-r-0 max-md:border-b last:border-b-0 max-md:w-full max-md:justify-center`}
         >
-          <span className="text-gold-400 text-base">✦</span>
+          <span className="text-gold-600 text-base">✦</span>
           {item.label}
         </div>
       ))}

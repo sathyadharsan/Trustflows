@@ -1,42 +1,86 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const cities = [
-  'Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Hyderabad',
-  'Pune', 'Kolkata', 'Ahmedabad', 'Surat', 'Lucknow',
-  'Jaipur', 'Kochi', 'Chandigarh', 'Bhopal', 'Nagpur',
-  'Coimbatore', 'Visakhapatnam', 'Indore', 'Vadodara', 'Noida'
+const cityRisks = [
+  { name: 'Mumbai', risk: 'SRA flats, MHADA leasehold, old ‘Chawl’ redevelopment rights, CRZ rules' },
+  { name: 'Delhi', risk: 'DDA unauthorized colonies, Lal Dora properties, leasehold vs freehold conversion' },
+  { name: 'Bangalore', risk: 'A-Khata vs B-Khata, Wakf board claims, BDA/BMRDA layouts, DC conversion' },
+  { name: 'Hyderabad', risk: 'DTCP approvals, Wakf land (high prevalence), old Jagir titles' },
+  { name: 'Chennai', risk: 'Patta/Chitta discrepancies, ECR/OMR land acquisition notifications' },
+  { name: 'Kolkata', risk: 'Bargee title system, CIT leases, Zamindari abolition complexities' },
+  { name: 'Pune', risk: 'PMRDA & Gram Panchayat layouts, old Waqf and Inam lands' },
+  { name: 'Ahmedabad', risk: 'TP scheme land, pending development charges, old city Pol houses' },
+  { name: 'Surat', risk: 'TP approvals, illegal construction in new SIR zones' },
+  { name: 'Jaipur', risk: 'JDA leasehold, old Jagir titles, pending betterment charges' },
+  { name: 'Lucknow', risk: 'LDA schemes, Awadh Zamindari abolition records' },
+  { name: 'Nagpur', risk: 'Metro land acquisition, Vidarbha region’s special tenancy laws' },
+  { name: 'Indore', risk: 'IDA schemes, pending betterment and development fees' },
+  { name: 'Bhopal', risk: 'Old Waqf properties, Bhopal Development Authority layouts' },
+  { name: 'Visakhapatnam', risk: 'VMRDA approvals, port land restrictions' },
+  { name: 'Patna', risk: 'Old Zamindari land, Bihar Land Reforms Act — Extremely complex' },
+  { name: 'Vadodara', risk: 'VUDA approvals, industrial land use conversion' },
+  { name: 'Ludhiana', risk: 'PUDA schemes, old ‘Lal Lakir’ village properties' },
+  { name: 'Agra', risk: 'Taj Trapezium Zone restrictions, old Mughal grant lands' },
+  { name: 'Nashik', risk: 'MIDC industrial plots, Godavari riverbed land restrictions' }
 ];
 
 const CityGrid = () => {
+  const [selected, setSelected] = useState(cityRisks[0]);
+
   return (
-    <section id="cities" className="bg-navy-800 py-[100px] px-[5%]">
+    <section id="cities" className="bg-white py-[100px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold-500 mb-4">
-            Pan-India Coverage
-          </div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-white">
-            Live in <span className="text-gold-400">20 Major Indian Cities</span>
+          <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">CITY-TRAINED INTELLIGENCE</div>
+          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+            Live in 20 Cities. <br />
+            <span className="text-primary-blue">Local Risk Ecosystems Mastered.</span>
           </h2>
-          <p className="text-[16px] text-white/70 leading-relaxed max-w-[620px] mx-auto">
-            City-trained risk engines. Local expertise. National standards.
+          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[760px] mx-auto font-medium">
+            India’s property market is not one market. We have trained our AI models on the unique local laws and land record systems of 20 major Indian cities.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {cities.map((city, i) => (
-            <motion.div
-              key={city}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-white/5 border border-gold-500/20 rounded-xl py-3.5 px-3 text-center text-[13px] font-medium text-white/70 transition-all hover:border-gold-500/40 hover:text-gold-400 hover:bg-gold-500/5 cursor-default"
+        <div className="flex flex-wrap justify-center gap-2.5 mb-16">
+          {cityRisks.map((city) => (
+            <button
+              key={city.name}
+              onClick={() => setSelected(city)}
+              className={`px-6 py-2.5 rounded-full text-[13px] font-bold transition-all border ${
+                selected.name === city.name 
+                  ? 'bg-primary-blue text-white border-primary-blue shadow-lg scale-105' 
+                  : 'bg-white text-navy-900/60 border-navy-900/10 hover:border-primary-blue/30'
+              }`}
             >
-              {city}
-            </motion.div>
+              {city.name}
+            </button>
           ))}
+        </div>
+
+        <div className="bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-8 md:p-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-12 opacity-[0.03] font-serif text-[120px] font-bold text-navy-900 leading-none">
+            {selected.name}
+          </div>
+          
+          <div className="relative z-10 max-w-2xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-primary-blue rounded-xl flex items-center justify-center text-white text-xl font-serif font-black">
+                {selected.name[0]}
+              </div>
+              <h3 className="font-serif text-3xl font-bold text-navy-900">{selected.name} Risk Engine</h3>
+            </div>
+            
+            <div className="bg-white rounded-2xl p-8 border border-primary-blue/10 shadow-sm mb-8">
+              <div className="text-[10px] font-bold text-primary-blue tracking-wider uppercase mb-4">LOCALIZED RISK COVERAGE</div>
+              <p className="text-[18px] font-bold text-navy-900 leading-relaxed">
+                {selected.risk}
+              </p>
+            </div>
+
+            <p className="text-[14px] text-[#718096] font-medium leading-relaxed italic">
+              "Every city model is validated on-ground by our specialized legal partners to ensure 99.9% data accuracy across {selected.name} records."
+            </p>
+          </div>
         </div>
       </div>
     </section>

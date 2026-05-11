@@ -4,97 +4,125 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavItem {
   label: string;
-  href?: string;
+  href: string;
   dropdown?: {
     header: string;
     items: {
       icon: string;
       title: string;
       desc: string;
-      href: string;
+      id: string;
+      section: string;
     }[];
   };
 }
 
 const navItems: NavItem[] = [
   {
-    label: 'Outcomes',
+    label: 'Home',
+    href: '#hero',
     dropdown: {
-      header: 'What You Gain',
+      header: 'TRUSTFLOWS',
       items: [
-        { icon: '🛡️', title: 'Zero Title Fraud Risk', desc: 'AI-verified ownership chain', href: '#problem' },
-        { icon: '📜', title: 'Legal Clarity', desc: 'Court-proof documentation', href: '#problem' },
-        { icon: '💰', title: 'Safe Fund Transfer', desc: 'Escrow-secured payments', href: '#solution' },
-        { icon: '🏆', title: 'IRDAI Coverage', desc: 'Insurance-backed protection', href: '#solution' },
+        { icon: '🏠', title: 'Back to Top', desc: "India's #1 Property Trust Platform", id: 'hero', section: '#hero' },
+        { icon: '⭐', title: 'Trust Score', desc: 'Get free AI property risk score', id: 'hero', section: '#hero' },
+        { icon: '📞', title: 'Talk to Advisor', desc: 'City-specific consultation', id: 'footer', section: '#footer' },
+        { icon: '📍', title: 'Our Cities', desc: '20 major Indian cities covered', id: 'cities', section: '#cities' },
       ]
     }
   },
   {
-    label: 'Verticals',
+    label: 'Problem',
+    href: '#problem',
     dropdown: {
-      header: 'Property Segments',
+      header: 'THE MARKET PROBLEM',
       items: [
-        { icon: '🏢', title: 'Residential', desc: 'Flats, Houses & Villas', href: '#segments' },
-        { icon: '🌾', title: 'Land & Plots', desc: 'Freehold plots & layouts', href: '#segments' },
-        { icon: '🏪', title: 'Commercial', desc: 'Offices, shops, warehouses', href: '#segments' },
-        { icon: '🏗️', title: 'Developer Projects', desc: 'Under-construction & bulk', href: '#segments' },
-        { icon: '🌍', title: 'NRI Transactions', desc: 'Remote property buying', href: '#segments' },
-      ]
-    }
-  },
-  {
-    label: 'Offerings',
-    dropdown: {
-      header: 'Our Services',
-      items: [
-        { icon: '🧠', title: 'AI Risk Report', desc: 'Instant property risk score', href: '#pricing' },
-        { icon: '🛡️', title: 'Title Insurance', desc: 'IRDAI-aligned coverage', href: '#pricing' },
-        { icon: '💰', title: 'Digital Escrow', desc: 'RERA & RBI compliant', href: '#solution' },
-        { icon: '⚖️', title: 'Legal Defense', desc: 'We fight disputes for you', href: '#solution' },
-      ]
-    }
-  },
-  {
-    label: 'Platforms',
-    dropdown: {
-      header: 'Integrated With',
-      items: [
-        { icon: '🏛️', title: 'DILRMP', desc: 'Digital India Land Records', href: '#' },
-        { icon: '🏗️', title: 'State RERA Portals', desc: 'All 20 city RERA databases', href: '#' },
-        { icon: '⚖️', title: 'eCourts Intelligence', desc: 'Pan-India court records', href: '#' },
-        { icon: '🏦', title: 'CERSAI Registry', desc: 'Mortgage & lien records', href: '#' },
-        { icon: '📱', title: 'DigiLocker', desc: 'Govt-verified documents', href: '#' },
+        { icon: '🏢', title: 'Resale Flat (Apartment)', desc: 'Undisclosed society dues, tax, illegal alterations', id: 'flat', section: '#problem' },
+        { icon: '🌾', title: 'Freehold Plot', desc: 'Fake mother deed, inheritance chain, Wakf claims', id: 'plot', section: '#problem' },
+        { icon: '🏘️', title: 'Freehold Layout', desc: 'Unapproved plan, missing conversion, no completion cert', id: 'layout', section: '#problem' },
+        { icon: '🏪', title: 'Commercial Property', desc: 'Illegal tenancy, GST dues, business license defects', id: 'commercial', section: '#problem' },
+        { icon: '🏗️', title: 'Developer Flat (Under Construction)', desc: 'Delayed possession, fund diversion, RERA violation', id: 'developer', section: '#problem' },
+        { icon: '🏡', title: 'Resale Independent House', desc: 'Unauthorized floors, deviation from plan, easement disputes', id: 'house', section: '#problem' },
       ]
     }
   },
   {
     label: 'Solutions',
+    href: '#solutions',
     dropdown: {
-      header: 'For Every Stakeholder',
+      header: 'THE TRUSTFLOWS DIFFERENCE',
       items: [
-        { icon: '👨‍👩‍👧', title: 'For Homebuyers', desc: 'Verify before you buy', href: '#who-we-serve' },
-        { icon: '🌍', title: 'For NRIs', desc: 'Remote property protection', href: '#who-we-serve' },
-        { icon: '🏦', title: 'For Banks & NBFCs', desc: 'Secure lending decisions', href: '#who-we-serve' },
-        { icon: '🏗️', title: 'For Developers', desc: 'Build buyer trust at scale', href: '#who-we-serve' },
-        { icon: '💼', title: 'For Investors', desc: 'Portfolio risk intelligence', href: '#who-we-serve' },
+        { icon: '🧠', title: 'Segment AI', desc: 'Custom algorithms per property type', id: 'segment-ai', section: '#solutions' },
+        { icon: '🏙️', title: 'City-Trained Engines', desc: 'Mumbai, Pune, Kolkata city models', id: 'city-engines', section: '#solutions' },
+        { icon: '🛡️', title: 'Universal Insurance', desc: 'Works across all segments', id: 'universal-insurance', section: '#solutions' },
+        { icon: '💰', title: 'Milestone Escrow', desc: 'Released only on verified docs', id: 'milestone-escrow', section: '#solutions' },
+        { icon: '⚖️', title: 'Legal Defense', desc: 'We fight for you if dispute arises', id: 'legal-defense', section: '#solutions' },
       ]
     }
   },
   {
-    label: 'Technology',
+    label: 'Offerings',
+    href: '#offerings',
     dropdown: {
-      header: 'Our Tech Stack',
+      header: 'OUR 8 PRODUCTS',
       items: [
-        { icon: '🤖', title: 'City-Trained AI Models', desc: '20 city-specific engines', href: '#solution' },
-        { icon: '📊', title: '5M+ Records Database', desc: 'India\'s largest property data', href: '#solution' },
-        { icon: '🔗', title: 'Real-time Govt APIs', desc: 'Live land record integration', href: '#' },
-        { icon: '⚡', title: 'Automated Risk Scoring', desc: 'Report in minutes, not weeks', href: '#solution' },
+        { icon: '🔍', title: 'AI Trust Report', desc: 'Risk score in 48 hours — ₹7,999 onwards', id: 'trust-report', section: '#offerings' },
+        { icon: '🛡️', title: 'Title Insurance', desc: 'IRDAI-aligned — 0.10% to 0.15%', id: 'title-insurance', section: '#offerings' },
+        { icon: '🏠', title: 'Property Insurance', desc: 'Physical structure — ₹2,500/yr onwards', id: 'prop-insurance', section: '#offerings' },
+        { icon: '👤', title: 'Digital Owner Insurance', desc: 'NRI & remote owners — 0.25%/yr', id: 'digital-owner', section: '#offerings' },
+        { icon: '💰', title: 'Escrow Services', desc: 'Safe payment — 0.15% to 0.25%', id: 'escrow', section: '#offerings' },
+        { icon: '🏦', title: 'Loan Guarantees', desc: 'Banks & NBFCs — 0.10% of loan', id: 'loan-guarantee', section: '#offerings' },
+        { icon: '⚖️', title: 'Legal Defense Insurance', desc: 'Court costs — ₹3,000/yr', id: 'legal-defense', section: '#offerings' },
+        { icon: '🚨', title: 'Fraud Monitoring', desc: 'Post-purchase alerts — ₹1,999/yr', id: 'fraud-monitoring', section: '#offerings' },
       ]
     }
   },
   {
-    label: 'About Us',
-    href: '#about'
+    label: 'Segments',
+    href: '#segments',
+    dropdown: {
+      header: 'PROPERTY SEGMENTS',
+      items: [
+        { icon: '🏢', title: 'Resale Flats', desc: 'Society built apartments', id: 'resale-flat', section: '#segments' },
+        { icon: '🏡', title: 'Independent Houses', desc: 'Bungalows, villas, row houses', id: 'house', section: '#segments' },
+        { icon: '🌾', title: 'Freehold Plots', desc: 'NA plots, agricultural (Highest Risk)', id: 'plot', section: '#segments' },
+        { icon: '🏘️', title: 'Freehold Layouts', desc: 'Developer plotted developments', id: 'layout', section: '#segments' },
+        { icon: '🏪', title: 'Commercial Properties', desc: 'Offices, shops, warehouses', id: 'commercial', section: '#segments' },
+        { icon: '🏗️', title: 'Developer Flats', desc: 'Under-construction, RERA projects', id: 'dev-flat', section: '#segments' },
+        { icon: '🏛️', title: 'Govt Scheme Properties', desc: 'DDA, MHADA, BDA, LDA', id: 'govt', section: '#segments' },
+        { icon: '🏭', title: 'Resale Commercial', desc: 'Mixed-use, old market shops', id: 'resale-comm', section: '#segments' },
+      ]
+    }
+  },
+  {
+    label: 'Stakeholders',
+    href: '#stakeholders',
+    dropdown: {
+      header: 'FOR EVERY PARTICIPANT',
+      items: [
+        { icon: '👨‍👩‍👧', title: 'First-Time Buyer', desc: 'Trust score + hidden dues check', id: 'buyer', section: '#stakeholders' },
+        { icon: '🌍', title: 'NRI', desc: 'Remote verification + escrow', id: 'nri', section: '#stakeholders' },
+        { icon: '💼', title: 'Investor', desc: 'Title insurance + flip protection', id: 'investor', section: '#stakeholders' },
+        { icon: '🏗️', title: 'Developer', desc: 'Buyer confidence + faster sales', id: 'developer', section: '#stakeholders' },
+        { icon: '🏦', title: 'Bank / HFC', desc: 'Automated collateral risk score', id: 'bank', section: '#stakeholders' },
+        { icon: '🏢', title: 'Broker', desc: '40% higher conversion rate', id: 'broker', section: '#stakeholders' },
+      ]
+    }
+  },
+  {
+    label: 'Outcomes',
+    href: '#solutions',
+    dropdown: {
+      header: 'WHAT YOU GAIN',
+      items: [
+        { icon: '🛡️', title: 'Zero Title Fraud Risk', desc: 'AI-verified ownership chain', id: 'universal-insurance', section: '#solutions' },
+        { icon: '📜', title: 'Legal Clarity', desc: 'Court-proof documentation', id: 'legal-defense', section: '#solutions' },
+        { icon: '💰', title: 'Safe Fund Transfer', desc: 'Escrow-secured payments', id: 'milestone-escrow', section: '#solutions' },
+        { icon: '🏆', title: 'IRDAI Coverage', desc: 'Insurance-backed protection', id: 'universal-insurance', section: '#solutions' },
+        { icon: '⏱️', title: '48hr Delivery', desc: 'Fastest verification in India', id: 'trust-report', section: '#offerings' },
+        { icon: '🤖', title: 'AI Trust Score', desc: '0-100 property rating', id: 'trust-report', section: '#offerings' },
+      ]
+    }
   }
 ];
 
@@ -110,72 +138,54 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (section: string, id?: string) => {
+    if (id) {
+      let eventName = '';
+      if (section === '#problem') eventName = 'setActiveProblem';
+      else if (section === '#solutions') eventName = 'setActiveSolution';
+      else if (section === '#offerings') eventName = 'setActiveOffering';
+      else if (section === '#segments') eventName = 'setActiveSegment';
+      else if (section === '#stakeholders') eventName = 'setActiveStakeholder';
+      
+      if (eventName) {
+        window.dispatchEvent(new CustomEvent(eventName, { detail: { id } }));
+      }
+    }
+    setIsOpen(false);
+    setActiveDropdown(null);
+  };
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 h-16 px-[5%] flex items-center border-b ${
-        scrolled 
-          ? 'bg-navy-900/92 backdrop-blur-xl border-gold-500/20 shadow-lg' 
-          : 'bg-navy-900/50 border-transparent'
-      }`}
-    >
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 h-16 px-[5%] flex items-center border-b ${
+      scrolled ? 'bg-white/95 backdrop-blur-xl border-navy-900/10 shadow-sm' : 'bg-white/50 border-transparent'
+    }`}>
       <div className="w-full flex justify-between items-center">
-        <a href="#" className="flex items-center gap-3 no-underline group shrink-0">
-          <div className="w-9 h-9 bg-gradient-to-br from-gold-500 to-gold-400 rounded-lg flex items-center justify-center font-serif font-black text-lg text-navy-900 transition-transform group-hover:scale-110">
-            T
-          </div>
-          <span className="font-serif text-xl font-bold text-white tracking-wide">
-            Trust<span className="text-gold-400">Flows</span>
-          </span>
+        <a href="/" className="flex items-center gap-3 no-underline group shrink-0">
+          <div className="w-9 h-9 bg-gradient-to-br from-primary-blue to-blue-light rounded-lg flex items-center justify-center font-serif font-black text-lg text-navy-900 transition-transform group-hover:scale-110">T</div>
+          <span className="font-serif text-xl font-bold text-navy-900 tracking-wide">Trust<span className="text-primary-blue">Flows</span></span>
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-2 h-full">
+        <div className="hidden lg:flex items-center gap-1 h-full">
           {navItems.map((item) => (
-            <div
-              key={item.label}
-              className="relative h-full flex items-center"
-              onMouseEnter={() => setActiveDropdown(item.label)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <a
-                href={item.href || '#'}
-                className="flex items-center gap-1.5 px-4 py-2 text-white/80 hover:text-gold-400 text-[13px] font-semibold transition-all"
-              >
+            <div key={item.label} className="relative h-full flex items-center" onMouseEnter={() => setActiveDropdown(item.label)} onMouseLeave={() => setActiveDropdown(null)}>
+              <a href={item.href} onClick={() => handleNavClick(item.href)} className={`flex items-center gap-1 px-2.5 py-2 text-[12px] font-bold transition-all ${
+                activeDropdown === item.label ? 'text-primary-blue' : 'text-navy-900/60 hover:text-navy-900'
+              }`}>
                 {item.label}
-                {item.dropdown && (
-                  <ChevronDown 
-                    size={14} 
-                    className={`transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180 text-gold-400' : ''}`} 
-                  />
-                )}
+                <ChevronDown size={12} className={`transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
               </a>
 
               <AnimatePresence>
                 {activeDropdown === item.label && item.dropdown && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 w-[280px] bg-navy-800/95 backdrop-blur-2xl border border-gold-500/30 rounded-xl p-4 shadow-2xl"
-                  >
-                    <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold-500 mb-4 px-2">
-                      {item.dropdown.header}
-                    </div>
-                    <div className="space-y-1">
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full left-0 mt-2 min-w-[280px] bg-white border border-navy-900/10 rounded-[14px] p-2 shadow-[0_16px_48px_rgba(0,0,0,0.12)]">
+                    <div className="text-[9px] font-bold tracking-[2px] uppercase text-primary-blue mb-2 px-3 pt-2">{item.dropdown.header}</div>
+                    <div className="space-y-0.5">
                       {item.dropdown.items.map((subItem) => (
-                        <a
-                          key={subItem.title}
-                          href={subItem.href}
-                          className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/5 transition-all group/item"
-                        >
-                          <span className="text-lg shrink-0">{subItem.icon}</span>
+                        <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-blue-light transition-all group/item">
+                          <span className="text-[18px] shrink-0 mt-0.5">{subItem.icon}</span>
                           <div>
-                            <div className="text-[13px] font-bold text-white group-hover/item:text-gold-400 transition-colors">
-                              {subItem.title}
-                            </div>
-                            <div className="text-[11px] text-white/50 group-hover/item:text-white/70 transition-colors">
-                              {subItem.desc}
-                            </div>
+                            <div className="text-[13px] font-bold text-navy-900 group-hover/item:text-primary-blue transition-colors">{subItem.title}</div>
+                            <div className="text-[11px] text-[#718096] leading-tight">{subItem.desc}</div>
                           </div>
                         </a>
                       ))}
@@ -188,86 +198,43 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="hidden sm:block bg-gradient-to-br from-gold-500 to-gold-400 text-navy-900 px-5 py-2 rounded-lg font-sans font-bold text-[13px] transition-all hover:translate-y-[-1px] hover:shadow-[0_8px_24px_rgba(201,168,76,0.35)]">
-            Get Risk Report
-          </button>
-
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-gold-400 p-1 focus:outline-none"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <button className="hidden sm:block bg-primary-blue text-white px-5 py-2 rounded-lg font-sans font-bold text-[12px] transition-all hover:bg-blue-dark hover:shadow-lg">Get Risk Report</button>
+          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-navy-900 p-1"><Menu size={24} /></button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="lg:hidden fixed inset-y-0 right-0 w-full max-w-[300px] bg-navy-900 border-l border-gold-500/20 z-[110] overflow-y-auto"
-          >
+          <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="lg:hidden fixed inset-y-0 right-0 w-full max-w-[320px] bg-white border-l border-navy-900/10 z-[110] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-8">
-                <span className="font-serif text-lg font-bold text-white">Menu</span>
-                <button onClick={() => setIsOpen(false)} className="text-gold-400"><X size={24} /></button>
+                <span className="font-serif text-lg font-bold text-navy-900">Menu</span>
+                <button onClick={() => setIsOpen(false)}><X size={24} /></button>
               </div>
-              
-              <div className="space-y-2">
+              <div className="space-y-1">
                 {navItems.map((item) => (
                   <div key={item.label}>
-                    <button
-                      onClick={() => item.dropdown ? setExpandedAccordion(expandedAccordion === item.label ? null : item.label) : (setIsOpen(false), window.location.hash = item.href || '')}
-                      className="w-full flex justify-between items-center py-3 text-white font-medium border-b border-white/5"
-                    >
-                      {item.label}
-                      {item.dropdown && (
-                        <ChevronDown 
-                          size={16} 
-                          className={`transition-transform ${expandedAccordion === item.label ? 'rotate-180' : ''}`} 
-                        />
-                      )}
+                    <button onClick={() => setExpandedAccordion(expandedAccordion === item.label ? null : item.label)} className="w-full flex justify-between items-center py-3 text-navy-900 font-bold border-b border-navy-900/5">
+                      {item.label} <ChevronDown size={16} className={`transition-transform ${expandedAccordion === item.label ? 'rotate-180' : ''}`} />
                     </button>
-                    
                     <AnimatePresence>
                       {expandedAccordion === item.label && item.dropdown && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden bg-white/5 rounded-lg mt-2"
-                        >
-                          <div className="p-4 space-y-4">
-                            {item.dropdown.items.map((subItem) => (
-                              <a
-                                key={subItem.title}
-                                href={subItem.href}
-                                onClick={() => setIsOpen(false)}
-                                className="flex gap-3"
-                              >
-                                <span>{subItem.icon}</span>
-                                <div>
-                                  <div className="text-sm font-bold text-white">{subItem.title}</div>
-                                  <div className="text-[11px] text-white/50">{subItem.desc}</div>
-                                </div>
-                              </a>
-                            ))}
-                          </div>
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden bg-[#F5F7FA] rounded-lg mt-1 px-4 py-3 space-y-4">
+                          {item.dropdown.items.map((subItem) => (
+                            <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex gap-3">
+                              <span className="text-xl">{subItem.icon}</span>
+                              <div>
+                                <div className="text-[13px] font-bold text-navy-900">{subItem.title}</div>
+                                <div className="text-[11px] text-[#718096]">{subItem.desc}</div>
+                              </div>
+                            </a>
+                          ))}
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
                 ))}
               </div>
-              
-              <button className="w-full bg-gradient-to-br from-gold-500 to-gold-400 text-navy-900 py-3 rounded-xl font-bold text-[15px] mt-8">
-                Get Risk Report
-              </button>
             </div>
           </motion.div>
         )}

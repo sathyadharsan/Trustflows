@@ -69,16 +69,16 @@ const CustomerSegments = () => {
   };
 
   return (
-    <section id="who-we-serve" className="bg-navy-900 py-[100px] px-[5%]">
+    <section id="who-we-serve" className="bg-white py-[100px] px-[5%]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold-500 mb-4">
+          <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold-600 mb-4">
             Who We Serve
           </div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-white">
+          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
             Built for Every Property Stakeholder
           </h2>
-          <p className="text-[16px] text-white/70 leading-relaxed max-w-[620px] mx-auto">
+          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[620px] mx-auto font-medium">
             Whether you're buying your first home or managing a ₹500 Crore portfolio — TrustFlows protects you.
           </p>
         </div>
@@ -94,35 +94,35 @@ const CustomerSegments = () => {
             <motion.div
               key={i}
               variants={itemVariants}
-              className="group bg-white/5 backdrop-blur-md border border-gold-500/20 rounded-2xl p-8 transition-all hover:border-gold-500/50 hover:translate-y-[-4px] hover:bg-white/[0.07] cursor-default relative overflow-hidden"
+              className="group bg-[#F5F7FA] border border-navy-900/10 rounded-2xl p-8 transition-all hover:border-gold-500/50 hover:translate-y-[-4px] hover:bg-white hover:shadow-xl cursor-default relative overflow-hidden"
             >
               <div className="text-5xl mb-6 block">{customer.icon}</div>
               
-              <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-gold-500 mb-3">
+              <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-gold-600 mb-3">
                 {customer.label}
               </div>
               
-              <p className="text-sm text-white italic mb-6 leading-relaxed">
+              <p className="text-sm text-navy-900 italic mb-6 leading-relaxed font-medium">
                 <span className="text-gold-500 text-lg mr-1 opacity-60">❝</span>
                 {customer.pain}
                 <span className="text-gold-500 text-lg ml-1 opacity-60">❞</span>
               </p>
               
-              <div className="w-full h-px bg-white/10 mb-6" />
+              <div className="w-full h-px bg-navy-900/10 mb-6" />
               
-              <div className="text-[11px] font-bold tracking-[1px] uppercase text-gold-500 mb-2">
+              <div className="text-[11px] font-bold tracking-[1px] uppercase text-gold-600 mb-2">
                 ✦ TrustFlows does:
               </div>
               
-              <p className="text-[15px] text-white/70 leading-relaxed mb-8 min-h-[44px]">
+              <p className="text-[15px] text-[#4A5568] leading-relaxed mb-8 min-h-[44px] font-medium">
                 {customer.solution}
               </p>
               
-              <div className="inline-block bg-gold-500 text-navy-900 px-4 py-1.5 rounded-full text-[12px] font-bold mb-8 animate-pulse shadow-lg shadow-gold-500/20">
+              <div className="inline-block bg-navy-900 text-white px-4 py-1.5 rounded-full text-[12px] font-bold mb-8 shadow-lg">
                 {customer.stat}
               </div>
               
-              <button className="w-full bg-transparent border border-gold-600/50 text-gold-400 py-3 rounded-xl font-semibold text-sm transition-all hover:bg-gold-400/10 hover:border-gold-400">
+              <button className="w-full bg-transparent border border-navy-900/20 text-navy-900 py-3 rounded-xl font-semibold text-sm transition-all hover:bg-navy-900 hover:text-white">
                 {customer.cta}
               </button>
             </motion.div>

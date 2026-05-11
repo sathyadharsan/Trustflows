@@ -1,94 +1,177 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+
+const problemSegments = [
+  {
+    id: 'flat',
+    sidebarLabel: '🏢 Resale Flat (Apartment)',
+    panelHeading: '🏢 Resale Flat (Apartment) Risks',
+    uniqueRisk: 'Undisclosed society dues, pending property tax, illegal alterations',
+    typicalLoss: '₹2-10 Lakhs',
+    items: [
+      { t: 'Society Dues', d: 'Buyer becomes liable for all previous owner arrears.' },
+      { t: 'Illegal Alterations', d: 'Civil fines or demolition orders for unauthorized changes.' },
+      { t: 'Tax Gaps', d: 'Pending municipal taxes inherited by the new owner.' }
+    ]
+  },
+  {
+    id: 'plot',
+    sidebarLabel: '🌾 Freehold Plot',
+    panelHeading: '🌾 Freehold Plot Risks',
+    uniqueRisk: 'Fake mother deed, missing inheritance chain, Wakf board claim',
+    typicalLoss: '₹15 Lakhs – ₹2 Crores',
+    items: [
+      { t: 'Fake Deeds', d: 'Most common fraud in India — forged original grants.' },
+      { t: 'Inheritance Gaps', d: 'Undisclosed heirs claiming rights after sale.' },
+      { t: 'Wakf Claims', d: 'Entire title can be voided if property is listed as Wakf.' }
+    ]
+  },
+  {
+    id: 'layout',
+    sidebarLabel: '🏘️ Freehold Layout',
+    panelHeading: '🏘️ Freehold Layout Risks',
+    uniqueRisk: 'Unapproved layout plan, missing DC conversion, no completion certificate',
+    typicalLoss: '₹25 Lakhs – ₹5 Crores',
+    items: [
+      { t: 'Plan Approval', d: 'Layout might exist without DTCP/TP approval.' },
+      { t: 'Conversion Status', d: 'Land remains agricultural in records despite plotting.' },
+      { t: 'Common Areas', d: 'Developer selling "open space" earmarked for parks/roads.' }
+    ]
+  },
+  {
+    id: 'commercial',
+    sidebarLabel: '🏪 Commercial Property',
+    panelHeading: '🏪 Commercial Property Risks',
+    uniqueRisk: 'Illegal tenancy, pending GST/octroi, title defects affecting business license',
+    typicalLoss: '₹50 Lakhs – ₹10 Crores',
+    items: [
+      { t: 'Tenancy Rights', d: 'Old rent control laws making eviction impossible.' },
+      { t: 'Statutory Dues', d: 'GST, property tax, and commercial water arrears.' },
+      { t: 'Land Use', d: 'Illegal commercial operation on residential zoned land.' }
+    ]
+  },
+  {
+    id: 'developer',
+    sidebarLabel: '🏗️ Developer Flat (Under Construction)',
+    panelHeading: '🏗️ Developer Flat (Under Construction) Risks',
+    uniqueRisk: 'Delayed possession, builder diversion of funds, RERA violation',
+    typicalLoss: '₹10-50 Lakhs + mental stress',
+    items: [
+      { t: 'Fund Diversion', d: 'Buyer advances used for other projects, stalling yours.' },
+      { t: 'RERA Violations', d: 'Deviation from sanctioned specs leads to cancellation.' },
+      { t: 'Title Disputes', d: 'Landowner-builder dispute halts the entire project.' }
+    ]
+  },
+  {
+    id: 'house',
+    sidebarLabel: '🏡 Resale Independent House',
+    panelHeading: '🏡 Resale Independent House Risks',
+    uniqueRisk: 'Unauthorized floors, deviation from sanctioned plan, easement rights disputes',
+    typicalLoss: '₹20 Lakhs – ₹1 Crore',
+    items: [
+      { t: 'Sanction Deviations', d: 'Floors built beyond the sanctioned height or FSI.' },
+      { t: 'Easement Rights', d: 'Neighbor\'s right of way or light through your property.' },
+      { t: 'Utility Gaps', d: 'Unauthorized borewell or electrical connections.' }
+    ]
+  }
+];
+
+const Card = ({ title, desc, isPulsing }: { title: string; desc: string; isPulsing: boolean }) => (
+  <div className={`bg-white border rounded-xl p-5 shadow-sm transition-all hover:border-primary-blue/30 hover:shadow-lg ${isPulsing ? 'animate-border-pulse' : 'border-navy-900/5'}`}>
+    <h4 className="text-[14px] font-bold text-navy-900 mb-2">{title}</h4>
+    <p className="text-[12px] text-[#718096] leading-relaxed font-medium">{desc}</p>
+  </div>
+);
 
 const Problem = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [active, setActive] = useState('flat');
+  const [isPulsing, setIsPulsing] = useState(false);
 
-  const risks = [
-    { segment: 'Resale Flat', risk: 'Undisclosed society dues, pending tax', loss: '₹2–10 Lakhs' },
-    { segment: 'Freehold Plot', risk: 'Fake mother deed, Wakf board claim', loss: '₹15L – ₹2 Crore' },
-    { segment: 'Commercial Property', risk: 'Illegal tenancy, pending GST/octroi', loss: '₹50L – ₹10 Crore' },
-    { segment: 'Developer Flat', risk: 'RERA violation, builder fund diversion', loss: '₹10–50 Lakhs' },
-    { segment: 'Freehold Layout', risk: 'Unapproved plan, missing DC conversion', loss: '₹25L – ₹5 Crore', extra: true },
-    { segment: 'Independent House', risk: 'Unauthorized floors, easement disputes', loss: '₹20L – ₹1 Crore', extra: true },
-  ];
+  React.useEffect(() => {
+    const handleSetActive = (e: any) => {
+      if (e.detail && e.detail.id) {
+        setActive(e.detail.id);
+        const section = document.getElementById('problem');
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+        setIsPulsing(true);
+        setTimeout(() => setIsPulsing(false), 500);
+      }
+    };
+    window.addEventListener('setActiveProblem', handleSetActive);
+    return () => window.removeEventListener('setActiveProblem', handleSetActive);
+  }, []);
 
-  const visibleRisks = isExpanded ? risks : risks.filter(r => !r.extra);
-
-  const cities = [
-    'Mumbai SRA', 'Bangalore A/B Khata', 'Chennai Patta/Chitta', 
-    'Hyderabad Wakf Board', 'Delhi DDDA Colonies'
-  ];
+  const activeData = problemSegments.find(s => s.id === active)!;
 
   return (
-    <section id="problem" className="bg-navy-900 py-[100px] px-[5%]">
+    <section id="problem" className="bg-white py-[100px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold-500 mb-4">
-            The Hard Truth
-          </div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-white">
-            India's Property Market is<br />
-            Not One Market. It's <span className="text-gold-400">20 Risk Ecosystems.</span>
+        <div className="text-center mb-16">
+          <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">THE MARKET PROBLEM</div>
+          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+            India’s Property Market is Not One Market. <br />
+            <span className="text-primary-blue">It’s 20 Different Risk Ecosystems.</span>
           </h2>
-          <p className="text-[16px] text-white/70 leading-relaxed max-w-[620px] mb-12">
-            From Mumbai's SRA flats to Delhi's DDDA colonies, from Bangalore's Khata confusions to Chennai's Patta complexities — every city has unique trust gaps.
+          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[850px] mx-auto font-medium mb-12">
+            From Mumbai’s slum rehabilitation authority (SRA) flats to Delhi’s DDDA unauthorized colonies, from Bangalore’s A/B Khata confusions to Chennai’s Patta/Chitta complexities – every city and every property segment has unique trust gaps.
           </p>
+          <h3 className="font-serif text-2xl font-bold text-navy-900 mb-2">The Hard Truth Across Segments</h3>
         </div>
 
-        <div className="bg-gradient-to-br from-gold-500/10 to-gold-500/5 border border-gold-500/30 rounded-2xl p-8 md:p-12 inline-block mb-14 text-center md:text-left">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="block font-accent text-[clamp(48px,8vw,96px)] text-gold-400 leading-none mb-2"
-          >
-            ₹1.5 Lakh Crore+
-          </motion.span>
-          <div className="text-sm text-white/70">Annual loss due to property fraud & litigation in India</div>
+        <div className="flex flex-col md:flex-row gap-8 items-start mb-20">
+          <div className="w-full md:w-[35%] space-y-2 sticky top-24 flex md:flex-col pb-4 md:pb-0 scrollbar-hide gap-2 md:gap-0">
+            {problemSegments.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => { setActive(s.id); setIsPulsing(true); setTimeout(() => setIsPulsing(false), 500); }}
+                className={`flex items-center justify-between w-full min-w-[200px] md:min-w-0 px-6 py-4 rounded-xl text-left transition-all duration-200 ${
+                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-navy-900/5 text-[#4A5568] hover:bg-blue-light'
+                }`}
+              >
+                <span className="text-[14px] font-bold">{s.sidebarLabel}</span>
+                {active === s.id && <ArrowRight size={18} className="text-white" />}
+              </button>
+            ))}
+          </div>
+
+          <div className="w-full md:w-[65%] bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px]">
+            <AnimatePresence mode="wait">
+              <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
+                <h3 className="font-serif text-2xl font-bold text-navy-900 mb-8 border-b border-navy-900/10 pb-6">{activeData.panelHeading}</h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                  <div className="bg-white border border-red-500/10 rounded-2xl p-6 shadow-sm">
+                    <div className="text-[10px] font-bold text-red-500 tracking-wider uppercase mb-2">UNIQUE RISK</div>
+                    <p className="text-[15px] font-bold text-navy-900">{activeData.uniqueRisk}</p>
+                  </div>
+                  <div className="bg-navy-900 rounded-2xl p-6 shadow-xl">
+                    <div className="text-[10px] font-bold text-primary-blue tracking-wider uppercase mb-2">TYPICAL LOSS</div>
+                    <p className="font-accent text-3xl text-white">{activeData.typicalLoss}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {activeData.items.map((item, idx) => (
+                    <Card key={idx} title={item.t} desc={item.d} isPulsing={isPulsing} />
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
-        <div className="w-full overflow-x-auto">
-          <table className="w-full border-collapse mb-10 min-w-[600px]">
-            <thead>
-              <tr className="border-b border-gold-500/30">
-                <th className="py-4 px-5 text-left text-[11px] font-bold tracking-[1.5px] uppercase text-gold-500">Property Segment</th>
-                <th className="py-4 px-5 text-left text-[11px] font-bold tracking-[1.5px] uppercase text-gold-500">Top Risk</th>
-                <th className="py-4 px-5 text-left text-[11px] font-bold tracking-[1.5px] uppercase text-gold-500">Typical Loss</th>
-              </tr>
-            </thead>
-            <tbody>
-              <AnimatePresence mode="popLayout">
-                {visibleRisks.map((item, index) => (
-                  <motion.tr 
-                    key={item.segment}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="group border-b border-white/5 hover:bg-gold-500/5 transition-colors"
-                  >
-                    <td className="py-4 px-5 text-sm font-medium text-white">{item.segment}</td>
-                    <td className="py-4 px-5 text-sm text-white/70">{item.risk}</td>
-                    <td className="py-4 px-5 text-sm font-bold text-gold-400 whitespace-nowrap">{item.loss}</td>
-                  </motion.tr>
-                ))}
-              </AnimatePresence>
-            </tbody>
-          </table>
-        </div>
-
-        <button 
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="bg-transparent border border-gold-500/20 text-gold-400 px-6 py-2.5 rounded-lg text-sm font-sans transition-all hover:bg-gold-400/10"
-        >
-          {isExpanded ? 'Show less ↑' : 'See all 6 segments →'}
-        </button>
-
-        <div className="flex flex-wrap gap-2.5 mt-12">
-          {cities.map((city) => (
-            <div key={city} className="bg-gold-500/10 border border-gold-500/20 text-gold-400 px-4 py-2 rounded-full text-[13px] font-medium transition-all hover:bg-gold-500/20 cursor-default">
-              {city}
+        <div className="bg-navy-900 rounded-[32px] p-10 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-blue/10 to-transparent" />
+          <div className="relative z-10">
+            <h4 className="font-serif text-white text-2xl md:text-3xl font-bold mb-4">
+              Aggregate annual loss due to property fraud & litigation in India:
+            </h4>
+            <div className="font-accent text-[clamp(40px,8vw,80px)] text-primary-blue leading-none mb-4">
+              ₹1.5 Lakh Crore+
             </div>
-          ))}
+            <p className="text-white/40 text-[12px] font-bold uppercase tracking-[3px]">SOURCE: TRUSTFLOWS RISK INTELLIGENCE BUREAU</p>
+          </div>
         </div>
       </div>
     </section>

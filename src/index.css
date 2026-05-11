@@ -1,43 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Bebas+Neue&display=swap');
 
 @import "tailwindcss";
-@config "../tailwind.config.js";
 
-@layer base {
-  :root {
-    color-scheme: dark;
-  }
+@theme {
+  --color-navy-700: #1A2238;
+  --color-navy-800: #0D1427;
+  --color-navy-900: #0A0F1E;
   
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-[#0A0F1E] text-white font-sans overflow-x-hidden;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0A0F1E;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #A8873A;
-    border-radius: 3px;
-  }
+  /* Changing Gold to Blue as per user request */
+  --color-primary-blue: #0066FF;
+  --color-blue-light: #E6F0FF;
+  --color-blue-dark: #0044BB;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-accent: "Bebas Neue", sans-serif;
 }
 
-@layer utilities {
-  .text-gold-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#E8C96D] via-[#C9A84C] to-[#A8873A];
-  }
-  
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl;
-  }
+:root {
+  --navy-900: #0A0F1E;
+  --navy-800: #0D1427;
+  --navy-700: #1A2238;
+  --primary-blue: #0066FF;
+  --blue-light: #E6F0FF;
+  --blue-dark: #0044BB;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFFFF;
+  color: #4A5568;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: #0A0F1E;
+}
+
+.font-accent {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+@keyframes borderPulse {
+  0%   { box-shadow: 0 0 0 0px rgba(0,102,255,0.6); }
+  50%  { box-shadow: 0 0 0 6px rgba(0,102,255,0.25); }
+  100% { box-shadow: 0 0 0 2px rgba(0,102,255,0.1); }
+}
+
+.animate-border-pulse {
+  animation: borderPulse 0.5s ease;
+}
+
+/* Custom Scrollbar for horizontal chips */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
