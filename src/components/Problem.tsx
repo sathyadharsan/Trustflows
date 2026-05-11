@@ -79,8 +79,8 @@ const problemSegments = [
 
 const Card = ({ title, desc, isPulsing }: { title: string; desc: string; isPulsing: boolean }) => (
   <div className={`bg-white border rounded-xl p-5 shadow-sm transition-all hover:border-primary-blue/30 hover:shadow-lg ${isPulsing ? 'animate-border-pulse' : 'border-navy-900/5'}`}>
-    <h4 className="text-[14px] font-bold text-navy-900 mb-2">{title}</h4>
-    <p className="text-[12px] text-[#718096] leading-relaxed font-medium">{desc}</p>
+    <h4 className="text-[15px] font-bold text-[#0a0a1a] mb-2">{title}</h4>
+    <p className="text-[13px] text-[#4a4a6a] font-normal leading-[1.7]">{desc}</p>
   </div>
 );
 
@@ -105,31 +105,31 @@ const Problem = () => {
   const activeData = problemSegments.find(s => s.id === active)!;
 
   return (
-    <section id="problem" className="bg-white py-[100px] px-[5%] overflow-hidden">
+    <section id="problem" className="bg-white py-[80px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">THE MARKET PROBLEM</div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+          <h2 className="text-[36px] font-bold leading-[1.3] mb-6 text-[#0a0a1a]">
             India’s Property Market is Not One Market. <br />
             <span className="text-primary-blue">It’s 20 Different Risk Ecosystems.</span>
           </h2>
-          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[850px] mx-auto font-medium mb-12">
+          <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[850px] mx-auto font-normal mb-12">
             From Mumbai’s slum rehabilitation authority (SRA) flats to Delhi’s DDDA unauthorized colonies, from Bangalore’s A/B Khata confusions to Chennai’s Patta/Chitta complexities – every city and every property segment has unique trust gaps.
           </p>
-          <h3 className="font-serif text-2xl font-bold text-navy-900 mb-2">The Hard Truth Across Segments</h3>
+          <h3 className="text-[24px] font-semibold text-[#0a0a1a] mb-2">The Hard Truth Across Segments</h3>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 items-start mb-20">
+        <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
           <div className="w-full md:w-[35%] space-y-2 sticky top-24 flex md:flex-col pb-4 md:pb-0 scrollbar-hide gap-2 md:gap-0">
             {problemSegments.map((s) => (
               <button
                 key={s.id}
                 onClick={() => { setActive(s.id); setIsPulsing(true); setTimeout(() => setIsPulsing(false), 500); }}
                 className={`flex items-center justify-between w-full min-w-[200px] md:min-w-0 px-6 py-4 rounded-xl text-left transition-all duration-200 ${
-                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-navy-900/5 text-[#4A5568] hover:bg-blue-light'
+                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-navy-900/5 text-[#1a1a2e] hover:bg-blue-light'
                 }`}
               >
-                <span className="text-[14px] font-bold">{s.sidebarLabel}</span>
+                <span className="text-[15px] font-semibold">{s.sidebarLabel}</span>
                 {active === s.id && <ArrowRight size={18} className="text-white" />}
               </button>
             ))}
@@ -138,16 +138,16 @@ const Problem = () => {
           <div className="w-full md:w-[65%] bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px]">
             <AnimatePresence mode="wait">
               <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
-                <h3 className="font-serif text-2xl font-bold text-navy-900 mb-8 border-b border-navy-900/10 pb-6">{activeData.panelHeading}</h3>
+                <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-8 border-b border-navy-900/10 pb-6">{activeData.panelHeading}</h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
                   <div className="bg-white border border-red-500/10 rounded-2xl p-6 shadow-sm">
-                    <div className="text-[10px] font-bold text-red-500 tracking-wider uppercase mb-2">UNIQUE RISK</div>
-                    <p className="text-[15px] font-bold text-navy-900">{activeData.uniqueRisk}</p>
+                    <div className="text-[11px] font-bold text-red-500 tracking-[1.5px] uppercase mb-2">UNIQUE RISK</div>
+                    <p className="text-[15px] font-bold text-[#0a0a1a]">{activeData.uniqueRisk}</p>
                   </div>
                   <div className="bg-navy-900 rounded-2xl p-6 shadow-xl">
-                    <div className="text-[10px] font-bold text-primary-blue tracking-wider uppercase mb-2">TYPICAL LOSS</div>
-                    <p className="font-accent text-3xl text-white">{activeData.typicalLoss}</p>
+                    <div className="text-[11px] font-bold text-primary-blue tracking-[1.5px] uppercase mb-2">TYPICAL LOSS</div>
+                    <p className="text-[32px] font-bold text-white leading-tight">{activeData.typicalLoss}</p>
                   </div>
                 </div>
 
@@ -164,13 +164,13 @@ const Problem = () => {
         <div className="bg-navy-900 rounded-[32px] p-10 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-primary-blue/10 to-transparent" />
           <div className="relative z-10">
-            <h4 className="font-serif text-white text-2xl md:text-3xl font-bold mb-4">
+            <h4 className="text-white text-[24px] md:text-[32px] font-bold mb-4 leading-tight">
               Aggregate annual loss due to property fraud & litigation in India:
             </h4>
-            <div className="font-accent text-[clamp(40px,8vw,80px)] text-primary-blue leading-none mb-4">
+            <div className="text-[48px] md:text-[64px] font-bold text-primary-blue leading-none mb-4 tracking-tighter">
               ₹1.5 Lakh Crore+
             </div>
-            <p className="text-white/40 text-[12px] font-bold uppercase tracking-[3px]">SOURCE: TRUSTFLOWS RISK INTELLIGENCE BUREAU</p>
+            <p className="text-white/40 text-[11px] font-bold uppercase tracking-[2px]">SOURCE: TRUSTFLOWS RISK INTELLIGENCE BUREAU</p>
           </div>
         </div>
       </div>

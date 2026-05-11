@@ -12,35 +12,35 @@ const ComparisonSection = () => {
   ];
 
   return (
-    <section className="bg-white py-[100px] px-[5%] overflow-hidden">
+    <section className="bg-white py-[80px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">WHY CHOOSE US</div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+          <h2 className="text-[36px] font-bold leading-[1.3] mb-6 text-[#0a0a1a]">
             Why TrustFlows <span className="text-primary-blue">Wins.</span>
           </h2>
-          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[760px] mx-auto font-medium">
+          <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[760px] mx-auto font-normal">
             Local lawyers are limited. Generic portals are shallow. TrustFlows combines deep local intelligence with global transaction standards.
           </p>
         </div>
 
-        <div className="overflow-x-auto mb-20 scrollbar-hide">
+        <div className="overflow-x-auto mb-12 scrollbar-hide">
           <table className="w-full min-w-[800px] border-collapse bg-white rounded-3xl overflow-hidden shadow-2xl">
             <thead>
-              <tr className="bg-[#F5F7FA]">
-                <th className="px-8 py-8 text-left text-[12px] font-bold uppercase tracking-widest text-navy-900/40">Feature</th>
-                <th className="px-8 py-8 text-left text-[12px] font-bold uppercase tracking-widest text-navy-900/40">Local Lawyers</th>
-                <th className="px-8 py-8 text-left text-[12px] font-bold uppercase tracking-widest text-navy-900/40">Generic PropTech</th>
-                <th className="px-8 py-8 text-left text-[12px] font-bold uppercase tracking-widest text-white bg-primary-blue">TRUSTFLOWS</th>
+              <tr>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-white bg-[#0a0a1a]">Feature</th>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-[#4a4a6a] bg-[#f1f1f1]">Local Lawyers</th>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-[#4a4a6a] bg-[#f1f1f1]">Generic PropTech</th>
+                <th className="px-5 py-4 text-left text-[12px] font-bold uppercase tracking-[1.5px] text-white bg-[#185FA5]">TRUSTFLOWS</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-navy-900/5">
               {comparison.map((row, i) => (
-                <tr key={i}>
-                  <td className="px-8 py-6 font-black text-navy-900 text-[14px] uppercase tracking-tight">{row.feature}</td>
-                  <td className="px-8 py-6 font-medium text-[#718096] text-[14px]">{row.local}</td>
-                  <td className="px-8 py-6 font-medium text-[#718096] text-[14px]">{row.generic}</td>
-                  <td className="px-8 py-6 font-black text-primary-blue text-[15px] bg-primary-blue/5">{row.trustflows}</td>
+                <tr key={i} className={`transition-colors hover:bg-blue-light/20 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F5F7FA]'}`}>
+                  <td className="px-8 py-6 font-bold text-[#0a0a1a] text-[11px] uppercase tracking-[1.5px]">{row.feature}</td>
+                  <td className="px-8 py-6 font-normal text-[#4a4a6a] text-[14px] leading-[1.6]">{row.local}</td>
+                  <td className="px-8 py-6 font-normal text-[#4a4a6a] text-[14px] leading-[1.6]">{row.generic}</td>
+                  <td className="px-8 py-6 font-bold text-primary-blue text-[15px] bg-primary-blue/5">{row.trustflows}</td>
                 </tr>
               ))}
             </tbody>
@@ -53,9 +53,9 @@ const ComparisonSection = () => {
             { t: 'The Insurance Promise', d: '"If we insure your title and you lose it to a dispute, we pay you up to ₹10 Crores."' },
             { t: 'The Standard Promise', d: '"Every property type. Every city. One unified standard of trust for India."' }
           ].map((p, i) => (
-            <div key={i} className="bg-navy-900 rounded-[32px] p-10 text-center border-b-4 border-primary-blue">
-              <h4 className="text-[11px] font-bold text-primary-blue tracking-[2px] uppercase mb-6">{p.t}</h4>
-              <p className="text-white text-[16px] font-bold italic leading-relaxed">
+            <div key={i} className="bg-navy-900 rounded-[32px] p-10 text-center border-b-4 border-primary-blue shadow-xl">
+              <h4 className="text-[11px] font-bold text-primary-blue tracking-[1.5px] uppercase mb-6">{p.t}</h4>
+              <p className="text-white text-[15px] font-normal italic leading-[1.8]">
                 {p.d}
               </p>
             </div>

@@ -26,14 +26,14 @@ const Stakeholders = () => {
   }, []);
 
   return (
-    <section id="stakeholders" className="bg-[#F5F7FA] py-[100px] px-[5%] overflow-hidden">
+    <section id="stakeholders" className="bg-[#F5F7FA] py-[80px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">FOR EVERY PARTICIPANT</div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+          <h2 className="text-[36px] font-bold leading-[1.3] mb-6 text-[#0a0a1a]">
             Trust Infrastructure for <span className="text-primary-blue">All Stakeholders.</span>
           </h2>
-          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[760px] mx-auto font-medium">
+          <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[760px] mx-auto font-normal">
             Whether you are buying your first home or financing a billion-dollar commercial portfolio, we provide the trust layer you need.
           </p>
         </div>
@@ -52,11 +52,11 @@ const Stakeholders = () => {
               <div className="w-16 h-16 bg-blue-light rounded-2xl flex items-center justify-center text-3xl mb-8">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-navy-900 mb-2 uppercase tracking-tight">{item.label}</h3>
-              <div className="text-primary-blue font-black text-[14px] uppercase tracking-widest mb-4">
+              <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-2 uppercase tracking-tight">{item.label}</h3>
+              <div className="text-[#185FA5] font-bold text-[11px] uppercase tracking-[1.5px] mb-4">
                 {item.text}
               </div>
-              <p className="text-[15px] text-[#718096] leading-relaxed font-medium">
+              <p className="text-[15px] text-[#1a1a2e] leading-[1.8] font-normal">
                 {item.sub}
               </p>
             </motion.div>

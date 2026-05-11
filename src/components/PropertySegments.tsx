@@ -8,14 +8,17 @@ const segmentData = [
     sidebarLabel: '🏢 Resale Flats',
     title: '🏢 Resale Flats & Apartments (Society Built)',
     content: {
-      who: ['First-time homebuyers', 'NRIs buying for parents', 'Rental yield investors'],
-      pain: ['Undisclosed maintenance dues (₹50k-5L)', 'Illegal alterations (extra room, balcony covered)', 'Pending property tax liabilities'],
+      who: ['First-time buyers of 5-20yr flats', 'NRIs buying in parent’s city', 'Investors targeting high rental yield'],
+      pain: ['Undisclosed maintenance bills (₹50k-₹5L)', 'Illegal alterations leading to civic fines', 'Disputes over parking and common areas', 'Pending property tax passing to buyer'],
       solution: [
-        { check: 'Society NOC check', val: 'Avoid rejection at registration' },
-        { check: 'Maintenance dues audit', val: 'Save ₹50k-2L in hidden arrears' },
-        { check: 'Property tax clearance', val: 'Avoid municipal penalties' }
+        { check: 'Society NOC check', val: 'Avoid registration rejection' },
+        { check: 'Maintenance dues audit', val: 'Save ₹50k-2 Lakhs' },
+        { check: 'Property tax clearance', val: 'Avoid penalties & interest' },
+        { check: 'Conveyance deed status', val: 'Ensure future redevelopment' },
+        { check: 'Illegal construction scan', val: 'Eliminate demolition risk' },
+        { check: 'Encumbrance check (30 yrs)', val: 'Uncover hidden claims' }
       ],
-      roi: '₹7,999 report vs ₹15L potential loss avoided.'
+      roi: 'Pune Case: Found ₹4.5 Lakhs unpaid tax & parking dispute. Saved buyer ₹6 Lakhs upfront.'
     }
   },
   {
@@ -23,14 +26,16 @@ const segmentData = [
     sidebarLabel: '🏡 Resale Houses',
     title: '🏡 Resale Independent Houses & Villas',
     content: {
-      who: ['Bungalow buyers (old city)', 'Gated villa investors', 'Row house buyers'],
-      pain: ['Undisclosed easement rights (right of way)', 'Illegal extra floors (deviation >10%)', 'Missing Occupancy Certificate (OC)'],
+      who: ['Bungalow buyers in old city', 'Investors in township row houses', 'Buyers of gated community villas'],
+      pain: ['Undisclosed easement rights affecting valuation', 'Illegal extra floors causing demolition risk', 'Missing occupancy certificate blocking bank loans', 'Pending municipal betterment and development fees'],
       solution: [
-        { check: 'Sanctioned vs As-built scan', val: 'Avoid demolition risk' },
-        { check: 'Easement rights search', val: 'Protects privacy & valuation' },
-        { check: 'OC/CC verification', val: 'Ensures bank loan eligibility' }
+        { check: 'Sanctioned plan vs as-built', val: 'Prevent demolition risks' },
+        { check: 'Easement rights search', val: 'Protect property valuation' },
+        { check: 'OC/CC verification', val: 'Ensure loan eligibility' },
+        { check: 'Betterment charges audit', val: 'Clear municipal liabilities' },
+        { check: 'Title chain (50+ yrs)', val: 'Verify original ownership' }
       ],
-      roi: ' लखनऊ Case: Saved ₹2.2 Cr loss on bungalow with missing OC.'
+      roi: 'Lucknow Case: Found 1998 mortgage & missing OC. Buyer avoided ₹2.2 Cr total loss.'
     }
   },
   {
@@ -38,14 +43,17 @@ const segmentData = [
     sidebarLabel: '🌾 Freehold Plots',
     title: '🌾 Freehold Plots (Vacant Land) - HIGHEST RISK',
     content: {
-      who: ['Vacant land investors', 'Agricultural-to-NA buyers', 'Industrial plot targeters'],
-      pain: ['Fake mother deeds / forged inheritance', 'Wakf board claims on ancestral land', 'Government acquisition notifications'],
+      who: ['Buyers of NA converted land', 'Investors in residential plotted layouts', 'Industrial plot targeters for warehouses'],
+      pain: ['Fake mother deeds or forged inheritance', 'Wakf board claims voiding entire title', 'Government acquisition notifications for roads/SEZ', 'B-Khata lacking bank loan eligibility'],
       solution: [
-        { check: 'Mother deed verification', val: 'Trace to government grant (1920s)' },
-        { check: 'Wakf board overlap scan', val: 'Critical for high-risk districts' },
-        { check: 'Heirship validation', val: 'Eliminates future family claims' }
+        { check: 'Original mother deed check', val: 'Verify government grants' },
+        { check: 'Heirship validation', val: 'Check family tree' },
+        { check: 'Wakf board overlap scan', val: 'Scan high-risk districts' },
+        { check: 'Acquisition notification search', val: 'Check 30-year records' },
+        { check: 'NA order verification', val: 'Confirm Collector conversion' },
+        { check: 'Encumbrance search', val: '40-year continuous chain' }
       ],
-      roi: 'Hyderabad Case: AI flagged ₹3.5 Cr plot with illegal Wakf claim.'
+      roi: 'Hyderabad Case: AI flagged 1987 Wakf claim on Tellapur plot. Saved buyer ₹3.5 Cr.'
     }
   },
   {
@@ -53,14 +61,16 @@ const segmentData = [
     sidebarLabel: '🏘️ Freehold Layouts',
     title: '🏘️ Freehold Layouts (Developer Plotted)',
     content: {
-      who: ['DTCP/TP/BMRDA layout buyers', 'Township plot investors'],
-      pain: ['Layout approval vs plot title confusion', 'Illegal sale of "open space" (parks/roads)', 'Pending betterment / development charges'],
+      who: ['Buyers of DTCP approved layouts', 'Investors in TP approved layouts', 'Purchasers of licensed BMRDA layouts'],
+      pain: ['Plot titles unclear despite layout approval', 'Missing land owner consent for layout', 'No completion certificate for internal roads', 'Illegal sale of earmarked open spaces'],
       solution: [
-        { check: 'Parent title audit', val: 'One defect kills all plots' },
-        { check: 'Layout plan verification', val: 'Check DTCP/TP authenticity' },
-        { check: 'Infra completion cert', val: 'Roads/drainage legally handed over' }
+        { check: 'Parent title of land', val: 'Prevent layout defects' },
+        { check: 'Layout plan approval', val: 'Verify authenticity deviations' },
+        { check: 'Open space earmarking', val: 'Ensure legal usage' },
+        { check: 'Infra completion cert', val: 'Verify handed over' },
+        { check: 'Plot reconstitution', val: 'Check subdivided numbers' }
       ],
-      roi: 'Surat Case: Saved ₹8 Cr collectively for 30 plot buyers.'
+      roi: 'Surat Case: Discovered developer mortgaged land to NBFC. Saved 30 buyers ₹8 Crores.'
     }
   },
   {
@@ -68,14 +78,16 @@ const segmentData = [
     sidebarLabel: '🏪 Commercial',
     title: '🏪 Commercial Properties (Offices & Shops)',
     content: {
-      who: ['IT Park unit buyers', 'High street retail investors', 'Warehouse targeters'],
-      pain: ['Leasehold vs Freehold confusion (DDA/MHADA)', 'Illegal commercial use on residential zone', 'Pending GST / stamp duty on past deals'],
+      who: ['IT park office space buyers', 'High street retail shop investors', 'Warehouse and godown purchasers'],
+      pain: ['Only allotment letter, no separate title', 'Leasehold land requiring government transfer nod', 'Pending GST or stamp duty liabilities', 'Missing fire and lift occupancy certificates'],
       solution: [
-        { check: 'Land use zone check', val: 'Ensures business license validity' },
-        { check: 'Statutory dues audit', val: 'GST, property tax, utility arrears' },
-        { check: 'Tenant rights search', val: 'Identifies hidden perpetual leases' }
+        { check: 'Title for commercial unit', val: 'Ensure resale rights' },
+        { check: 'Land use zone check', val: 'Validate business license' },
+        { check: 'Pending statutory dues', val: 'Audit GST property tax' },
+        { check: 'Leasehold status', val: 'Check transfer costs' },
+        { check: 'Tenant rights search', val: 'Find perpetual leases' }
       ],
-      roi: 'Chennai Case: Helped cancel ₹5 Cr warehouse deal on illegal land.'
+      roi: 'Chennai Case: Warehouse land was agricultural. Cancelled deal and refunded ₹5 Cr.'
     }
   },
   {
@@ -83,29 +95,16 @@ const segmentData = [
     sidebarLabel: '🏗️ Developer Flats',
     title: '🏗️ Developer Flats (Under Construction)',
     content: {
-      who: ['Premium apartment buyers', 'RERA project investors'],
-      pain: ['Builder diversion of funds (project stall)', 'RERA violations / registration cancellation', 'Super built-up vs carpet area cheating'],
+      who: ['Buyers of premium Grade A apartments', 'Investors in RERA registered projects', 'Purchasers of luxury condos with amenities'],
+      pain: ['Builder fund diversion stalling the project', 'Original project land title being disputed', 'Carpet area cheating leading to litigation', 'Possession delays without compensation payments'],
       solution: [
-        { check: 'RERA compliance tracking', val: 'Quarterly update & complaint history' },
-        { check: 'Milestone Escrow', val: 'Payment linked to construction stage' },
-        { check: 'Possession delay insurance', val: 'Payout if delayed beyond RERA date' }
+        { check: 'RERA project verification', val: 'Track registration complaints' },
+        { check: 'Builder background check', val: 'Check past litigation' },
+        { check: 'Land title of project', val: 'Ensure title insurance' },
+        { check: 'Milestone Escrow', val: 'Link payment progress' },
+        { check: 'Possession delay insurance', val: 'Payout if delayed' }
       ],
-      roi: 'Noida Case: Escrow saved ₹40L advance from builder diversion.'
-    }
-  },
-  {
-    id: 'govt',
-    sidebarLabel: '🏛️ Govt Schemes',
-    title: '🏛️ Govt Scheme Properties (DDA, MHADA, BDA)',
-    content: {
-      who: ['Govt plot/flat transfer buyers', 'Leasehold to freehold targeters'],
-      pain: ['Long leasehold transfer restrictions', 'Pending annual lease rent for 20+ years', 'Disputes between allottee and govt agency'],
-      solution: [
-        { check: 'Allotment validity check', val: 'Direct interface with agency DB' },
-        { check: 'Transfer permission status', val: 'Ensures legal re-sale rights' },
-        { check: 'Unpaid lease rent audit', val: 'Identify huge penalty arrears' }
-      ],
-      roi: 'Delhi Case: Stopped ₹1.2 Cr DDA deal with succession dispute.'
+      roi: 'Noida Case: Escrow held ₹40 Lakhs safely. Prevented builder diversion, delivered on time.'
     }
   },
   {
@@ -113,25 +112,70 @@ const segmentData = [
     sidebarLabel: '🏭 Mixed-Use',
     title: '🏭 Resale Commercial & Mixed-Use',
     content: {
-      who: ['Old market shop buyers', 'Office in commercial tower'],
-      pain: ['Pending business liabilities (GST/tax)', 'Association / society dues for commercial', 'Unapproved change of use (shop to godown)'],
+      who: ['Buyers of old market resale shops', 'Investors in commercial tower offices', 'Purchasers of mixed-use properties'],
+      pain: ['Previous owner’s pending GST or fines', 'Massive unpaid association or society dues', 'Missing original lease agreement breaking chain', 'Unapproved change of property use'],
       solution: [
-        { check: 'Utility bill history', val: 'Identify hidden business arrears' },
-        { check: 'Association NOC audit', val: 'Check for recorded disputes' },
-        { check: 'Trade license validity', val: 'Ensures business continuity' }
+        { check: 'Past utility bills', val: 'Find hidden dues' },
+        { check: 'Association NOC minutes', val: 'Check recorded disputes' },
+        { check: 'Lease deed history', val: 'Review tenant rights' },
+        { check: 'Trade license validity', val: 'Ensure business continuity' }
       ],
-      roi: 'Protection against ₹50L - ₹2 Cr risk per shop unit.'
+      roi: 'ROI: Protection against massive association dues, unpaid GST, and ₹2 Cr liabilities.'
+    }
+  },
+  {
+    id: 'govt',
+    sidebarLabel: '🏛️ Govt Schemes',
+    title: '🏛️ Govt Scheme Properties (High Risk)',
+    content: {
+      who: ['Buyers of DDA flats or plots', 'Purchasers in MHADA or HUDA schemes', 'Investors in Amaravati special risk zones'],
+      pain: ['Long leasehold terms with transfer restrictions', 'Original allottee illegal sub-sale issues', 'Disputes between allottee and government agency', 'Pending annual lease rent causing arrears'],
+      solution: [
+        { check: 'Original allotment validity', val: 'Interface with databases' },
+        { check: 'Transfer permission status', val: 'Ensure legal resale' },
+        { check: 'Unpaid lease rent audit', val: 'Identify penalty arrears' },
+        { check: 'Pending cancellation', val: 'Check government orders' }
+      ],
+      roi: 'Delhi Case: Buyer paying ₹1.2 Cr for DDA flat. Found succession dispute, cancelled deal.'
     }
   }
 ];
 
-const Card = ({ title, items }: { title: string; items: string[] }) => (
-  <div className="bg-white border border-navy-900/5 rounded-xl p-5 shadow-sm">
-    <h4 className="text-[11px] font-bold text-primary-blue tracking-wider uppercase mb-3">{title}</h4>
-    <ul className="space-y-2">
+const renderPainPoint = (text: string) => {
+  const parts = text.split(/(₹[\d,.\s]+(?:Lakhs?|Crores?|Cr|L|k)?)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.startsWith('₹') ? <strong key={i} className="font-bold">{part}</strong> : part
+      )}
+    </>
+  );
+};
+
+const Card1 = ({ title, items }: { title: string; items: string[] }) => (
+  <div className="bg-[#f8f9ff] rounded-[10px] p-[16px] flex-1">
+    <h4 className="text-[14px] font-semibold text-[#0a0a1a] mb-3 flex items-center gap-2">
+      👤 {title}
+    </h4>
+    <ul className="space-y-[6px]">
       {items.map((it, i) => (
-        <li key={i} className="flex gap-2 text-[13px] text-navy-900 font-bold leading-snug">
-          <span className="text-primary-blue mt-0.5">•</span> {it}
+        <li key={i} className="flex items-start gap-2 text-[13px] text-[#1a1a2e] font-normal leading-[1.6]">
+          <span className="text-primary-blue mt-[4px] text-[10px]">●</span> <span>{it}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const Card2 = ({ title, items }: { title: string; items: string[] }) => (
+  <div className="bg-[#fff8f0] border border-[#f0d9b5] rounded-[10px] p-[16px] flex-1">
+    <h4 className="text-[14px] font-semibold text-[#0a0a1a] mb-3 flex items-center gap-2">
+      ⚠️ {title}
+    </h4>
+    <ul className="space-y-[6px]">
+      {items.map((it, i) => (
+        <li key={i} className="flex items-start gap-2 text-[13px] text-[#1a1a2e] font-normal leading-[1.6]">
+          <span className="text-[#d97706] mt-[4px] text-[10px]">●</span> <span>{renderPainPoint(it)}</span>
         </li>
       ))}
     </ul>
@@ -156,14 +200,14 @@ const PropertySegments = () => {
   const activeData = segmentData.find(s => s.id === active)!;
 
   return (
-    <section id="segments" className="bg-[#F5F7FA] py-[100px] px-[5%] overflow-hidden">
+    <section id="segments" className="bg-[#F5F7FA] py-[80px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">SEGMENT COVERAGE</div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+          <h2 className="text-[36px] font-bold leading-[1.3] mb-6 text-[#0a0a1a]">
             India’s Most <span className="text-primary-blue">Granular Risk Intelligence</span>
           </h2>
-          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[760px] mx-auto font-medium">
+          <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[760px] mx-auto font-normal">
             Every property type has a different risk profile. We provide city-trained checks for each segment.
           </p>
         </div>
@@ -175,10 +219,10 @@ const PropertySegments = () => {
                 key={s.id}
                 onClick={() => setActive(s.id)}
                 className={`flex items-center justify-between w-full min-w-[200px] md:min-w-0 px-6 py-4 rounded-xl text-left transition-all duration-200 ${
-                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-navy-900/5 text-[#4A5568] hover:bg-blue-light'
+                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-navy-900/5 text-[#1a1a2e] hover:bg-blue-light'
                 }`}
               >
-                <span className="text-[14px] font-bold">{s.sidebarLabel}</span>
+                <span className="text-[15px] font-semibold">{s.sidebarLabel}</span>
                 {active === s.id && <ArrowRight size={18} className="text-white" />}
               </button>
             ))}
@@ -187,28 +231,37 @@ const PropertySegments = () => {
           <div className="w-full md:w-[65%] bg-white border border-[#E2E8F0] rounded-[32px] p-6 md:p-10 shadow-sm min-h-[600px] flex flex-col">
             <AnimatePresence mode="wait">
               <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="flex-1 flex flex-col">
-                <h3 className="font-serif text-2xl font-bold text-navy-900 mb-8 border-b border-navy-900/10 pb-6 uppercase tracking-tight">{activeData.title}</h3>
+                <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-8 border-b border-navy-900/10 pb-6 uppercase tracking-tight">{activeData.title}</h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 flex-1">
-                  <Card title="WHO THIS IS FOR" items={activeData.content.who} />
-                  <Card title="UNIQUE PAIN POINTS" items={activeData.content.pain} />
+                {/* ZONE 1 */}
+                <div className="flex flex-col sm:flex-row gap-[12px] mb-[16px] flex-none">
+                  <Card1 title="Who This Is For" items={activeData.content.who} />
+                  <Card2 title="Unique Pain Points" items={activeData.content.pain} />
                 </div>
 
-                <div className="bg-[#F5F7FA] rounded-2xl p-6 mb-8">
-                  <h4 className="text-[11px] font-bold text-primary-blue tracking-wider uppercase mb-5">TRUSTFLOWS SPECIFIC CHECKS</h4>
-                  <div className="space-y-4">
+                {/* ZONE 2 */}
+                <div className="w-full mb-[16px] flex-1">
+                  <h4 className="text-[12px] font-bold text-[#0a0a1a] tracking-[1.5px] uppercase mb-3">TRUSTFLOWS SPECIFIC CHECKS</h4>
+                  <div className="flex flex-col">
                     {activeData.content.solution.map((item, i) => (
-                      <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-navy-900/5 pb-3">
-                        <span className="text-[14px] font-bold text-navy-900">{item.check}</span>
-                        <span className="text-[13px] text-primary-blue font-bold">↳ {item.val}</span>
+                      <div key={i} className="flex items-center justify-between py-[10px] border-b border-navy-900/5 last:border-0">
+                        <span className="text-[14px] font-medium text-[#0a0a1a]">{item.check}</span>
+                        <span className="text-[13px] text-primary-blue font-normal italic flex items-center gap-2">
+                          <span className="text-primary-blue/70">↓</span> {item.val}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="bg-navy-900 text-white rounded-2xl p-6 border-l-4 border-primary-blue">
-                  <div className="text-[10px] font-bold text-primary-blue tracking-wider uppercase mb-2">ROI ANALYSIS / CASE STUDY</div>
-                  <p className="text-[15px] font-bold italic">"{activeData.content.roi}"</p>
+                {/* ZONE 3 */}
+                <div className="bg-[#0a1628] rounded-[10px] p-[16px] flex-none">
+                  <div className="text-[10px] font-semibold text-[#B5D4F4] tracking-[1.5px] uppercase mb-2">
+                    {activeData.content.roi.startsWith('ROI') ? '💰 ROI' : '📖 CASE STUDY'}
+                  </div>
+                  <p className="text-[13px] font-normal italic text-white leading-[1.6]">
+                    "{activeData.content.roi}"
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>

@@ -32,38 +32,43 @@ const bundles = [
 ];
 
 const Pricing = () => {
+  const [activeBundle, setActiveBundle] = React.useState(0);
+
   return (
-    <section id="pricing" className="bg-[#F5F7FA] py-[100px] px-[5%] overflow-hidden">
+    <section id="pricing" className="bg-[#F5F7FA] py-[80px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">PRICING & ROI</div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+          <h2 className="text-[36px] font-bold leading-[1.3] mb-6 text-[#0a0a1a]">
             Transparent Pricing. <span className="text-primary-blue">Definite Protection.</span>
           </h2>
-          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[760px] mx-auto font-medium">
+          <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[760px] mx-auto font-normal">
             Risk intelligence you can afford. Protection you can't afford to miss. Escrow fee is 100% refunded if deal fails due to title.
           </p>
         </div>
 
-        <div className="overflow-x-auto mb-20 scrollbar-hide">
+        <div className="overflow-x-auto mb-12 scrollbar-hide">
           <table className="w-full min-w-[800px] bg-white border border-navy-900/5 rounded-3xl overflow-hidden shadow-sm">
             <thead>
               <tr className="bg-navy-900 text-white">
-                <th className="px-8 py-6 text-left text-[12px] font-bold uppercase tracking-widest">Property Segment</th>
-                <th className="px-8 py-6 text-left text-[12px] font-bold uppercase tracking-widest">Trust Report</th>
-                <th className="px-8 py-6 text-left text-[12px] font-bold uppercase tracking-widest">Title Insurance</th>
-                <th className="px-8 py-6 text-left text-[12px] font-bold uppercase tracking-widest">Escrow Fee</th>
-                <th className="px-8 py-6 text-left text-[12px] font-bold uppercase tracking-widest text-primary-blue">Total Approx</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Property Segment</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Trust Report</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Title Insurance</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Escrow Fee</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px] text-primary-blue">Total Approx</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-navy-900/5">
               {pricingSegments.map((row, i) => (
-                <tr key={i} className="hover:bg-blue-light/30 transition-colors">
-                  <td className="px-8 py-6 font-bold text-navy-900">{row.s}</td>
-                  <td className="px-8 py-6 font-medium text-[#4A5568]">{row.r}</td>
-                  <td className="px-8 py-6 font-medium text-[#4A5568]">{row.i}</td>
-                  <td className="px-8 py-6 font-medium text-[#4A5568]">{row.e}</td>
-                  <td className="px-8 py-6 font-black text-primary-blue">{row.t}</td>
+                <tr 
+                  key={i} 
+                  className="transition-colors hover:bg-blue-light/30"
+                >
+                  <td className="px-8 py-6 font-semibold text-[14px] text-[#0a0a1a]">{row.s}</td>
+                  <td className="px-8 py-6 font-normal text-[14px] text-[#1a1a2e] leading-[1.6]">{row.r}</td>
+                  <td className="px-8 py-6 font-normal text-[14px] text-[#1a1a2e] leading-[1.6]">{row.i}</td>
+                  <td className="px-8 py-6 font-normal text-[14px] text-[#1a1a2e] leading-[1.6]">{row.e}</td>
+                  <td className="px-8 py-6 font-bold text-[22px] text-[#185FA5]">{row.t}</td>
                 </tr>
               ))}
             </tbody>
@@ -72,23 +77,27 @@ const Pricing = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {bundles.map((bundle, i) => (
-            <div key={i} className={`bg-white rounded-[32px] p-10 border-2 transition-all hover:translate-y-[-8px] ${
-              bundle.featured ? 'border-primary-blue shadow-2xl' : 'border-navy-900/5 shadow-sm'
-            }`}>
-              <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-6">{bundle.name}</div>
+            <div 
+              key={i} 
+              onClick={() => setActiveBundle(i)}
+              className={`bg-white rounded-[32px] p-10 border-2 transition-all cursor-pointer hover:translate-y-[-8px] ${
+                activeBundle === i ? 'border-primary-blue shadow-2xl' : 'border-navy-900/5 shadow-sm'
+              }`}
+            >
+              <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#185FA5] mb-6">{bundle.name}</div>
               <div className="mb-8">
-                <span className="font-accent text-6xl text-navy-900">{bundle.price}</span>
-                <p className="text-[12px] text-[#718096] font-bold uppercase tracking-widest mt-2">{bundle.sub}</p>
+                <span className="text-[48px] font-bold text-[#0a0a1a] leading-[1.2]">{bundle.price}</span>
+                <p className="text-[13px] text-[#4a4a6a] font-normal leading-[1.7] mt-2 uppercase tracking-[0.5px]">{bundle.sub}</p>
               </div>
               <ul className="space-y-4 mb-10">
                 {bundle.items.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-[14px] text-navy-900 font-bold">
+                  <li key={idx} className="flex gap-3 text-[15px] text-[#1a1a2e] font-normal leading-[1.8]">
                     <span className="text-primary-blue">✅</span> {item}
                   </li>
                 ))}
               </ul>
-              <button className={`w-full py-4 rounded-xl font-bold text-[15px] transition-all ${
-                bundle.featured ? 'bg-primary-blue text-white hover:bg-blue-dark' : 'bg-navy-900 text-white hover:bg-navy-800'
+              <button className={`w-full py-4 rounded-xl font-semibold text-[15px] tracking-[0.3px] transition-all ${
+                activeBundle === i ? 'bg-primary-blue text-white hover:bg-blue-dark shadow-lg shadow-primary-blue/20' : 'bg-[#0a0a1a] text-white hover:bg-navy-800'
               }`}>
                 Activate Plan
               </button>

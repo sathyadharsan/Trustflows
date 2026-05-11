@@ -73,22 +73,22 @@ const Card = ({ content }: { content: any }) => {
     <motion.div
       onClick={handleClick}
       animate={isPulsing ? { borderColor: '#0066FF' } : { borderColor: '#E2E8F0' }}
-      className={`relative bg-white border rounded-[20px] p-6 shadow-sm transition-all hover:translate-y-[-2px] hover:border-primary-blue hover:shadow-xl cursor-pointer overflow-hidden flex flex-col h-full ${
+      className={`relative bg-white border rounded-[20px] px-[20px] py-[18px] shadow-sm transition-all hover:translate-y-[-2px] hover:border-primary-blue hover:shadow-xl cursor-pointer overflow-hidden flex flex-col h-full ${
         isPulsing ? 'animate-border-pulse' : ''
-      } ${content.isBlue ? 'border-primary-blue bg-blue-light/30 shadow-[0_8px_32px_rgba(0,102,255,0.1)]' : ''}`}
+      } ${content.isBlue ? 'border-primary-blue bg-[#E6F1FB] shadow-[0_8px_32px_rgba(0,102,255,0.1)]' : ''}`}
     >
       <div className="flex items-start gap-4">
         <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${content.isBlue ? 'bg-primary-blue text-white' : 'bg-blue-light text-primary-blue'}`}>
           {content.icon}
         </div>
         <div className="flex-1">
-          <div className={`text-[10px] font-bold tracking-[2px] uppercase mb-3 ${content.isBlue ? 'text-primary-blue' : 'text-primary-blue/60'}`}>
+          <div className={`text-[11px] font-bold tracking-[1.5px] uppercase mb-3 text-[#185FA5]`}>
             {content.header}
           </div>
           <ul className="space-y-2">
             {content.points.map((point: string, i: number) => (
-              <li key={i} className="flex gap-2 text-[13px] text-navy-900 font-bold leading-snug">
-                <span className={`${content.isBlue ? 'text-primary-blue' : 'text-primary-blue/40'}`}>•</span>
+              <li key={i} className="flex gap-2 text-[15px] text-[#1a1a2e] font-normal leading-[1.8]">
+                <span className="text-[#185FA5]">•</span>
                 {point}
               </li>
             ))}
@@ -117,14 +117,14 @@ const Solution = () => {
   const activeData = solutionSegments.find(s => s.id === active)!;
 
   return (
-    <section id="solutions" className="bg-[#EEF2FF] py-[100px] px-[5%] overflow-hidden">
+    <section id="solutions" className="bg-[#EEF2FF] py-[80px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">OUR SOLUTION</div>
-          <h2 className="font-serif text-[clamp(28px,4vw,48px)] font-bold leading-[1.2] mb-6 text-navy-900">
+          <h2 className="text-[36px] font-bold leading-[1.3] mb-6 text-[#0a0a1a]">
             The TRUSTFLOWS <span className="text-primary-blue">Difference</span>
           </h2>
-          <p className="text-[16px] text-[#4A5568] leading-relaxed max-w-[760px] mx-auto font-medium">
+          <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[760px] mx-auto font-normal">
             We don’t just do “title search.” We deliver segment-specific, city-trained risk intelligence with insurance-backed protection and escrow-secured payments.
           </p>
         </div>
@@ -136,10 +136,10 @@ const Solution = () => {
                 key={s.id}
                 onClick={() => setActive(s.id)}
                 className={`flex items-center justify-between w-full min-w-[240px] md:min-w-0 px-6 py-4 rounded-xl text-left transition-all duration-200 ${
-                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-[#E2E8F0] text-[#4A5568] hover:bg-blue-light'
+                  active === s.id ? 'bg-primary-blue text-white shadow-md' : 'bg-white border border-[#E2E8F0] text-[#1a1a2e] hover:bg-blue-light'
                 }`}
               >
-                <span className="text-[14px] font-bold">{s.sidebarLabel}</span>
+                <span className="text-[15px] font-semibold">{s.sidebarLabel}</span>
                 {active === s.id && <ArrowRight size={18} className="text-white" />}
               </button>
             ))}
@@ -149,15 +149,18 @@ const Solution = () => {
             <AnimatePresence mode="wait">
               <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
                 <div className="mb-8 border-b border-navy-900/10 pb-6">
-                  <h3 className="font-serif text-2xl font-bold text-navy-900 mb-1">{activeData.title}</h3>
-                  <p className="text-primary-blue font-bold text-[14px]">{activeData.subtitle}</p>
+                  <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-1">{activeData.title}</h3>
+                  <p className="text-[#4a4a6a] font-normal text-[13px] leading-[1.7]">{activeData.subtitle}</p>
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 mb-8">
                   <Card content={activeData.content.card1} />
                   <Card content={activeData.content.card2} />
                   <Card content={activeData.content.card3} />
                   <Card content={activeData.content.card4} />
                 </div>
+                <button className="w-full py-4 bg-primary-blue text-white rounded-xl font-semibold text-[15px] tracking-[0.3px] hover:bg-blue-dark transition-all flex items-center justify-center gap-2">
+                  Get Free Report <ArrowRight size={18} />
+                </button>
               </motion.div>
             </AnimatePresence>
           </div>

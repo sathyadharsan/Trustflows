@@ -161,31 +161,31 @@ const Navbar = () => {
     }`}>
       <div className="w-full flex justify-between items-center">
         <a href="/" className="flex items-center gap-3 no-underline group shrink-0">
-          <div className="w-9 h-9 bg-gradient-to-br from-primary-blue to-blue-light rounded-lg flex items-center justify-center font-serif font-black text-lg text-navy-900 transition-transform group-hover:scale-110">T</div>
-          <span className="font-serif text-xl font-bold text-navy-900 tracking-wide">Trust<span className="text-primary-blue">Flows</span></span>
+          <div className="w-9 h-9 bg-gradient-to-br from-primary-blue to-blue-light rounded-lg flex items-center justify-center font-bold text-lg text-navy-900 transition-transform group-hover:scale-110">T</div>
+          <span className="text-[21px] font-bold text-navy-900 tracking-wide">Trust<span className="text-primary-blue">Flows</span></span>
         </a>
 
         <div className="hidden lg:flex items-center gap-1 h-full">
           {navItems.map((item) => (
             <div key={item.label} className="relative h-full flex items-center" onMouseEnter={() => setActiveDropdown(item.label)} onMouseLeave={() => setActiveDropdown(null)}>
-              <a href={item.href} onClick={() => handleNavClick(item.href)} className={`flex items-center gap-1 px-2.5 py-2 text-[12px] font-bold transition-all ${
-                activeDropdown === item.label ? 'text-primary-blue' : 'text-navy-900/60 hover:text-navy-900'
+              <a href={item.href} onClick={() => handleNavClick(item.href)} className={`flex items-center gap-1 px-3 py-2 text-[15px] font-semibold transition-all ${
+                activeDropdown === item.label ? 'text-primary-blue' : 'text-[#1a1a2e]/80 hover:text-[#1a1a2e]'
               }`}>
                 {item.label}
-                <ChevronDown size={12} className={`transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
+                <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
               </a>
 
               <AnimatePresence>
                 {activeDropdown === item.label && item.dropdown && (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute top-full left-0 mt-2 min-w-[280px] bg-white border border-navy-900/10 rounded-[14px] p-2 shadow-[0_16px_48px_rgba(0,0,0,0.12)]">
-                    <div className="text-[9px] font-bold tracking-[2px] uppercase text-primary-blue mb-2 px-3 pt-2">{item.dropdown.header}</div>
+                    <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-[#185FA5] mb-2 px-3 pt-2">{item.dropdown.header}</div>
                     <div className="space-y-0.5">
                       {item.dropdown.items.map((subItem) => (
                         <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-blue-light transition-all group/item">
                           <span className="text-[18px] shrink-0 mt-0.5">{subItem.icon}</span>
                           <div>
                             <div className="text-[13px] font-bold text-navy-900 group-hover/item:text-primary-blue transition-colors">{subItem.title}</div>
-                            <div className="text-[11px] text-[#718096] leading-tight">{subItem.desc}</div>
+                            <div className="text-[11px] text-[#4a4a6a] leading-tight">{subItem.desc}</div>
                           </div>
                         </a>
                       ))}
@@ -198,7 +198,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="hidden sm:block bg-primary-blue text-white px-5 py-2 rounded-lg font-sans font-bold text-[12px] transition-all hover:bg-blue-dark hover:shadow-lg">Get Risk Report</button>
+          <button className="hidden sm:block bg-primary-blue text-white px-6 py-2.5 rounded-lg font-semibold text-[15px] tracking-[0.3px] transition-all hover:bg-blue-dark hover:shadow-lg">Get Risk Report</button>
           <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-navy-900 p-1"><Menu size={24} /></button>
         </div>
       </div>
@@ -208,7 +208,7 @@ const Navbar = () => {
           <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="lg:hidden fixed inset-y-0 right-0 w-full max-w-[320px] bg-white border-l border-navy-900/10 z-[110] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-8">
-                <span className="font-serif text-lg font-bold text-navy-900">Menu</span>
+                <span className="text-[21px] font-bold text-navy-900">Menu</span>
                 <button onClick={() => setIsOpen(false)}><X size={24} /></button>
               </div>
               <div className="space-y-1">
@@ -225,7 +225,7 @@ const Navbar = () => {
                               <span className="text-xl">{subItem.icon}</span>
                               <div>
                                 <div className="text-[13px] font-bold text-navy-900">{subItem.title}</div>
-                                <div className="text-[11px] text-[#718096]">{subItem.desc}</div>
+                                <div className="text-[11px] text-[#4a4a6a]">{subItem.desc}</div>
                               </div>
                             </a>
                           ))}
