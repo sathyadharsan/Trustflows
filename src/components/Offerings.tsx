@@ -17,8 +17,8 @@ interface OfferingDetail {
 const offeringData: OfferingDetail[] = [
   {
     id: 'title-insurance',
-    sidebarLabel: '🛡️ Title Insurance',
-    title: '🛡️ IRDAI-Aligned Title Insurance',
+    sidebarLabel: 'Title Insurance',
+    title: 'IRDAI-Aligned Title Insurance',
     definition: 'A financial guarantee that protects legal ownership against pre-existing defects. If a third party challenges your ownership due to past forgery, missing heirs, or Wakf claims, TRUSTFLOWS covers the insured amount + legal costs.',
     benefits: [
       'Protects against retrospective risks (pre-purchase defects)',
@@ -45,8 +45,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'escrow',
-    sidebarLabel: '💰 Escrow Services',
-    title: '💰 Digital Property Escrow',
+    sidebarLabel: 'Escrow Services',
+    title: 'Digital Property Escrow',
     definition: 'RBI-compliant trust accounts where funds are held and released only after predefined conditions (like registration or construction milestones) are met, eliminating payment fraud.',
     benefits: [
       'Zero fund diversion by builders',
@@ -72,8 +72,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'prop-insurance',
-    sidebarLabel: '🏠 Property Insurance',
-    title: '🏠 Structural & Asset Protection',
+    sidebarLabel: 'Property Insurance',
+    title: 'Structural & Asset Protection',
     definition: 'Traditional property insurance that protects the physical building and its contents from damage due to fire, natural disasters, or theft. Focuses on bricks, mortar, and belongings.',
     benefits: [
       '24x7 WhatsApp claim intimation',
@@ -99,8 +99,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'digital-owner',
-    sidebarLabel: '👤 Digital Owner Insurance',
-    title: '👤 Digital Owner (NRI Protection)',
+    sidebarLabel: 'Digital Owner Insurance',
+    title: 'Digital Owner (NRI Protection)',
     definition: 'Specialized insurance for NRIs and investors to protect against risks of owning property remotely, including tenant issues and unauthorized occupation.',
     benefits: [
       'Protects against rent default',
@@ -124,8 +124,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'loan-guarantee',
-    sidebarLabel: '🏦 Loan Guarantees',
-    title: '🏦 Lender & Borrower Guarantees',
+    sidebarLabel: 'Loan Guarantees',
+    title: 'Lender & Borrower Guarantees',
     definition: 'A credit enhancement product that guarantees loan repayment if the title fails. It enables banks to lend on properties with minor title gaps or B-Khata issues.',
     benefits: [
       'Lower NPA risk for banks',
@@ -149,8 +149,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'legal-defense',
-    sidebarLabel: '⚖️ Legal Defense',
-    title: '⚖️ Legal Defense Insurance',
+    sidebarLabel: 'Legal Defense',
+    title: 'Legal Defense Insurance',
     definition: 'Covers the high cost of defending your ownership in court, regardless of whether the defect is covered by title insurance. Essential for boundary or frivolous claims.',
     benefits: [
       'Covers lawyer fees (up to ₹5 Lakhs)',
@@ -175,8 +175,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'fraud-monitoring',
-    sidebarLabel: '🚨 Fraud Monitoring',
-    title: '🚨 Post-Purchase Monitoring',
+    sidebarLabel: 'Fraud Monitoring',
+    title: 'Post-Purchase Monitoring',
     definition: 'Continuous surveillance of land records and court registries to alert you the moment any fraudulent activity is attempted on your property.',
     benefits: [
       'Real-time SMS/Email alerts',
@@ -201,8 +201,8 @@ const offeringData: OfferingDetail[] = [
   },
   {
     id: 'trust-report',
-    sidebarLabel: '🔍 Risk & Trust Score',
-    title: '🔍 AI Risk Intelligence Report',
+    sidebarLabel: 'Risk & Trust Score',
+    title: 'AI Risk Intelligence Report',
     definition: 'The foundation of trust — a deep-dive AI report giving a score of 0-100 after analyzing 50 years of title history, encumbrances, and local risks.',
     benefits: [
       '99.1% data accuracy guarantee',

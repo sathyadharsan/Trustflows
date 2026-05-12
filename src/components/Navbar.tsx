@@ -24,10 +24,10 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'TRUSTFLOWS',
       items: [
-        { icon: '🏠', title: 'Back to Top', desc: "India's #1 Property Trust Platform", id: 'hero', section: '#hero' },
-        { icon: '⭐', title: 'Trust Score', desc: 'Get free AI property risk score', id: 'hero', section: '#hero' },
-        { icon: '📞', title: 'Talk to Advisor', desc: 'City-specific consultation', id: 'footer', section: '#footer' },
-        { icon: '📍', title: 'Our Cities', desc: '20 major Indian cities covered', id: 'cities', section: '#cities' },
+        { icon: '', title: 'Back to Top', desc: "India's #1 Property Trust Platform", id: 'hero', section: '#hero' },
+        { icon: '', title: 'Trust Score', desc: 'Get free AI property risk score', id: 'hero', section: '#hero' },
+        { icon: '', title: 'Talk to Advisor', desc: 'City-specific consultation', id: 'footer', section: '#footer' },
+        { icon: '', title: 'Our Cities', desc: '20 major Indian cities covered', id: 'cities', section: '#cities' },
       ]
     }
   },
@@ -37,14 +37,14 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'OUR 8 PRODUCTS',
       items: [
-        { icon: '🔍', title: 'AI Trust Report', desc: 'Risk score in 48 hours — ₹7,999 onwards', id: 'trust-report', section: '#offerings' },
-        { icon: '🛡️', title: 'Title Insurance', desc: 'IRDAI-aligned — 0.10% to 0.15%', id: 'title-insurance', section: '#offerings' },
-        { icon: '🏠', title: 'Property Insurance', desc: 'Physical structure — ₹2,500/yr onwards', id: 'prop-insurance', section: '#offerings' },
-        { icon: '👤', title: 'Digital Owner Insurance', desc: 'NRI & remote owners — 0.25%/yr', id: 'digital-owner', section: '#offerings' },
-        { icon: '💰', title: 'Escrow Services', desc: 'Safe payment — 0.15% to 0.25%', id: 'escrow', section: '#offerings' },
-        { icon: '🏦', title: 'Loan Guarantees', desc: 'Banks & NBFCs — 0.10% of loan', id: 'loan-guarantee', section: '#offerings' },
-        { icon: '⚖️', title: 'Legal Defense Insurance', desc: 'Court costs — ₹3,000/yr', id: 'legal-defense', section: '#offerings' },
-        { icon: '🚨', title: 'Fraud Monitoring', desc: 'Post-purchase alerts — ₹1,999/yr', id: 'fraud-monitoring', section: '#offerings' },
+        { icon: '', title: 'AI Trust Report', desc: 'Risk score in 48 hours — ₹7,999 onwards', id: 'trust-report', section: '#offerings' },
+        { icon: '', title: 'Title Insurance', desc: 'IRDAI-aligned — 0.10% to 0.15%', id: 'title-insurance', section: '#offerings' },
+        { icon: '', title: 'Property Insurance', desc: 'Physical structure — ₹2,500/yr onwards', id: 'prop-insurance', section: '#offerings' },
+        { icon: '', title: 'Digital Owner Insurance', desc: 'NRI & remote owners — 0.25%/yr', id: 'digital-owner', section: '#offerings' },
+        { icon: '', title: 'Escrow Services', desc: 'Safe payment — 0.15% to 0.25%', id: 'escrow', section: '#offerings' },
+        { icon: '', title: 'Loan Guarantees', desc: 'Banks & NBFCs — 0.10% of loan', id: 'loan-guarantee', section: '#offerings' },
+        { icon: '', title: 'Legal Defense Insurance', desc: 'Court costs — ₹3,000/yr', id: 'legal-defense', section: '#offerings' },
+        { icon: '', title: 'Fraud Monitoring', desc: 'Post-purchase alerts — ₹1,999/yr', id: 'fraud-monitoring', section: '#offerings' },
       ]
     }
   },
@@ -54,14 +54,14 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'PROPERTY SEGMENTS',
       items: [
-        { icon: '🏢', title: 'Resale Flats', desc: 'Society built apartments', id: 'resale-flat', section: '#segments' },
-        { icon: '🏡', title: 'Independent Houses', desc: 'Bungalows, villas, row houses', id: 'house', section: '#segments' },
-        { icon: '🌾', title: 'Freehold Plots', desc: 'NA plots, agricultural (Highest Risk)', id: 'plot', section: '#segments' },
-        { icon: '🏘️', title: 'Freehold Layouts', desc: 'Developer plotted developments', id: 'layout', section: '#segments' },
-        { icon: '🏪', title: 'Commercial Properties', desc: 'Offices, shops, warehouses', id: 'commercial', section: '#segments' },
-        { icon: '🏗️', title: 'Developer Flats', desc: 'Under-construction, RERA projects', id: 'dev-flat', section: '#segments' },
-        { icon: '🏛️', title: 'Govt Scheme Properties', desc: 'DDA, MHADA, BDA, LDA', id: 'govt', section: '#segments' },
-        { icon: '🏭', title: 'Resale Commercial', desc: 'Mixed-use, old market shops', id: 'resale-comm', section: '#segments' },
+        { icon: '', title: 'Resale Flats', desc: 'Society built apartments', id: 'resale-flat', section: '#segments' },
+        { icon: '', title: 'Independent Houses', desc: 'Bungalows, villas, row houses', id: 'house', section: '#segments' },
+        { icon: '', title: 'Freehold Plots', desc: 'NA plots, agricultural (Highest Risk)', id: 'plot', section: '#segments' },
+        { icon: '', title: 'Freehold Layouts', desc: 'Developer plotted developments', id: 'layout', section: '#segments' },
+        { icon: '', title: 'Commercial Properties', desc: 'Offices, shops, warehouses', id: 'commercial', section: '#segments' },
+        { icon: '', title: 'Developer Flats', desc: 'Under-construction, RERA projects', id: 'dev-flat', section: '#segments' },
+        { icon: '', title: 'Govt Scheme Properties', desc: 'DDA, MHADA, BDA, LDA', id: 'govt', section: '#segments' },
+        { icon: '', title: 'Resale Commercial', desc: 'Mixed-use, old market shops', id: 'resale-comm', section: '#segments' },
       ]
     }
   },
@@ -71,12 +71,12 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'THE MARKET PROBLEM',
       items: [
-        { icon: '🏢', title: 'Resale Flat (Apartment)', desc: 'Undisclosed society dues, tax, illegal alterations', id: 'flat', section: '#problem' },
-        { icon: '🌾', title: 'Freehold Plot', desc: 'Fake mother deed, inheritance chain, Wakf claims', id: 'plot', section: '#problem' },
-        { icon: '🏘️', title: 'Freehold Layout', desc: 'Unapproved plan, missing conversion, no completion cert', id: 'layout', section: '#problem' },
-        { icon: '🏪', title: 'Commercial Property', desc: 'Illegal tenancy, GST dues, business license defects', id: 'commercial', section: '#problem' },
-        { icon: '🏗️', title: 'Developer Flat (Under Construction)', desc: 'Delayed possession, fund diversion, RERA violation', id: 'developer', section: '#problem' },
-        { icon: '🏡', title: 'Resale Independent House', desc: 'Unauthorized floors, deviation from plan, easement disputes', id: 'house', section: '#problem' },
+        { icon: '', title: 'Resale Flat (Apartment)', desc: 'Undisclosed society dues, tax, illegal alterations', id: 'flat', section: '#problem' },
+        { icon: '', title: 'Freehold Plot', desc: 'Fake mother deed, inheritance chain, Wakf claims', id: 'plot', section: '#problem' },
+        { icon: '', title: 'Freehold Layout', desc: 'Unapproved plan, missing conversion, no completion cert', id: 'layout', section: '#problem' },
+        { icon: '', title: 'Commercial Property', desc: 'Illegal tenancy, GST dues, business license defects', id: 'commercial', section: '#problem' },
+        { icon: '', title: 'Developer Flat (Under Construction)', desc: 'Delayed possession, fund diversion, RERA violation', id: 'developer', section: '#problem' },
+        { icon: '', title: 'Resale Independent House', desc: 'Unauthorized floors, deviation from plan, easement disputes', id: 'house', section: '#problem' },
       ]
     }
   },
@@ -86,11 +86,11 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'THE TRUSTFLOWS DIFFERENCE',
       items: [
-        { icon: '🧠', title: 'Segment AI', desc: 'Custom algorithms per property type', id: 'segment-ai', section: '#solutions' },
-        { icon: '🏙️', title: 'City-Trained Engines', desc: 'Mumbai, Pune, Kolkata city models', id: 'city-engines', section: '#solutions' },
-        { icon: '🛡️', title: 'Universal Insurance', desc: 'Works across all segments', id: 'universal-insurance', section: '#solutions' },
-        { icon: '💰', title: 'Milestone Escrow', desc: 'Released only on verified docs', id: 'milestone-escrow', section: '#solutions' },
-        { icon: '⚖️', title: 'Legal Defense', desc: 'We fight for you if dispute arises', id: 'legal-defense', section: '#solutions' },
+        { icon: '', title: 'Segment AI', desc: 'Custom algorithms per property type', id: 'segment-ai', section: '#solutions' },
+        { icon: '', title: 'City-Trained Engines', desc: 'Mumbai, Pune, Kolkata city models', id: 'city-engines', section: '#solutions' },
+        { icon: '', title: 'Universal Insurance', desc: 'Works across all segments', id: 'universal-insurance', section: '#solutions' },
+        { icon: '', title: 'Milestone Escrow', desc: 'Released only on verified docs', id: 'milestone-escrow', section: '#solutions' },
+        { icon: '', title: 'Legal Defense', desc: 'We fight for you if dispute arises', id: 'legal-defense', section: '#solutions' },
       ]
     }
   },
@@ -100,12 +100,12 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'FOR EVERY PARTICIPANT',
       items: [
-        { icon: '👨‍👩‍👧', title: 'First-Time Buyer', desc: 'Trust score + hidden dues check', id: 'buyer', section: '#stakeholders' },
-        { icon: '🌍', title: 'NRI', desc: 'Remote verification + escrow', id: 'nri', section: '#stakeholders' },
-        { icon: '💼', title: 'Investor', desc: 'Title insurance + flip protection', id: 'investor', section: '#stakeholders' },
-        { icon: '🏗️', title: 'Developer', desc: 'Buyer confidence + faster sales', id: 'developer', section: '#stakeholders' },
-        { icon: '🏦', title: 'Bank / HFC', desc: 'Automated collateral risk score', id: 'bank', section: '#stakeholders' },
-        { icon: '🏢', title: 'Broker', desc: '40% higher conversion rate', id: 'broker', section: '#stakeholders' },
+        { icon: '', title: 'First-Time Buyer', desc: 'Trust score + hidden dues check', id: 'buyer', section: '#stakeholders' },
+        { icon: '', title: 'NRI', desc: 'Remote verification + escrow', id: 'nri', section: '#stakeholders' },
+        { icon: '', title: 'Investor', desc: 'Title insurance + flip protection', id: 'investor', section: '#stakeholders' },
+        { icon: '', title: 'Developer', desc: 'Buyer confidence + faster sales', id: 'developer', section: '#stakeholders' },
+        { icon: '', title: 'Bank / HFC', desc: 'Automated collateral risk score', id: 'bank', section: '#stakeholders' },
+        { icon: '', title: 'Broker', desc: '40% higher conversion rate', id: 'broker', section: '#stakeholders' },
       ]
     }
   },
@@ -115,12 +115,12 @@ const navItems: NavItem[] = [
     dropdown: {
       header: 'WHAT YOU GAIN',
       items: [
-        { icon: '🛡️', title: 'Zero Title Fraud Risk', desc: 'AI-verified ownership chain', id: 'universal-insurance', section: '#solutions' },
-        { icon: '📜', title: 'Legal Clarity', desc: 'Court-proof documentation', id: 'legal-defense', section: '#solutions' },
-        { icon: '💰', title: 'Safe Fund Transfer', desc: 'Escrow-secured payments', id: 'milestone-escrow', section: '#solutions' },
-        { icon: '🏆', title: 'IRDAI Coverage', desc: 'Insurance-backed protection', id: 'universal-insurance', section: '#solutions' },
-        { icon: '⏱️', title: '48hr Delivery', desc: 'Fastest verification in India', id: 'trust-report', section: '#offerings' },
-        { icon: '🤖', title: 'AI Trust Score', desc: '0-100 property rating', id: 'trust-report', section: '#offerings' },
+        { icon: '', title: 'Zero Title Fraud Risk', desc: 'AI-verified ownership chain', id: 'universal-insurance', section: '#solutions' },
+        { icon: '', title: 'Legal Clarity', desc: 'Court-proof documentation', id: 'legal-defense', section: '#solutions' },
+        { icon: '', title: 'Safe Fund Transfer', desc: 'Escrow-secured payments', id: 'milestone-escrow', section: '#solutions' },
+        { icon: '', title: 'IRDAI Coverage', desc: 'Insurance-backed protection', id: 'universal-insurance', section: '#solutions' },
+        { icon: '', title: '48hr Delivery', desc: 'Fastest verification in India', id: 'trust-report', section: '#offerings' },
+        { icon: '', title: 'AI Trust Score', desc: '0-100 property rating', id: 'trust-report', section: '#offerings' },
       ]
     }
   }
@@ -189,7 +189,6 @@ const Navbar = () => {
                     <div className="grid grid-cols-2 gap-2">
                       {item.dropdown.items.map((subItem) => (
                         <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex items-start gap-3 p-3 rounded-lg hover:bg-blue-light transition-all group/item">
-                          <span className="text-[20px] shrink-0 mt-0.5">{subItem.icon}</span>
                           <div>
                             <div className="text-[13px] font-bold text-navy-900 group-hover/item:text-primary-blue transition-colors">{subItem.title}</div>
                             <div className="text-[11px] text-[#4a4a6a] leading-tight">{subItem.desc}</div>
@@ -229,7 +228,6 @@ const Navbar = () => {
                         <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden bg-[#F5F7FA] rounded-lg mt-1 px-4 py-3 space-y-4">
                           {item.dropdown.items.map((subItem) => (
                             <a key={subItem.title} href={subItem.section} onClick={() => handleNavClick(subItem.section, subItem.id)} className="flex gap-3">
-                              <span className="text-xl">{subItem.icon}</span>
                               <div>
                                 <div className="text-[13px] font-bold text-navy-900">{subItem.title}</div>
                                 <div className="text-[11px] text-[#4a4a6a]">{subItem.desc}</div>

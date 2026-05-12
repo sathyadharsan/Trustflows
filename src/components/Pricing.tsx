@@ -91,8 +91,8 @@ const Pricing = () => {
               </div>
               <ul className="space-y-4 mb-10">
                 {bundle.items.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-[15px] text-[#1a1a2e] font-normal leading-[1.8]">
-                    <span className="text-primary-blue">✅</span> {item}
+                  <li key={idx} className="flex gap-3 items-center text-[15px] text-[#1a1a2e] font-normal leading-[1.8]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary-blue shrink-0" /> {item}
                   </li>
                 ))}
               </ul>

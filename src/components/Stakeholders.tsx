@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const stakeholderData = [
-  { id: 'buyer', icon: '👨‍👩‍👧', label: 'First-Time Buyer', text: 'Trust Score + Hidden Dues Check', sub: 'Protect your lifetime savings before paying the advance.' },
-  { id: 'nri', icon: '🌍', label: 'NRI', text: 'Remote Verification + Escrow', sub: 'Verify and transact securely without needing to visit India.' },
-  { id: 'investor', icon: '💼', label: 'Investor', text: 'Title Insurance + Flip Protection', sub: 'Insure commercial or land investments for higher resale value.' },
-  { id: 'developer', icon: '🏗️', label: 'Developer', text: 'Buyer Confidence + Faster Sales', sub: 'Offer TRUSTFLOWS-certified units to sell project inventory faster.' },
-  { id: 'bank', icon: '🏦', label: 'Bank / HFC', text: 'Automated Collateral Risk Score', sub: 'Reduce NPA risks with IRDAI-aligned title guarantees.' },
-  { id: 'broker', icon: '🏢', label: 'Broker', text: '40% Higher Conversion Rate', sub: 'Close deals faster by providing verified, high-trust listings.' }
+  { id: 'buyer', label: 'First-Time Buyer', text: 'Trust Score + Hidden Dues Check', sub: 'Protect your lifetime savings before paying the advance.' },
+  { id: 'nri', label: 'NRI', text: 'Remote Verification + Escrow', sub: 'Verify and transact securely without needing to visit India.' },
+  { id: 'investor', label: 'Investor', text: 'Title Insurance + Flip Protection', sub: 'Insure commercial or land investments for higher resale value.' },
+  { id: 'developer', label: 'Developer', text: 'Buyer Confidence + Faster Sales', sub: 'Offer TRUSTFLOWS-certified units to sell project inventory faster.' },
+  { id: 'bank', label: 'Bank / HFC', text: 'Automated Collateral Risk Score', sub: 'Reduce NPA risks with IRDAI-aligned title guarantees.' },
+  { id: 'broker', label: 'Broker', text: '40% Higher Conversion Rate', sub: 'Close deals faster by providing verified, high-trust listings.' }
 ];
 
 const Stakeholders = () => {
@@ -49,9 +49,7 @@ const Stakeholders = () => {
                 active === item.id ? 'border-primary-blue shadow-2xl scale-105' : 'border-navy-900/5 shadow-sm hover:border-primary-blue/30'
               }`}
             >
-              <div className="w-16 h-16 bg-blue-light rounded-2xl flex items-center justify-center text-3xl mb-8">
-                {item.icon}
-              </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-primary-blue mb-6" />
               <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-2 uppercase tracking-tight">{item.label}</h3>
               <div className="text-[#185FA5] font-bold text-[11px] uppercase tracking-[1.5px] mb-4">
                 {item.text}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import SegmentOverview from './components/SegmentOverview';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
 import Offerings from './components/Offerings';
@@ -19,6 +20,7 @@ function App() {
     <main className="bg-white selection:bg-gold-500 selection:text-navy-900 font-sans antialiased overflow-x-hidden">
       <Navbar />
       <Hero />
+      <SegmentOverview />
       <Problem />
       <Solution />
       <Offerings />

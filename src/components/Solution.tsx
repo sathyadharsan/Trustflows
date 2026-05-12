@@ -5,8 +5,8 @@ import { ArrowRight, Brain, Star, Target, Zap, MapPin, TrendingUp, Building, Shi
 const solutionSegments = [
   {
     id: 'segment-ai',
-    sidebarLabel: '🧠 Segment-Specific AI',
-    title: '🧠 Segment-Specific AI Models',
+    sidebarLabel: 'Segment-Specific AI',
+    title: 'Segment-Specific AI Models',
     subtitle: 'Different AI for different property types',
     content: {
       card1: { header: 'WHAT IT MEANS', icon: <Brain size={18} />, points: ['Flat AI — checks society dues, illegal floors, tax', 'Plot AI — checks fake documents, Wakf claims, heirship', 'Commercial AI — checks land use, tenant lock-in, GST dues'] },
@@ -17,8 +17,8 @@ const solutionSegments = [
   },
   {
     id: 'city-engines',
-    sidebarLabel: '🏙️ City-Trained Engines',
-    title: '🏙️ City-Trained Risk Engines',
+    sidebarLabel: 'City-Trained Engines',
+    title: 'City-Trained Risk Engines',
     subtitle: 'Each city has its own trained AI model',
     content: {
       card1: { header: 'WHAT IT MEANS', icon: <MapPin size={18} />, points: ['Mumbai AI — knows SRA flat rules', 'Bangalore AI — knows A-Khata vs B-Khata', 'Chennai AI — knows Patta/Chitta issues'] },
@@ -29,8 +29,8 @@ const solutionSegments = [
   },
   {
     id: 'universal-insurance',
-    sidebarLabel: '🛡️ Universal Insurance',
-    title: '🛡️ Universal Title Insurance',
+    sidebarLabel: 'Universal Insurance',
+    title: 'Universal Title Insurance',
     subtitle: 'Protect your ownership — for life',
     content: {
       card1: { header: 'WHAT IT COVERS', icon: <Shield size={18} />, points: ['Forged sale deed — previous owner\'s signature was faked', 'Missing heir claims — long-lost son claims ownership', 'Wakf board claims — land declared as mosque property', 'Hidden mortgage — loan on property before your purchase'] },
@@ -41,8 +41,8 @@ const solutionSegments = [
   },
   {
     id: 'milestone-escrow',
-    sidebarLabel: '💰 Milestone Escrow',
-    title: '💰 Milestone-Secured Escrow',
+    sidebarLabel: 'Milestone Escrow',
+    title: 'Milestone-Secured Escrow',
     subtitle: 'Your money moves only when documents are verified',
     content: {
       card1: { header: 'WHAT IT MEANS', icon: <Lock size={18} />, points: ['Your payment sits in RBI-approved escrow account', 'Money goes to seller only after sale deed registered', 'Under-construction — released stage by stage'] },
@@ -53,8 +53,8 @@ const solutionSegments = [
   },
   {
     id: 'legal-defense',
-    sidebarLabel: '⚖️ Legal Defense',
-    title: '⚖️ Integrated Legal Defense',
+    sidebarLabel: 'Legal Defense',
+    title: 'Integrated Legal Defense',
     subtitle: 'We defend your ownership — even after purchase',
     content: {
       card1: { header: 'WHAT IT COVERS', icon: <Gavel size={18} />, points: ['Neighbor files boundary dispute case', 'Previous owner heir claims your property', 'Municipal corporation sends demolition notice'] },
@@ -127,6 +127,30 @@ const Solution = () => {
           <p className="text-[15px] text-[#1a1a2e] leading-[1.8] max-w-[760px] mx-auto font-normal">
             We don’t just do “title search.” We deliver segment-specific, city-trained risk intelligence with insurance-backed protection and escrow-secured payments.
           </p>
+        </div>
+        <div className="overflow-x-auto mb-16 scrollbar-hide">
+          <table className="w-full min-w-[800px] border-collapse bg-white rounded-3xl overflow-hidden shadow-2xl border border-navy-900/5">
+            <thead>
+              <tr className="bg-navy-900 text-white">
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Feature</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px] text-primary-blue">What It Means For You</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-navy-900/5">
+              {[
+                { f: 'Segment-Specific AI Models', m: 'Separate algorithms for flats, plots, commercial, layouts – because risks are different' },
+                { f: 'City-Trained Risk Engines', m: 'Mumbai model knows SRA, Pune model knows PMRDA, Kolkata model knows bargee' },
+                { f: 'Universal Title Insurance', m: 'Works across segments – from ₹25L flat to ₹50Cr commercial' },
+                { f: 'Milestone Escrow', m: 'Customizable for under-construction, resale, or bulk deals' },
+                { f: 'Legal Defense Coverage', m: 'We fight for you if a dispute arises after purchase' }
+              ].map((row, i) => (
+                <tr key={i} className={`transition-colors hover:bg-blue-light/30 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}`}>
+                  <td className="px-8 py-6 font-bold text-[#0a0a1a] text-[13px]">{row.f}</td>
+                  <td className="px-8 py-6 font-normal text-[#4a4a6a] text-[14px] leading-relaxed">{row.m}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div className="flex flex-col md:flex-row gap-8 items-start">

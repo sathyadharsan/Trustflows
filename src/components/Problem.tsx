@@ -5,8 +5,8 @@ import { ArrowRight } from 'lucide-react';
 const problemSegments = [
   {
     id: 'flat',
-    sidebarLabel: '🏢 Resale Flat (Apartment)',
-    panelHeading: '🏢 Resale Flat (Apartment) Risks',
+    sidebarLabel: 'Resale Flat (Apartment)',
+    panelHeading: 'Resale Flat (Apartment) Risks',
     uniqueRisk: 'Undisclosed society dues, pending property tax, illegal alterations',
     typicalLoss: '₹2-10 Lakhs',
     items: [
@@ -17,8 +17,8 @@ const problemSegments = [
   },
   {
     id: 'plot',
-    sidebarLabel: '🌾 Freehold Plot',
-    panelHeading: '🌾 Freehold Plot Risks',
+    sidebarLabel: 'Freehold Plot',
+    panelHeading: 'Freehold Plot Risks',
     uniqueRisk: 'Fake mother deed, missing inheritance chain, Wakf board claim',
     typicalLoss: '₹15 Lakhs – ₹2 Crores',
     items: [
@@ -29,8 +29,8 @@ const problemSegments = [
   },
   {
     id: 'layout',
-    sidebarLabel: '🏘️ Freehold Layout',
-    panelHeading: '🏘️ Freehold Layout Risks',
+    sidebarLabel: 'Freehold Layout',
+    panelHeading: 'Freehold Layout Risks',
     uniqueRisk: 'Unapproved layout plan, missing DC conversion, no completion certificate',
     typicalLoss: '₹25 Lakhs – ₹5 Crores',
     items: [
@@ -41,8 +41,8 @@ const problemSegments = [
   },
   {
     id: 'commercial',
-    sidebarLabel: '🏪 Commercial Property',
-    panelHeading: '🏪 Commercial Property Risks',
+    sidebarLabel: 'Commercial Property',
+    panelHeading: 'Commercial Property Risks',
     uniqueRisk: 'Illegal tenancy, pending GST/octroi, title defects affecting business license',
     typicalLoss: '₹50 Lakhs – ₹10 Crores',
     items: [
@@ -53,8 +53,8 @@ const problemSegments = [
   },
   {
     id: 'developer',
-    sidebarLabel: '🏗️ Developer Flat (Under Construction)',
-    panelHeading: '🏗️ Developer Flat (Under Construction) Risks',
+    sidebarLabel: 'Developer Flat (Under Construction)',
+    panelHeading: 'Developer Flat (Under Construction) Risks',
     uniqueRisk: 'Delayed possession, builder diversion of funds, RERA violation',
     typicalLoss: '₹10-50 Lakhs + mental stress',
     items: [
@@ -65,8 +65,8 @@ const problemSegments = [
   },
   {
     id: 'house',
-    sidebarLabel: '🏡 Resale Independent House',
-    panelHeading: '🏡 Resale Independent House Risks',
+    sidebarLabel: 'Resale Independent House',
+    panelHeading: 'Resale Independent House Risks',
     uniqueRisk: 'Unauthorized floors, deviation from sanctioned plan, easement rights disputes',
     typicalLoss: '₹20 Lakhs – ₹1 Crore',
     items: [
@@ -119,6 +119,34 @@ const Problem = () => {
           <h3 className="text-[24px] font-semibold text-[#0a0a1a] mb-2">The Hard Truth Across Segments</h3>
         </div>
 
+        <div className="overflow-x-auto mb-16 scrollbar-hide">
+          <table className="w-full min-w-[800px] border-collapse bg-white rounded-3xl overflow-hidden shadow-2xl border border-navy-900/5">
+            <thead>
+              <tr className="bg-navy-900 text-white">
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Property Segment</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px]">Unique Risk</th>
+                <th className="px-8 py-6 text-left text-[11px] font-bold uppercase tracking-[1.5px] text-primary-blue">Typical Loss</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-navy-900/5">
+              {[
+                { s: 'Resale Flat (Apartment)', r: 'Undisclosed society dues, pending property tax, illegal alterations', l: '₹2-10 Lakhs' },
+                { s: 'Freehold Plot', r: 'Fake mother deed, missing inheritance chain, Wakf board claim', l: '₹15 Lakhs – ₹2 Crores' },
+                { s: 'Freehold Layout', r: 'Unapproved layout plan, missing DC conversion, no completion certificate', l: '₹25 Lakhs – ₹5 Crores' },
+                { s: 'Commercial Property', r: 'Illegal tenancy, pending GST/octroi, title defects affecting business license', l: '₹50 Lakhs – ₹10 Crores' },
+                { s: 'Developer Flat (Under Construction)', r: 'Delayed possession, builder diversion of funds, RERA violation', l: '₹10-50 Lakhs + mental stress' },
+                { s: 'Resale Independent House', r: 'Unauthorized floors, deviation from sanctioned plan, easement rights disputes', l: '₹20 Lakhs – ₹1 Crore' }
+              ].map((row, i) => (
+                <tr key={i} className={`transition-colors hover:bg-blue-light/30 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}`}>
+                  <td className="px-8 py-6 font-bold text-[#0a0a1a] text-[13px]">{row.s}</td>
+                  <td className="px-8 py-6 font-normal text-[#4a4a6a] text-[14px] leading-relaxed max-w-md">{row.r}</td>
+                  <td className="px-8 py-6 font-bold text-[#185FA5] text-[18px]">{row.l}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
           <div className="w-full md:w-[35%] space-y-2 sticky top-24 flex md:flex-col pb-4 md:pb-0 scrollbar-hide gap-2 md:gap-0">
             {problemSegments.map((s) => (
@@ -138,11 +166,11 @@ const Problem = () => {
           <div className="w-full md:w-[65%] bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px]">
             <AnimatePresence mode="wait">
               <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
-                <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-8 border-b border-navy-900/10 pb-6">{activeData.panelHeading}</h3>
+                <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-8 border-b border-navy-900/10 pb-6 uppercase tracking-tight">{activeData.panelHeading}</h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
                   <div className="bg-white border border-red-500/10 rounded-2xl p-6 shadow-sm">
-                    <div className="text-[11px] font-bold text-red-500 tracking-[1.5px] uppercase mb-2">UNIQUE RISK</div>
+                    <div className="text-[11px] font-bold text-red-500 tracking-[1.5px] uppercase mb-2">SEGMENT RISK</div>
                     <p className="text-[15px] font-bold text-[#0a0a1a]">{activeData.uniqueRisk}</p>
                   </div>
                   <div className="bg-navy-900 rounded-2xl p-6 shadow-xl">

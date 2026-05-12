@@ -25,7 +25,7 @@ const FinalCTA = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 mb-12 text-left max-w-4xl mx-auto">
           {ctas.map((item, i) => (
             <div key={i} className="flex items-start gap-4">
-              <span className="text-primary-blue text-xl mt-1">✅</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-primary-blue shrink-0 mt-2.5" />
               <div>
                 <span className="text-primary-blue/60 font-bold uppercase tracking-[1.5px] text-[11px] block mb-1">{item.label}</span>
                 <p className="text-white text-[15px] font-normal leading-[1.8]">{item.text}</p>

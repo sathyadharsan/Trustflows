@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 const customers = [
   {
-    icon: '👨‍👩‍👧',
     label: 'First-Time Homebuyer',
     pain: 'Scared of hidden dues, fake documents, society frauds',
     solution: 'Complete flat verification in 48 hours',
@@ -11,7 +10,6 @@ const customers = [
     cta: 'Protect My Home'
   },
   {
-    icon: '🌍',
     label: 'NRI Buyer',
     pain: 'Can\'t visit India to verify — trusting agents blindly',
     solution: 'Remote AI verification + video consultation',
@@ -19,7 +17,6 @@ const customers = [
     cta: 'Verify Remotely'
   },
   {
-    icon: '🏦',
     label: 'Banks & NBFCs',
     pain: 'Loan defaults due to fraudulent title documents',
     solution: 'Pre-loan property risk score for every application',
@@ -27,7 +24,6 @@ const customers = [
     cta: 'Partner With Us'
   },
   {
-    icon: '🏗️',
     label: 'Developers & Builders',
     pain: 'Buyers hesitate due to trust deficit in projects',
     solution: 'TrustFlows certification = buyer confidence',
@@ -35,7 +31,6 @@ const customers = [
     cta: 'Certify My Project'
   },
   {
-    icon: '💼',
     label: 'Property Investors',
     pain: 'Managing multiple properties — title risk across portfolio',
     solution: 'Portfolio-level risk dashboard + bulk escrow',
@@ -43,7 +38,6 @@ const customers = [
     cta: 'Protect My Portfolio'
   },
   {
-    icon: '⚖️',
     label: 'Legal Professionals',
     pain: 'Clients need fast property due diligence for transactions',
     solution: 'API access to risk reports for law firms',
@@ -96,7 +90,7 @@ const CustomerSegments = () => {
               variants={itemVariants}
               className="group bg-[#F5F7FA] border border-navy-900/10 rounded-2xl p-8 transition-all hover:border-gold-500/50 hover:translate-y-[-4px] hover:bg-white hover:shadow-xl cursor-default relative overflow-hidden"
             >
-              <div className="text-5xl mb-6 block">{customer.icon}</div>
+              <div className="w-1.5 h-1.5 rounded-full bg-primary-blue mb-6" />
               
               <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-gold-600 mb-3">
                 {customer.label}

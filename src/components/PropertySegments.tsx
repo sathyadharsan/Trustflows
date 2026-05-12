@@ -5,8 +5,8 @@ import { ArrowRight } from 'lucide-react';
 const segmentData = [
   {
     id: 'resale-flat',
-    sidebarLabel: '🏢 Resale Flats',
-    title: '🏢 Resale Flats & Apartments (Society Built)',
+    sidebarLabel: 'Resale Flats',
+    title: 'Resale Flats & Apartments (Society Built)',
     content: {
       who: ['First-time buyers of 5-20yr flats', 'NRIs buying in parent’s city', 'Investors targeting high rental yield'],
       pain: ['Undisclosed maintenance bills (₹50k-₹5L)', 'Illegal alterations leading to civic fines', 'Disputes over parking and common areas', 'Pending property tax passing to buyer'],
@@ -23,8 +23,8 @@ const segmentData = [
   },
   {
     id: 'house',
-    sidebarLabel: '🏡 Resale Houses',
-    title: '🏡 Resale Independent Houses & Villas',
+    sidebarLabel: 'Resale Houses',
+    title: 'Resale Independent Houses & Villas',
     content: {
       who: ['Bungalow buyers in old city', 'Investors in township row houses', 'Buyers of gated community villas'],
       pain: ['Undisclosed easement rights affecting valuation', 'Illegal extra floors causing demolition risk', 'Missing occupancy certificate blocking bank loans', 'Pending municipal betterment and development fees'],
@@ -40,8 +40,8 @@ const segmentData = [
   },
   {
     id: 'plot',
-    sidebarLabel: '🌾 Freehold Plots',
-    title: '🌾 Freehold Plots (Vacant Land) - HIGHEST RISK',
+    sidebarLabel: 'Freehold Plots',
+    title: 'Freehold Plots (Vacant Land) - HIGHEST RISK',
     content: {
       who: ['Buyers of NA converted land', 'Investors in residential plotted layouts', 'Industrial plot targeters for warehouses'],
       pain: ['Fake mother deeds or forged inheritance', 'Wakf board claims voiding entire title', 'Government acquisition notifications for roads/SEZ', 'B-Khata lacking bank loan eligibility'],
@@ -58,8 +58,8 @@ const segmentData = [
   },
   {
     id: 'layout',
-    sidebarLabel: '🏘️ Freehold Layouts',
-    title: '🏘️ Freehold Layouts (Developer Plotted)',
+    sidebarLabel: 'Freehold Layouts',
+    title: 'Freehold Layouts (Developer Plotted)',
     content: {
       who: ['Buyers of DTCP approved layouts', 'Investors in TP approved layouts', 'Purchasers of licensed BMRDA layouts'],
       pain: ['Plot titles unclear despite layout approval', 'Missing land owner consent for layout', 'No completion certificate for internal roads', 'Illegal sale of earmarked open spaces'],
@@ -75,8 +75,8 @@ const segmentData = [
   },
   {
     id: 'commercial',
-    sidebarLabel: '🏪 Commercial',
-    title: '🏪 Commercial Properties (Offices & Shops)',
+    sidebarLabel: 'Commercial',
+    title: 'Commercial Properties (Offices & Shops)',
     content: {
       who: ['IT park office space buyers', 'High street retail shop investors', 'Warehouse and godown purchasers'],
       pain: ['Only allotment letter, no separate title', 'Leasehold land requiring government transfer nod', 'Pending GST or stamp duty liabilities', 'Missing fire and lift occupancy certificates'],
@@ -92,8 +92,8 @@ const segmentData = [
   },
   {
     id: 'dev-flat',
-    sidebarLabel: '🏗️ Developer Flats',
-    title: '🏗️ Developer Flats (Under Construction)',
+    sidebarLabel: 'Developer Flats',
+    title: 'Developer Flats (Under Construction)',
     content: {
       who: ['Buyers of premium Grade A apartments', 'Investors in RERA registered projects', 'Purchasers of luxury condos with amenities'],
       pain: ['Builder fund diversion stalling the project', 'Original project land title being disputed', 'Carpet area cheating leading to litigation', 'Possession delays without compensation payments'],
@@ -109,8 +109,8 @@ const segmentData = [
   },
   {
     id: 'resale-comm',
-    sidebarLabel: '🏭 Mixed-Use',
-    title: '🏭 Resale Commercial & Mixed-Use',
+    sidebarLabel: 'Mixed-Use',
+    title: 'Resale Commercial & Mixed-Use',
     content: {
       who: ['Buyers of old market resale shops', 'Investors in commercial tower offices', 'Purchasers of mixed-use properties'],
       pain: ['Previous owner’s pending GST or fines', 'Massive unpaid association or society dues', 'Missing original lease agreement breaking chain', 'Unapproved change of property use'],
@@ -125,8 +125,8 @@ const segmentData = [
   },
   {
     id: 'govt',
-    sidebarLabel: '🏛️ Govt Schemes',
-    title: '🏛️ Govt Scheme Properties (High Risk)',
+    sidebarLabel: 'Govt Schemes',
+    title: 'Govt Scheme Properties (High Risk)',
     content: {
       who: ['Buyers of DDA flats or plots', 'Purchasers in MHADA or HUDA schemes', 'Investors in Amaravati special risk zones'],
       pain: ['Long leasehold terms with transfer restrictions', 'Original allottee illegal sub-sale issues', 'Disputes between allottee and government agency', 'Pending annual lease rent causing arrears'],
@@ -155,7 +155,7 @@ const renderPainPoint = (text: string) => {
 const Card1 = ({ title, items }: { title: string; items: string[] }) => (
   <div className="bg-[#f8f9ff] rounded-[10px] p-[16px] flex-1">
     <h4 className="text-[14px] font-semibold text-[#0a0a1a] mb-3 flex items-center gap-2">
-      👤 {title}
+      {title}
     </h4>
     <ul className="space-y-[6px]">
       {items.map((it, i) => (
@@ -170,7 +170,7 @@ const Card1 = ({ title, items }: { title: string; items: string[] }) => (
 const Card2 = ({ title, items }: { title: string; items: string[] }) => (
   <div className="bg-[#fff8f0] border border-[#f0d9b5] rounded-[10px] p-[16px] flex-1">
     <h4 className="text-[14px] font-semibold text-[#0a0a1a] mb-3 flex items-center gap-2">
-      ⚠️ {title}
+      {title}
     </h4>
     <ul className="space-y-[6px]">
       {items.map((it, i) => (
