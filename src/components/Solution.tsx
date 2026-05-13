@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import { ArrowRight, Brain, Star, Target, Zap, MapPin, TrendingUp, Building, Shield, Award, Heart, Lock, CheckCircle, Receipt, Gavel, Coins, Bell } from 'lucide-react';
 
 const solutionSegments = [
@@ -169,9 +171,19 @@ const Solution = () => {
             ))}
           </div>
 
-          <div className="w-full md:w-[65%] bg-white border border-[#E2E8F0] rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px]">
+          <div className="w-full md:w-[65%] bg-white border border-[#E2E8F0] rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px] relative">
+            <Link 
+              to={active === 'universal-insurance' ? '/solutions/title-insurance' : active === 'milestone-escrow' ? '/solutions/escrow' : `/solutions/${active}`}
+
+              className="absolute top-8 right-8 z-10 bg-blue-50 text-primary-blue p-3 rounded-full hover:bg-primary-blue hover:text-white transition-all group shadow-sm hidden md:flex items-center gap-2 px-5"
+            >
+              <span className="text-[11px] font-bold uppercase tracking-wider">Explore Deep-Dive Report</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+
             <AnimatePresence mode="wait">
               <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
+
                 <div className="mb-8 border-b border-navy-900/10 pb-6">
                   <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-1">{activeData.title}</h3>
                   <p className="text-[#4a4a6a] font-normal text-[13px] leading-[1.7]">{activeData.subtitle}</p>

@@ -35,6 +35,16 @@ h1, h2, h3, h4, h5, h6 {
   color: #0a0a1a;
 }
 
+.text-white h1, .text-white h2, .text-white h3, .text-white h4, .text-white h5, .text-white h6,
+.bg-navy-900 h1, .bg-navy-900 h2, .bg-navy-900 h3, .bg-navy-900 h4, .bg-navy-900 h5, .bg-navy-900 h6,
+.bg-primary-blue h1, .bg-primary-blue h2, .bg-primary-blue h3, .bg-primary-blue h4, .bg-primary-blue h5, .bg-primary-blue h6,
+.bg-blue-600 h1, .bg-blue-600 h2, .bg-blue-600 h3, .bg-blue-600 h4, .bg-blue-600 h5, .bg-blue-600 h6,
+.bg-red-600 h1, .bg-red-600 h2, .bg-red-600 h3, .bg-red-600 h4, .bg-red-600 h5, .bg-red-600 h6 {
+  color: white !important;
+}
+
+
+
 .font-accent {
   font-family: 'Inter', sans-serif;
 }

@@ -1,31 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const cityRisks = [
-  { name: 'Mumbai', risk: 'SRA flats, MHADA leasehold, old ‘Chawl’ redevelopment rights, CRZ rules' },
-  { name: 'Delhi', risk: 'DDA unauthorized colonies, Lal Dora properties, leasehold vs freehold conversion' },
-  { name: 'Bangalore', risk: 'A-Khata vs B-Khata, Wakf board claims, BDA/BMRDA layouts, DC conversion' },
-  { name: 'Hyderabad', risk: 'DTCP approvals, Wakf land (high prevalence), old Jagir titles' },
-  { name: 'Chennai', risk: 'Patta/Chitta discrepancies, ECR/OMR land acquisition notifications' },
-  { name: 'Kolkata', risk: 'Bargee title system, CIT leases, Zamindari abolition complexities' },
-  { name: 'Pune', risk: 'PMRDA & Gram Panchayat layouts, old Waqf and Inam lands' },
-  { name: 'Ahmedabad', risk: 'TP scheme land, pending development charges, old city Pol houses' },
-  { name: 'Surat', risk: 'TP approvals, illegal construction in new SIR zones' },
-  { name: 'Jaipur', risk: 'JDA leasehold, old Jagir titles, pending betterment charges' },
-  { name: 'Lucknow', risk: 'LDA schemes, Awadh Zamindari abolition records' },
-  { name: 'Nagpur', risk: 'Metro land acquisition, Vidarbha region’s special tenancy laws' },
-  { name: 'Indore', risk: 'IDA schemes, pending betterment and development fees' },
-  { name: 'Bhopal', risk: 'Old Waqf properties, Bhopal Development Authority layouts' },
-  { name: 'Visakhapatnam', risk: 'VMRDA approvals, port land restrictions' },
-  { name: 'Patna', risk: 'Old Zamindari land, Bihar Land Reforms Act — Extremely complex' },
-  { name: 'Vadodara', risk: 'VUDA approvals, industrial land use conversion' },
-  { name: 'Ludhiana', risk: 'PUDA schemes, old ‘Lal Lakir’ village properties' },
-  { name: 'Agra', risk: 'Taj Trapezium Zone restrictions, old Mughal grant lands' },
-  { name: 'Nashik', risk: 'MIDC industrial plots, Godavari riverbed land restrictions' }
-];
+import { Link } from 'react-router-dom';
+import { ArrowRight, MapPin } from 'lucide-react';
+import { cities } from '../data/cities';
 
 const CityGrid = () => {
-  const [selected, setSelected] = useState(cityRisks[0]);
+  const [selected, setSelected] = useState(cities[0]);
 
   return (
     <section id="cities" className="bg-white py-[80px] px-[5%] overflow-hidden">
@@ -42,12 +22,12 @@ const CityGrid = () => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-2.5 mb-10">
-          {cityRisks.map((city) => (
+          {cities.map((city) => (
             <button
-              key={city.name}
+              key={city.id}
               onClick={() => setSelected(city)}
               className={`px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all border ${
-                selected.name === city.name 
+                selected.id === city.id 
                   ? 'bg-primary-blue text-white border-primary-blue shadow-lg scale-105' 
                   : 'bg-white text-navy-900/60 border-navy-900/10 hover:border-primary-blue/30'
               }`}
@@ -57,8 +37,8 @@ const CityGrid = () => {
           ))}
         </div>
 
-        <div className="bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-12 opacity-[0.03] text-[120px] font-bold text-navy-900 leading-none">
+        <div className="bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-8 md:p-12 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-12 opacity-[0.03] text-[120px] font-bold text-navy-900 leading-none group-hover:scale-110 transition-transform duration-700">
             {selected.name}
           </div>
           
@@ -77,9 +57,17 @@ const CityGrid = () => {
               </p>
             </div>
 
-            <p className="text-[13px] text-[#4a4a6a] font-normal leading-[1.7] italic">
-              "Every city model is validated on-ground by our specialized legal partners to ensure 99.9% data accuracy across {selected.name} records."
-            </p>
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+              <Link 
+                to={`/cities/${selected.id}`}
+                className="bg-navy-900 text-white px-8 py-3.5 rounded-xl font-bold text-[14px] flex items-center gap-2 hover:bg-navy-800 transition-all shadow-lg group"
+              >
+                View {selected.name} Intelligence Report <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <p className="text-[13px] text-[#4a4a6a] font-normal leading-[1.7] italic max-w-xs">
+                "Every city model is validated on-ground by our specialized legal partners."
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -88,3 +76,4 @@ const CityGrid = () => {
 };
 
 export default CityGrid;
+

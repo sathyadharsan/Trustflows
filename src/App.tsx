@@ -1,40 +1,37 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import SegmentOverview from './components/SegmentOverview';
-import Problem from './components/Problem';
-import Solution from './components/Solution';
-import Offerings from './components/Offerings';
-import PropertySegments from './components/PropertySegments';
-import CityGrid from './components/CityGrid';
-import Pricing from './components/Pricing';
-import SuccessStories from './components/SuccessStories';
-import Stakeholders from './components/Stakeholders';
-import ComparisonSection from './components/ComparisonSection';
-import FinalCTA from './components/FinalCTA';
-import AboutSection from './components/AboutSection';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import Home from './pages/Home';
+import ProductDetail from './pages/ProductDetail';
+import CityDetail from './pages/CityDetail';
+import SegmentDetail from './pages/SegmentDetail';
+import ProblemDetail from './pages/ProblemDetail';
+import SolutionDetail from './pages/SolutionDetail';
+import StakeholderDetail from './pages/StakeholderDetail';
+import OutcomeDetail from './pages/OutcomeDetail';
 
 function App() {
   return (
-    <main className="bg-white selection:bg-gold-500 selection:text-navy-900 font-sans antialiased overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <SegmentOverview />
-      <Problem />
-      <Solution />
-      <Offerings />
-      <PropertySegments />
-      <CityGrid />
-      <Pricing />
-      <SuccessStories />
-      <Stakeholders />
-      <ComparisonSection />
-      <FinalCTA />
-      <AboutSection />
-      <Footer />
-    </main>
+    <Router>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/offerings/:id" element={<ProductDetail />} />
+          <Route path="/cities/:id" element={<CityDetail />} />
+          <Route path="/segments/:id" element={<SegmentDetail />} />
+          <Route path="/problems/:id" element={<ProblemDetail />} />
+          <Route path="/solutions/:id" element={<SolutionDetail />} />
+          <Route path="/stakeholders/:id" element={<StakeholderDetail />} />
+          <Route path="/outcomes/:id" element={<OutcomeDetail />} />
+        </Routes>
+      </MainLayout>
+    </Router>
   );
 }
 
+
+
+
+
 export default App;
+

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 
 const stakeholderData = [
   { id: 'buyer', label: 'First-Time Buyer', text: 'Trust Score + Hidden Dues Check', sub: 'Protect your lifetime savings before paying the advance.' },
@@ -40,26 +42,32 @@ const Stakeholders = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {stakeholderData.map((item) => (
-            <motion.div
+            <Link
               key={item.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className={`bg-white rounded-[32px] p-10 border-2 transition-all duration-300 ${
-                active === item.id ? 'border-primary-blue shadow-2xl scale-105' : 'border-navy-900/5 shadow-sm hover:border-primary-blue/30'
-              }`}
+              to={`/stakeholders/${item.id === 'buyer' ? 'homebuyer' : item.id === 'investor' ? 'homebuyer' : item.id}`}
+              className="block"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-primary-blue mb-6" />
-              <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-2 uppercase tracking-tight">{item.label}</h3>
-              <div className="text-[#185FA5] font-bold text-[11px] uppercase tracking-[1.5px] mb-4">
-                {item.text}
-              </div>
-              <p className="text-[15px] text-[#1a1a2e] leading-[1.8] font-normal">
-                {item.sub}
-              </p>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className={`bg-white rounded-[32px] p-10 border-2 transition-all duration-300 h-full ${
+                  active === item.id ? 'border-primary-blue shadow-2xl scale-105' : 'border-navy-900/5 shadow-sm hover:border-primary-blue/30'
+                }`}
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-primary-blue mb-6" />
+                <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-2 uppercase tracking-tight">{item.label}</h3>
+                <div className="text-[#185FA5] font-bold text-[11px] uppercase tracking-[1.5px] mb-4">
+                  {item.text}
+                </div>
+                <p className="text-[15px] text-[#1a1a2e] leading-[1.8] font-normal">
+                  {item.sub}
+                </p>
+              </motion.div>
+            </Link>
           ))}
         </div>
+
       </div>
     </section>
   );

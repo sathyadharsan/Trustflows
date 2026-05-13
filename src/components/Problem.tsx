@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 const problemSegments = [
   {
@@ -163,9 +165,18 @@ const Problem = () => {
             ))}
           </div>
 
-          <div className="w-full md:w-[65%] bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px]">
+          <div className="w-full md:w-[65%] bg-[#F5F7FA] border border-navy-900/5 rounded-[32px] p-6 md:p-10 shadow-sm min-h-[500px] relative">
+            <Link 
+              to={`/problems/${active === 'flat' ? 'resale-flat' : active === 'developer' ? 'under-construction' : active === 'house' ? 'independent-house' : active}`}
+              className="absolute top-8 right-8 z-10 bg-white text-red-600 p-3 rounded-full hover:bg-red-600 hover:text-white transition-all group shadow-sm hidden md:flex items-center gap-2 px-5"
+            >
+              <span className="text-[11px] font-bold uppercase tracking-wider">Analyze Detailed Risks</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+
             <AnimatePresence mode="wait">
               <motion.div key={active} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
+
                 <h3 className="text-[24px] font-semibold text-[#0a0a1a] leading-[1.4] mb-8 border-b border-navy-900/10 pb-6 uppercase tracking-tight">{activeData.panelHeading}</h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
