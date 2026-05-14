@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Facebook, X, MapPin, Mail, Phone, Globe } from 'lucide-react';
+import { X, MapPin, Mail, Phone, Globe } from 'lucide-react';
 
 const Footer = () => {
   const cities = [
@@ -56,19 +56,15 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              {[
-                { icon: Linkedin, label: 'LinkedIn' },
-                { icon: X, label: 'X' },
-                { icon: Facebook, label: 'Facebook' }
-              ].map((social) => (
-                <a 
-                  key={social.label}
-                  href="#"
-                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all"
-                >
-                  <social.icon size={16} />
+                <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 </a>
-              ))}
+                <a href="#" aria-label="X (Twitter)" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+                </a>
+                <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
             </div>
           </div>
 
