@@ -28,7 +28,7 @@ const Stakeholders = () => {
   }, []);
 
   return (
-    <section id="stakeholders" className="bg-[#F5F7FA] py-[80px] px-[5%] overflow-hidden">
+    <section id="stakeholders" className="bg-[#F5F7FA] py-[40px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">FOR EVERY PARTICIPANT</div>

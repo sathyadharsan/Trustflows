@@ -12,9 +12,9 @@ const problemSegments = [
     uniqueRisk: 'Undisclosed society dues, pending property tax, illegal alterations',
     typicalLoss: '₹2-10 Lakhs',
     items: [
-      { t: 'Society Dues', d: 'Buyer becomes liable for all previous owner arrears.' },
-      { t: 'Illegal Alterations', d: 'Civil fines or demolition orders for unauthorized changes.' },
-      { t: 'Tax Gaps', d: 'Pending municipal taxes inherited by the new owner.' }
+      { t: 'Mumbai (SRA)', d: 'Buying SRA flats within the 10-year lock-in period is illegal and leads to zero title.' },
+      { t: 'Bangalore (Khata)', d: 'Confusion between A-Khata and B-Khata affects bank loan eligibility and resale.' },
+      { t: 'Society Maintenance', d: 'Undisclosed arrears can pass a liability of ₹5L+ to the new buyer.' }
     ]
   },
   {
@@ -24,9 +24,9 @@ const problemSegments = [
     uniqueRisk: 'Fake mother deed, missing inheritance chain, Wakf board claim',
     typicalLoss: '₹15 Lakhs – ₹2 Crores',
     items: [
-      { t: 'Fake Deeds', d: 'Most common fraud in India — forged original grants.' },
-      { t: 'Inheritance Gaps', d: 'Undisclosed heirs claiming rights after sale.' },
-      { t: 'Wakf Claims', d: 'Entire title can be voided if property is listed as Wakf.' }
+      { t: 'Hyderabad (Wakf)', d: 'Historical Wakf board claims can void a "clear" title after 30 years.' },
+      { t: 'Mother Deeds', d: 'Forged original grants from 1920s-60s are common in plot layouts.' },
+      { t: 'Acquisition Notification', d: 'Land notified for road widening or SEZ but sold secretly.' }
     ]
   },
   {
@@ -36,9 +36,9 @@ const problemSegments = [
     uniqueRisk: 'Unapproved layout plan, missing DC conversion, no completion certificate',
     typicalLoss: '₹25 Lakhs – ₹5 Crores',
     items: [
-      { t: 'Plan Approval', d: 'Layout might exist without DTCP/TP approval.' },
-      { t: 'Conversion Status', d: 'Land remains agricultural in records despite plotting.' },
-      { t: 'Common Areas', d: 'Developer selling "open space" earmarked for parks/roads.' }
+      { t: 'Surat (TP Schemes)', d: 'Deviations from Town Planning schemes lead to immediate civic notices.' },
+      { t: 'Open Spaces', d: 'Illegal sale of land earmarked for parks or roads in developer layouts.' },
+      { t: 'DC Conversion', d: 'Land remaining agricultural in records despite physical plotting.' }
     ]
   },
   {
@@ -48,9 +48,9 @@ const problemSegments = [
     uniqueRisk: 'Illegal tenancy, pending GST/octroi, title defects affecting business license',
     typicalLoss: '₹50 Lakhs – ₹10 Crores',
     items: [
-      { t: 'Tenancy Rights', d: 'Old rent control laws making eviction impossible.' },
-      { t: 'Statutory Dues', d: 'GST, property tax, and commercial water arrears.' },
-      { t: 'Land Use', d: 'Illegal commercial operation on residential zoned land.' }
+      { t: 'Delhi (Mixed-Use)', d: 'Commercial operations on residential zoned land lead to sealing.' },
+      { t: 'Kolkata (Bargee)', d: 'Old Bargee title systems and heritage building transfer restrictions.' },
+      { t: 'Statutory Dues', d: 'Pending GST or octroi liabilities can shut down your business license.' }
     ]
   },
   {
@@ -60,9 +60,9 @@ const problemSegments = [
     uniqueRisk: 'Delayed possession, builder diversion of funds, RERA violation',
     typicalLoss: '₹10-50 Lakhs + mental stress',
     items: [
-      { t: 'Fund Diversion', d: 'Buyer advances used for other projects, stalling yours.' },
-      { t: 'RERA Violations', d: 'Deviation from sanctioned specs leads to cancellation.' },
-      { t: 'Title Disputes', d: 'Landowner-builder dispute halts the entire project.' }
+      { t: 'Noida (Stalled Projects)', d: 'Large-scale diversion of buyer funds to other land bank acquisitions.' },
+      { t: 'RERA Compliance', d: 'Project registration cancellation due to deviation from sanctioned specs.' },
+      { t: 'Milestone Cheating', d: 'Faked construction progress to release bank disbursements prematurely.' }
     ]
   },
   {
@@ -72,12 +72,13 @@ const problemSegments = [
     uniqueRisk: 'Unauthorized floors, deviation from sanctioned plan, easement rights disputes',
     typicalLoss: '₹20 Lakhs – ₹1 Crore',
     items: [
-      { t: 'Sanction Deviations', d: 'Floors built beyond the sanctioned height or FSI.' },
-      { t: 'Easement Rights', d: 'Neighbor\'s right of way or light through your property.' },
-      { t: 'Utility Gaps', d: 'Unauthorized borewell or electrical connections.' }
+      { t: 'Lucknow (Easement)', d: 'Neighbor\'s undischarged right of way or light through the property.' },
+      { t: 'Plan Deviation', d: 'Unauthorized extra floors built beyond the sanctioned height or FSI.' },
+      { t: 'OC/CC Gaps', d: 'Missing Occupancy Certificate makes the structure legally uninhabitable.' }
     ]
   }
 ];
+
 
 const Card = ({ title, desc, isPulsing }: { title: string; desc: string; isPulsing: boolean }) => (
   <div className={`bg-white border rounded-xl p-5 shadow-sm transition-all hover:border-primary-blue/30 hover:shadow-lg ${isPulsing ? 'animate-border-pulse' : 'border-navy-900/5'}`}>
@@ -107,7 +108,7 @@ const Problem = () => {
   const activeData = problemSegments.find(s => s.id === active)!;
 
   return (
-    <section id="problem" className="bg-white py-[80px] px-[5%] overflow-hidden">
+    <section id="problem" className="bg-white py-[40px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">THE MARKET PROBLEM</div>

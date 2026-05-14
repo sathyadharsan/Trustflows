@@ -1,131 +1,120 @@
-export interface SolutionData {
-  id: string;
-  title: string;
-  definition: string;
-  whatItCovers: { risk: string; example: string }[];
-  exclusions: string[];
-  tiers: { tier: string; cover: string; premium: string; bestFor: string }[];
-  useCase: string;
-  whoShouldBuy: string[];
-}
+import type { SolutionData } from '../types/data';
 
 export const solutions: SolutionData[] = [
   {
-    id: 'title-insurance',
-    title: 'Title Insurance (IRDAI Aligned)',
-    definition: 'A financial guarantee that protects legal ownership against defects that existed before the policy purchase date. If a third party challenges your ownership due to forgery, missing heirs, or Wakf claims, TrustFlows pays the insured amount + legal costs.',
-    whatItCovers: [
-      { risk: 'Forgery of signatures', example: 'Previous owner signature faked by an imposter' },
-      { risk: 'Missing legal heirs', example: 'Long-lost family member claims share of property' },
-      { risk: 'Wakf / Trust claims', example: 'Land declared as religious property by the board' },
-      { risk: 'Undisclosed encumbrances', example: 'Existing mortgage hidden during sale' }
-    ],
-    exclusions: ['Defects created after purchase', 'Known defects ignored before buying', 'Zoning violations'],
-    tiers: [
-      { tier: 'Essential', cover: '₹25 Lakhs', premium: '0.15%', bestFor: 'Flats under ₹1 Cr' },
-      { tier: 'Professional', cover: '₹1 Crore', premium: '0.12%', bestFor: 'Plots, houses up to ₹3 Cr' },
-      { tier: 'Premium', cover: '₹5 Crores', premium: '0.10%', bestFor: 'Commercial assets' }
-    ],
-    useCase: 'Pune Case: Buyer purchased house; 3 years later, an heir sued claiming forgery. TrustFlows fought the case and protected the ₹2 Cr investment.',
-    whoShouldBuy: ['Every property buyer', 'Investors', 'Banks']
-  },
-  {
-    id: 'escrow',
-    title: 'Digital Property Escrow',
-    definition: 'An RBI-compliant trust account where buyer funds are held and released only after predefined conditions (like registration or construction milestones) are met.',
-    whatItCovers: [
-      { risk: 'Seller absconding', example: 'Seller takes advance but disappears before registration' },
-      { risk: 'Fund diversion', example: 'Builder uses your flat payment for other projects' },
-      { risk: 'Token fraud', example: 'Losing booking amount due to title defects' }
-    ],
-    exclusions: ['Transactions outside the platform', 'Direct cash payments'],
-    tiers: [
-      { tier: 'Resale Escrow', cover: 'Transaction Value', premium: '0.20% - 0.25%', bestFor: 'Secondary market deals' },
-      { tier: 'Milestone Escrow', cover: 'Stage Payments', premium: '0.15%', bestFor: 'Under-construction flats' },
-      { tier: 'Rental Escrow', cover: 'Security Deposit', premium: 'Fixed Fee', bestFor: 'Lease agreements' }
-    ],
-    useCase: 'Noida Case: Escrow held ₹40 Lakhs; builder tried to divert funds but failed. Project completed and delivered on time.',
-    whoShouldBuy: ['Homebuyers', 'Developers', 'NRIs']
-  },
-  {
-    id: 'digital-owner-insurance',
-    title: 'Digital Owner Insurance',
-    definition: 'Specialized protection for remote owners (NRIs & Investors) against risks like tenant non-payment, illegal subletting, and unauthorized occupation.',
-    whatItCovers: [
-      { risk: 'Rent default', example: 'Tenant stops paying rent for up to 12 months' },
-      { risk: 'Squatter removal', example: 'Illegal occupants take over vacant property' },
-      { risk: 'Document theft', example: 'Identity theft used to mortgage property remotely' }
-    ],
-    exclusions: ['Normal wear and tear', 'Unregistered rental agreements'],
-    tiers: [
-      { tier: 'Investor Care', cover: 'Rent + Legal', premium: '0.25%', bestFor: 'NRIs & Absentee landlords' }
-    ],
-    useCase: 'NRI in USA: Tenant in Gurgaon stopped paying. TrustFlows paid 10 months rent and covered legal eviction costs.',
-    whoShouldBuy: ['NRIs', 'Absentee landlords', 'Senior citizens']
-  },
-  {
-    id: 'loan-guarantee',
-    title: 'Title Loan Guarantees',
-    definition: 'A credit enhancement product that guarantees repayment to banks if the property title fails, allowing for loan approvals even on properties with minor gaps.',
-    whatItCovers: [
-      { risk: 'Lender mortgage loss', example: 'Bank loses collateral due to title defect' },
-      { risk: 'Weak title rejection', example: 'Loans rejected due to minor B-Khata or layout issues' }
-    ],
-    exclusions: ['Credit defaults unrelated to title', 'Willful defaults'],
-    tiers: [
-      { tier: 'Lender Tier', cover: 'Outstanding Loan', premium: '0.10%', bestFor: 'Banks & NBFCs' }
-    ],
-    useCase: 'Bangalore Case: Loan rejected for B-Khata. TrustFlows issued guarantee; bank approved loan immediately.',
-    whoShouldBuy: ['Banks', 'NBFCs', 'High-risk borrowers']
-  },
-  {
     id: 'segment-ai',
     title: 'Segment-Specific AI Models',
-    definition: 'Custom-trained algorithms for different property types (Flats, Plots, Commercial, Layouts) to identify segment-specific risks like illegal floors or forged grants.',
+    definition: 'We don\'t use a "one-size-fits-all" approach. Every property segment in India — from SRA flats to Freehold Plots — has its own AI model trained on unique risk signatures.',
     whatItCovers: [
-      { risk: 'Illegal alterations', example: 'Flat AI checks sanctioned plan vs actual construction' },
-      { risk: 'Fake grants', example: 'Plot AI verifies 1920s-1960s original land records' },
-      { risk: 'Zoning violations', example: 'Commercial AI checks business license continuity' }
+      { risk: 'Flat AI', example: 'Detects society internal dues and illegal alterations.' },
+      { risk: 'Plot AI', example: 'Verifies 50-year mother deed chain and genealogy.' },
+      { risk: 'Commercial AI', example: 'Audit of zoning masterplans and business liabilities.' },
+      { risk: 'Layout AI', example: 'Checks DTCP/TP approvals and public space encroachment.' }
     ],
-    exclusions: ['Subjective aesthetic quality', 'Structural engineering audits'],
+    exclusions: ['Subjective quality of construction', 'Internal décor and furniture valuation'],
     tiers: [
-      { tier: 'Basic Report', cover: 'Data Insights', premium: '₹7,999', bestFor: 'Individual buyers' }
+      { tier: 'Quick Scan', cover: 'Limited Audit', premium: '₹7,999', bestFor: 'Resale Flats' },
+      { tier: 'Deep Audit', cover: 'Full History', premium: '₹19,999+', bestFor: 'Plots & Villas' }
     ],
-    useCase: 'Surat Case: AI flagged developer mortgaging entire land secretly. Saved 30 buyers ₹8 Crores.',
-    whoShouldBuy: ['Homebuyers', 'Developers']
+    useCase: 'Bangalore Case: Plot AI flagged a "Gift Deed" from 1984 as suspicious. Manual audit confirmed forgery. Saved ₹2 Crores.',
+    whoShouldBuy: ['Homebuyers', 'Investors', 'Banks'],
+    comparison: [
+      { feature: 'Search Depth', local: 'Only registry records', trustflows: 'Court logs + RERA + Revenue records' },
+      { feature: 'Turnaround', local: '15-20 Days', trustflows: '48-72 Hours' }
+    ],
+    faqs: [
+      { q: 'How is your AI different from a lawyer?', a: 'Lawyers check only current deeds. Our AI checks the entire 50-year history and cross-references court cases instantly.' },
+      { q: 'Which cities do you cover?', a: 'Currently live in 20 major Indian cities with city-trained models.' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600',
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600',
+      'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1600'
+    ]
   },
   {
     id: 'city-engines',
     title: 'City-Trained Risk Engines',
-    definition: 'Proprietary risk models trained on localized land records and local laws of 20 major Indian cities to catch city-specific frauds like SRA or A/B Khata.',
+    definition: 'Every city in India has its own "land DNA". Our models are trained on the specific laws and frauds of 20 major Indian cities.',
     whatItCovers: [
-      { risk: 'SRA transfer risks', example: 'Mumbai model knows slum rehabilitation restrictions' },
-      { risk: 'Khata confusion', example: 'Bangalore model flags B-Khata loan risks' },
-      { risk: 'Zamindari abolition', example: 'Kolkata model traces Bargee title systems' }
+      { risk: 'Mumbai Engine', example: 'SRA transfer rules and MHADA leasehold audits.' },
+      { risk: 'Bangalore Engine', example: 'A/B Khata confusion and BDA layout authenticities.' },
+      { risk: 'Hyderabad Engine', example: 'Dharani portal checks and Wakf board claims.' },
+      { risk: 'Delhi Engine', example: 'DDA unauthorized colonies and lease-to-freehold conversion.' }
     ],
-    exclusions: ['International jurisdictions', 'Rural areas outside top 20 cities'],
+    exclusions: ['Cities outside the top 20', 'Rural agricultural land far from urban limits'],
     tiers: [
-      { tier: 'City Intelligence', cover: 'Local Data', premium: 'Included', bestFor: 'Every property search' }
+      { tier: 'Standard', cover: 'Full City Access', premium: 'Included in Report', bestFor: 'Every property' }
     ],
-    useCase: 'Mumbai Case: AI found SRA flat being sold illegally within the 10-year lock-in period.',
-    whoShouldBuy: ['Homebuyers', 'Banks', 'Brokers']
+    useCase: 'Mumbai Case: AI found SRA flat being sold illegally within the 10-year lock-in period. Buyer avoided police case.',
+    whoShouldBuy: ['Homebuyers', 'Banks', 'Brokers'],
+    heroImages: [
+      'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1600',
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600'
+    ]
+  },
+  {
+    id: 'title-insurance',
+    title: 'Universal Title Insurance',
+    definition: 'Integrated protection that shields your ownership for a lifetime. If a pre-existing defect arises, we fight the case and pay you if you lose.',
+    whatItCovers: [
+      { risk: 'Forgery', example: 'Faked signatures in the chain of ownership.' },
+      { risk: 'Missing Heirs', example: 'Claims from family members not in the original deed.' },
+      { risk: 'Government Claims', example: 'Undisclosed acquisition or tax liens.' }
+    ],
+    exclusions: ['Post-purchase illegal acts', 'Environmental changes'],
+    tiers: [
+      { tier: 'Standard', cover: '₹25L to ₹5Cr+', premium: '0.10% to 0.15%', bestFor: 'All buyers' }
+    ],
+    useCase: 'Pune Case: 20-year old claim surfaced. TrustFlows paid ₹3.5L legal costs and won the case.',
+    whoShouldBuy: ['Homebuyers', 'Investors', 'NRIs'],
+    heroImages: [
+      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600',
+      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600'
+    ]
+  },
+  {
+    id: 'escrow',
+    title: 'Digital Milestone Escrow',
+    definition: 'An RBI-compliant financial trust layer that holds buyer funds and releases them to sellers or developers only when pre-defined legal or construction milestones are verified by our AI.',
+    whatItCovers: [
+      { risk: 'Token Protection', example: 'Booking amount is held until preliminary title report is green-lit.' },
+      { risk: 'Milestone Payouts', example: 'Construction funds released only after RERA stage verification.' },
+      { risk: 'Registration Security', example: 'Final payout triggered only after IGR portal confirms deed registration.' }
+    ],
+    exclusions: ['Direct cash transactions outside the system', 'Interest on held funds'],
+    tiers: [
+      { tier: 'Standard', cover: 'Full Transaction', premium: '0.15% - 0.25%', bestFor: 'Resale & Primary Purchases' }
+    ],
+    useCase: 'Noida Case: Developer tried to divert funds to a different project. Escrow blocked the transfer as the milestone was not met. Saved ₹40 Lakhs.',
+    whoShouldBuy: ['Homebuyers', 'Developers', 'Banks'],
+    heroImages: [
+      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600',
+      'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1600',
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600'
+    ]
   },
   {
     id: 'legal-defense',
     title: 'Integrated Legal Defense',
-    definition: 'A protection product that covers all your legal expenses if your property ownership is challenged in court after purchase.',
+    definition: 'A comprehensive legal protection suite that covers 100% of lawyer fees, court costs, and expert witness expenses if your property ownership is ever challenged.',
     whatItCovers: [
-      { risk: 'Lawyer fees', example: 'Payout for high-court senior advocates' },
-      { risk: 'Court filing fees', example: 'Stamp duty and document processing costs' },
-      { risk: 'Expert witnesses', example: 'Surveyor and forensic document expert fees' }
+      { risk: 'Civil Disputes', example: 'Missing heir or boundary wall litigation in civil courts.' },
+      { risk: 'Administrative Appeals', example: 'Challenges to municipal approvals or zoning changes.' },
+      { risk: 'Forensic Experts', example: 'Costs for handwriting and document authentication experts.' }
     ],
-    exclusions: ['Post-purchase illegal activity', 'Non-property related litigation'],
+    exclusions: ['Pre-existing litigation known before policy purchase', 'Criminal acts by the owner'],
     tiers: [
-      { tier: 'Essential Defense', cover: '₹5 Lakhs', premium: '₹3,000/yr', bestFor: 'Individual owners' },
-      { tier: 'Enterprise Defense', cover: '₹25 Lakhs', premium: 'Custom', bestFor: 'Commercial buildings' }
+      { tier: 'Defense Shield', cover: 'Unlimited Legal Costs', premium: '₹3,000/yr onwards', bestFor: 'All Asset Owners' }
     ],
-    useCase: 'Lucknow Case: Neighbor filed boundary dispute. TrustFlows assigned lawyer and covered all ₹3.5 Lakh expenses.',
-    whoShouldBuy: ['Property owners', 'Absentee landlords', 'NRIs']
+    useCase: 'Lucknow Case: A neighbor filed a stay order based on a fake 1990 partition deed. Our empanelled High Court lawyer vacated the stay in 14 days.',
+    whoShouldBuy: ['Homebuyers', 'Plot Owners', 'Commercial Investors'],
+    heroImages: [
+      'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600',
+      'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1600',
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600'
+    ]
   }
 ];
-

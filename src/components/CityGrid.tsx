@@ -8,7 +8,7 @@ const CityGrid = () => {
   const [selected, setSelected] = useState(cities[0]);
 
   return (
-    <section id="cities" className="bg-white py-[80px] px-[5%] overflow-hidden">
+    <section className="py-10 px-[5%] bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">CITY-TRAINED INTELLIGENCE</div>

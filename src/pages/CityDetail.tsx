@@ -12,6 +12,7 @@ import {
   Activity
 } from 'lucide-react';
 import { cities } from '../data/cities';
+import DetailHeroSlider from '../components/DetailHeroSlider';
 
 const CityDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,40 +35,29 @@ const CityDetail = () => {
     );
   }
 
-  return (
-    <div className="bg-white min-h-screen pb-20 pt-24">
-      <div className="max-w-7xl mx-auto px-[5%]">
-        
-        {/* Breadcrumb */}
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-[#4a4a6a] hover:text-primary-blue transition-colors mb-8 text-sm font-medium"
-        >
-          <ArrowLeft size={16} /> ALL CITIES
-        </Link>
+  const defaultHeroImages = [
+    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1595658658481-d53d3f999875?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1600'
+  ];
 
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 pb-12 border-b border-navy-900/5">
-          <div>
-            <div className="flex items-center gap-2 text-primary-blue font-bold tracking-[2px] uppercase text-[11px] mb-4">
-              <MapPin size={14} /> LIVE RISK INTELLIGENCE
-            </div>
-            <h1 className="text-[48px] md:text-[64px] font-bold text-navy-900 leading-tight tracking-tight">
-              {data.name} <span className="text-primary-blue">Market.</span>
-            </h1>
-          </div>
-          <div className="bg-navy-900 text-white p-6 rounded-[24px] shrink-0 w-full md:w-auto">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-primary-blue/20 flex items-center justify-center">
-                <Database size={24} className="text-primary-blue" />
-              </div>
-              <div>
-                <div className="text-[24px] font-bold">{data.count}</div>
-                <div className="text-[11px] text-white/40 uppercase tracking-widest font-bold">Verified Properties</div>
-              </div>
-            </div>
-          </div>
-        </div>
+  return (
+    <div className="bg-white min-h-screen pb-20">
+      <DetailHeroSlider 
+        backLink="/"
+        backText="All Cities"
+        slides={(data.heroImages || defaultHeroImages).map((img, i) => ({
+          badge: i === 0 ? "LIVE RISK INTELLIGENCE" : "CITY-TRAINED ENGINES",
+          title: i === 0 ? `${data.name} Market.` : `${data.name}\nVerification.`,
+          description: i === 0 
+            ? `${data.name}'s real estate market requires specialized risk intelligence. We've verified ${data.count} properties in this region.`
+            : `Our ${data.algorithms[i % data.algorithms.length]} engine is continuously syncing with ${data.name} land registries.`,
+          image: img,
+          ctaText: `Order ${data.name} Report`
+        }))}
+      />
+
+      <div className="max-w-7xl mx-auto px-[5%] mt-16">
 
         {/* Grid Content */}
         <div className="grid lg:grid-cols-3 gap-12">

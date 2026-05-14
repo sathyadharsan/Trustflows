@@ -2,34 +2,35 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const pricingSegments = [
-  { s: 'Resale Flat (₹1Cr)', r: '₹7,999', i: '₹12,000', e: '0.25%', t: '₹22,000' },
-  { s: 'Freehold Plot (₹1Cr)', r: '₹24,999', i: '₹12,000', e: '0.25%', t: '₹37,000' },
-  { s: 'Commercial Shop (₹2Cr)', r: '₹49,999', i: '₹24,000', e: '0.20%', t: '₹74,000' },
-  { s: 'Developer Flat (₹80L)', r: '₹12,000', i: '₹9,600', e: '0.15%', t: '₹21,600' },
-  { s: 'Resale House (₹3Cr)', r: '₹49,999', i: '₹36,000', e: '0.20%', t: '₹86,000' }
+  { s: 'Resale Flat (Society)', r: '₹7,999', i: '0.12% (1Cr SI)', e: '0.25%', t: '₹22,000*' },
+  { s: 'Freehold Plot (Vacant)', r: '₹24,999', i: '0.12% (1Cr SI)', e: '0.25%', t: '₹37,000*' },
+  { s: 'Commercial Shop', r: '₹49,999', i: '0.12% (2Cr SI)', e: '0.20%', t: '₹74,000*' },
+  { s: 'Under-Construction', r: '₹12,000', i: '0.12% (80L SI)', e: '0.15%', t: '₹21,600*' },
+  { s: 'Resale House/Villa', r: '₹49,999', i: '0.12% (3Cr SI)', e: '0.20%', t: '₹86,000*' }
 ];
 
 const bundles = [
   {
-    name: 'Homebuyer Protection',
+    name: 'Essential Homebuyer Protection',
     price: '0.35%',
-    sub: 'of property value',
-    items: ['AI Trust Report', 'Title Insurance (Professional)', 'Milestone Escrow', 'Legal Defense Insurance'],
+    sub: 'of property value (One-time)',
+    items: ['AI Trust Report (Any Segment)', 'IRDAI-Aligned Title Insurance', 'Milestone-Based Escrow', 'Legal Defense Insurance (1yr)'],
     featured: true
   },
   {
-    name: 'NRI Complete Care',
+    name: 'NRI Remote Owner Shield',
     price: '0.45%',
-    sub: 'of property value',
-    items: ['Remote Trust Report', 'Digital Owner Insurance', 'Escrow Services', 'Fraud Monitoring (3 years)']
+    sub: 'of property value (Annual)',
+    items: ['Remote Trust Report & Audit', 'Digital Owner Insurance (Rent/Squatter)', 'Escrow Services for Remote Closure', 'Fraud Monitoring (3 years included)']
   },
   {
-    name: 'Developer Launch',
+    name: 'Developer Enterprise Pack',
     price: '0.20%',
-    sub: 'of project sales',
-    items: ['Bulk unit verification', 'Milestone escrow setup', 'Project Title Insurance', 'Buyer Trust Badge']
+    sub: 'of project sales value',
+    items: ['Bulk unit title verification', 'Milestone escrow infrastructure', 'Project-level Title Insurance', 'Buyer Confidence Trust Badge']
   }
 ];
+
 
 const Pricing = () => {
   const [activeBundle, setActiveBundle] = React.useState(0);

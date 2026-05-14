@@ -1,225 +1,328 @@
-export interface OfferingDetail {
-  id: string;
-  sidebarLabel: string;
-  title: string;
-  definition: string;
-  benefits: string[];
-  coverage: { item: string; detail: string }[];
-  pricing: { tier: string; cover?: string; premium: string; bestFor?: string }[];
-  useCase: { title: string; desc: string };
-  exclusions?: string[];
-}
+import type { OfferingDetail } from '../types/data';
 
 export const offeringData: OfferingDetail[] = [
   {
     id: 'title-insurance',
     sidebarLabel: 'Title Insurance',
-    title: 'IRDAI-Aligned Title Insurance',
-    definition: 'A financial guarantee that protects legal ownership against pre-existing defects. If a third party challenges your ownership due to past forgery, missing heirs, or Wakf claims, TRUSTFLOWS covers the insured amount + legal costs.',
+    title: 'Title Insurance (IRDAI Aligned Protection)',
+    definition: 'A financial guarantee that protects legal ownership against defects that existed before the policy purchase date. If a third party challenges your ownership due to forgery, missing heirs, or Wakf claims, TrustFlows pays the insured amount + legal costs.',
     benefits: [
-      'Protects against retrospective risks (pre-purchase defects)',
-      'Covers 100% of legal defense costs in court',
-      'One-time premium for lifetime protection',
-      'Eliminates the need for 100% perfect manual due diligence'
+      'Protects against forgery of signatures by previous owners',
+      'Covers undisclosed heirs claiming inheritance rights',
+      'Shields against historical Wakf or religious trust claims',
+      'Protects against undisclosed mortgages or liens',
+      'Covers errors in official land records or registration'
     ],
     coverage: [
-      { item: 'Forgery & Fraud', detail: 'Faked signatures or fraudulent impersonation of the true owner.' },
-      { item: 'Missing Heirs', detail: 'Undisclosed legal heirs claiming ownership rights years later.' },
-      { item: 'Invalid POA', detail: 'Sale deeds based on revoked or forged Power of Attorney.' },
-      { item: 'Wakf/Govt Claims', detail: 'Land declared as Wakf or notified for govt acquisition.' }
+      { item: 'Forgery & Fraud', detail: 'Signature forgery, impersonation, or fake mother deeds used in previous transactions.' },
+      { item: 'Missing Heirs', detail: 'Claims from long-lost family members or undisclosed legal heirs of previous owners.' },
+      { item: 'Statutory Liens', detail: 'Undisclosed government dues, tax arrears, or court attachments on the property.' },
+      { item: 'Boundary Disputes', detail: 'Legal defense costs if neighbors challenge property boundaries post-purchase.' }
     ],
     pricing: [
-      { tier: 'Essential', cover: '₹25 Lakhs', premium: '0.15%', bestFor: 'Flats under ₹1 Cr' },
-      { tier: 'Professional', cover: '₹1 Crore', premium: '0.12%', bestFor: 'Plots, houses up to ₹3 Cr' },
-      { tier: 'Enterprise', cover: '₹25 Cr+', premium: 'Custom', bestFor: 'Commercial towers, bulk deals' }
+      { tier: 'Essential', cover: '₹25 Lakhs', premium: '0.15% (One-time)', bestFor: 'Resale Flats under ₹1 Cr' },
+      { tier: 'Professional', cover: '₹1 Crore', premium: '0.12% (One-time)', bestFor: 'Plots, houses up to ₹3 Cr' },
+      { tier: 'Premium', cover: '₹5 Crores+', premium: '0.10% (One-time)', bestFor: 'Commercial buildings & large portfolios' }
     ],
     useCase: {
-      title: 'The Pune Case',
-      desc: 'Buyer bought a ₹2 Cr house. 3 years later, an undisclosed heir sued claiming a forged 1990 sale deed. TRUSTFLOWS fought the case and paid the full sum when the title failed.'
+      title: 'The Pune Forgery Case',
+      desc: 'A buyer purchased a house in 2021. In 2024, a person claiming to be the son of a 1980s owner sued, alleging his father\'s signature was forged. TrustFlows assigned a high-court lawyer and protected the ₹2 Cr investment.'
     },
-    exclusions: ['Defects created after purchase', 'Environmental hazards', 'Market value downturn']
+    exclusions: [
+      'Defects created after the policy purchase date',
+      'Known defects disclosed to the buyer before purchase',
+      'Zoning and land-use law changes post-purchase',
+      'Environmental liabilities unrelated to title'
+    ],
+    howItWorks: [
+      { step: '01', title: 'Deep Audit', desc: 'Our AI engines scan 50+ years of land record history and local court logs.' },
+      { step: '02', title: 'Risk Grading', desc: 'The property is assigned a Trust Score. Gaps are identified for mitigation.' },
+      { step: '03', title: 'Policy Issuance', desc: 'Title Insurance is issued, backed by India\'s leading A+ rated insurers.' },
+      { step: '04', title: 'Active Defense', desc: 'If any claim arises, TrustFlows manages the entire legal defense and payout.' }
+    ],
+    marketReality: 'In India, 66% of all civil cases are related to land title disputes. Without insurance, a single missing heir in a 50-year chain can wipe out your life savings.',
+    payoutStructure: [
+      { condition: 'Court Challenge', timeline: 'Immediate', method: 'Legal defense cost coverage up to SI' },
+      { condition: 'Total Title Loss', timeline: '90-120 Days', method: '100% of sum insured paid to the owner' },
+      { condition: 'Partial Loss/Encroachment', timeline: '45-60 Days', method: 'Value loss compensation based on survey' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600', // Court/Law
+      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600', // Documents
+      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600'  // Property
+    ]
   },
   {
     id: 'escrow',
-    sidebarLabel: 'Escrow Services',
-    title: 'Digital Property Escrow',
-    definition: 'RBI-compliant trust accounts where funds are held and released only after predefined conditions (like registration or construction milestones) are met, eliminating payment fraud.',
+    sidebarLabel: 'Digital Escrow',
+    title: 'Digital Property Escrow (RBI Compliant)',
+    definition: 'An RBI-compliant trust account infrastructure where buyer funds are held securely and released to the seller or developer only after predefined milestones or registration is verified.',
     benefits: [
-      'Zero fund diversion by builders',
-      'Safe payment for resale deals',
-      'RBI & RERA compliant infrastructure',
-      'Automated release on document verification'
+      'Prevents seller from absconding with advance token money',
+      'Ensures builder uses funds only for specific project milestones',
+      'Transparent ledger for all stakeholders (Buyer, Seller, Bank)',
+      '100% refund of escrow amount if title is found defective',
+      'Fully digital, paperless setup in under 24 hours'
     ],
     coverage: [
-      { item: 'Buyer-Seller Escrow', detail: 'Released on registration of sale deed + possession.' },
-      { item: 'Milestone Escrow', detail: 'Released on verified construction stages (Under-construction).' },
-      { item: 'NRI Remote Escrow', detail: 'Safe cross-border deals with POA verification.' },
-      { item: 'Token Advance', detail: 'Refunds if title defect is found during due diligence.' }
+      { item: 'Token Protection', detail: 'Holds the booking amount until preliminary title verification is clear.' },
+      { item: 'Registration Escrow', detail: 'Releases final balance only after the sub-registrar portal confirms deed execution.' },
+      { item: 'Milestone Payouts', detail: 'Ideal for under-construction flats — funds released as per RERA certificates.' }
     ],
     pricing: [
-      { tier: 'Up to ₹50L', premium: '0.25%', bestFor: 'Min ₹5,000' },
-      { tier: '₹50L - ₹2 Cr', premium: '0.20%', bestFor: 'Standard residential' },
-      { tier: 'Above ₹10 Cr', premium: '0.10%-0.12%', bestFor: 'Institutional/Bulk' }
+      { tier: 'Basic Escrow', premium: '₹15,000 (Fixed)', bestFor: 'Rental deposits & small token amounts' },
+      { tier: 'Standard Transaction', premium: '0.15% - 0.20%', bestFor: 'Resale flats & plots (₹1Cr - ₹5Cr)' },
+      { tier: 'Bulk/Enterprise', premium: 'Custom Pricing', bestFor: 'Developer launches & commercial deals' }
     ],
     useCase: {
-      title: 'Noida Project Protection',
-      desc: '100 buyers used escrow. Builder tried to divert funds at 40% construction. Escrow blocked release until milestones were verified. Project finished on time.'
-    }
+      title: 'The Noida "Double Sale" Prevention',
+      desc: 'A seller tried to take token money from three different buyers simultaneously. Our Escrow system blocked the transfer after the AI engine flagged multiple "agreement to sell" drafts for the same unit.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Agreement Setup', desc: 'Buyer and Seller sign a digital tripartite escrow agreement.' },
+      { step: '02', title: 'Fund Loading', desc: 'Buyer loads funds into the secure trust account managed by partner banks.' },
+      { step: '03', title: 'Condition Monitor', desc: 'TrustFlows AI monitors sub-registrar and RERA portals for status updates.' },
+      { step: '04', title: 'Automated Payout', desc: 'Funds move to the seller instantly upon verification of deed or milestone.' }
+    ],
+    payoutStructure: [
+      { condition: 'Successful Registration', timeline: 'Instant', method: 'Transfer to seller bank account' },
+      { condition: 'Title Defect Found', timeline: '24 Hours', method: 'Full refund to the buyer account' },
+      { condition: 'Mutual Termination', timeline: '48 Hours', method: 'Split as per termination clause' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600', // Finance
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600', // Digital contract
+      'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1600'  // Bank
+    ]
   },
   {
     id: 'prop-insurance',
     sidebarLabel: 'Property Insurance',
     title: 'Structural & Asset Protection',
-    definition: 'Traditional property insurance that protects the physical building and its contents from damage due to fire, natural disasters, or theft. Focuses on bricks, mortar, and belongings.',
+    definition: 'Comprehensive insurance for the physical structure and contents of your property against fire, natural disasters, theft, and accidental damage.',
     benefits: [
-      '24x7 WhatsApp claim intimation',
-      'Surveyor assigned within 48 hours',
-      'Fast settlement (7-15 working days)',
-      'Covers structural repair and interior loss'
+      'Covers earthquake, flood, and fire damage to structure',
+      'Protects interior contents (furniture, electronics, valuables)',
+      'Rent loss coverage if property becomes uninhabitable',
+      '7-15 day claim settlement guarantee',
+      'Free annual structural health audit included'
     ],
     coverage: [
-      { item: 'Natural Perils', detail: 'Fire, earthquake, flood, storm, and lightning.' },
-      { item: 'Theft & Burglary', detail: 'Loss of furniture, electronics, and valuables.' },
-      { item: 'Pipe Bursts', detail: 'Water damage from plumbing or tank leakages.' },
-      { item: 'Impact Damage', detail: 'Damage from vehicles crashing into the structure.' }
+      { item: 'Standard Fire & Perils', detail: 'Fire, lightning, explosion, aircraft damage, riots, and strikes.' },
+      { item: 'Natural Calamities', detail: 'Earthquake, storm, cyclone, flood, and inundation coverage.' },
+      { item: 'Theft & Burglary', detail: 'Loss of contents due to housebreaking or forced entry.' }
     ],
     pricing: [
-      { tier: 'Basic', premium: '₹2,500/yr', bestFor: 'Structure only (Up to ₹1Cr)' },
-      { tier: 'Standard', premium: '₹5,000/yr', bestFor: 'Structure + Contents (Up to ₹3Cr)' },
-      { tier: 'Comprehensive', premium: '₹12,000/yr', bestFor: 'All risks (Up to ₹10Cr+)' }
+      { tier: 'Silver', premium: '₹2,500/yr', bestFor: '1-2 BHK Flats (Structure only)' },
+      { tier: 'Gold', premium: '₹6,000/yr', bestFor: '3-4 BHK Flats (Structure + Contents)' },
+      { tier: 'Platinum', premium: '₹12,000/yr+', bestFor: 'Villas & Luxury Apartments' }
     ],
     useCase: {
       title: 'Chennai Flood Recovery',
-      desc: 'Ground floor villa submerged in floods. TRUSTFLOWS processed a ₹8 Lakh claim for structural repair and damaged furniture within 10 days.'
-    }
+      desc: 'During the 2023 floods, 12 TrustFlows insured homes were damaged. We processed structural repairs and content loss payouts within 10 days, totaling ₹45 Lakhs.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Photo Audit', desc: 'Upload property photos and content inventory via the app.' },
+      { step: '02', title: 'Quote Generation', desc: 'Instant premium based on property age and area risk (flood/seismic zone).' },
+      { step: '03', title: 'One-Click Buy', desc: 'Policy issued instantly with no physical inspection for most flats.' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600', // Luxury home
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600', // Modern architecture
+      'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=1600'  // Interior
+    ]
   },
   {
     id: 'digital-owner',
     sidebarLabel: 'Digital Owner Insurance',
-    title: 'Digital Owner (NRI Protection)',
-    definition: 'Specialized insurance for NRIs and investors to protect against risks of owning property remotely, including tenant issues and unauthorized occupation.',
+    title: 'The Ultimate NRI & Remote Owner Shield',
+    definition: 'A specialized protection product for property owners living in different cities or countries, covering risks related to illegal occupation, rent defaults, and remote identity theft.',
     benefits: [
-      'Protects against rent default',
-      'Covers legal fees for squatter eviction',
-      'Reimbursement for document recreation',
-      'Indemnity against remote identity theft'
+      'Covers legal costs for eviction of squatters or non-paying tenants',
+      'Payout for up to 12 months of unpaid rent during disputes',
+      'Identity theft protection for property documents',
+      'Quarterly physical verification + geo-tagged photo reports',
+      'Dedicated legal manager for remote property management'
     ],
     coverage: [
-      { item: 'Rent Default', detail: 'Up to 12 months rent payout if tenant stops paying.' },
-      { item: 'Squatter Removal', detail: 'Police + legal assistance to remove illegal occupants.' },
-      { item: 'Eviction Costs', detail: 'Covers court fees and lawyer charges for eviction.' },
-      { item: 'Broker Fraud', detail: 'Protection against local agents absconding with rent.' }
+      { item: 'Squatter Removal', detail: 'Coverage for lawyer fees and court costs to remove unauthorized occupants.' },
+      { item: 'Rent Default', detail: 'Guarantees monthly rent payout if the tenant fails to pay for 3+ months.' },
+      { item: 'Remote Fraud', detail: 'Protection against forged POAs used to mortgage or sell your property remotely.' }
     ],
     pricing: [
-      { tier: 'Standard Plan', premium: '0.25%/year', bestFor: 'Min ₹5,000' }
+      { tier: 'Remote Basic', premium: '₹14,999/yr', bestFor: 'Vacant land / plots in home city' },
+      { tier: 'Investor Plus', premium: '0.25% of Rental Value', bestFor: 'Rented apartments and offices' },
+      { tier: 'NRI Global Shield', premium: '₹45,000/yr+', bestFor: 'Multiple assets across India' }
     ],
     useCase: {
-      title: 'Gurgaon NRI Success',
-      desc: 'NRI in USA had a tenant who stopped paying. TRUSTFLOWS paid 10 months of lost rent and managed the legal eviction process remotely.'
-    }
+      title: 'NRI Squatter Eviction',
+      desc: 'An NRI in Canada found their Bangalore flat occupied by a "relative" who refused to leave. TrustFlows legal team initiated proceedings and cleared the property in 8 months, paying the owner rent throughout.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Remote Onboarding', desc: 'Upload ownership docs and current tenant details (if any).' },
+      { step: '02', title: 'Smart Monitoring', desc: 'We install digital locks or sensors (optional) and perform physical audits.' },
+      { step: '03', title: 'Legal Trigger', desc: 'At the first sign of dispute or default, our legal engine takes over.' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600', // Remote work
+      'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=1600', // Global travel
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600'  // City view
+    ]
   },
   {
     id: 'loan-guarantee',
     sidebarLabel: 'Loan Guarantees',
-    title: 'Lender & Borrower Guarantees',
-    definition: 'A credit enhancement product that guarantees loan repayment if the title fails. It enables banks to lend on properties with minor title gaps or B-Khata issues.',
+    title: 'Title Loan Guarantees (For Banks & HFCs)',
+    definition: 'A credit enhancement product that guarantees repayment to lenders if the property title fails, enabling faster loan approvals for "Grey-Title" properties like B-Khata or Unapproved Layouts.',
     benefits: [
-      'Lower NPA risk for banks',
-      'Enable loans on disputed/weak titles',
-      'Faster developer sales through bank tie-ups',
-      'Repayment guarantee if project is delayed'
+      'Converts "Rejected" properties into "Bankable" assets',
+      'Zero liability for banks in case of title-related foreclosure issues',
+      'Reduced interest rates for borrowers with TrustFlows guarantee',
+      'Speed up loan disbursement from 21 days to 72 hours',
+      'Integrated with all major NBFCs and HFCs'
     ],
     coverage: [
-      { item: 'Lender Title Guarantee', detail: 'Protects bank\'s mortgage interest against title defects.' },
-      { item: 'Buyer Loan Guarantee', detail: 'Guarantees repayment if project is delayed >12 months.' },
-      { item: 'B-Khata Lending', detail: 'Enables financing for properties with minor administrative gaps.' },
-      { item: 'Default Protection', detail: 'Payout to lender if property is lost to a title dispute.' }
+      { item: 'Lender Protection', detail: 'Total outstanding loan amount paid to the bank if title is voided by court.' },
+      { item: 'Minor Gaps', detail: 'Covers missing links in ownership chain that usually stop bank funding.' }
     ],
     pricing: [
-      { tier: 'Lender Tier', premium: '0.10%', bestFor: 'One-time on loan amount' }
+      { tier: 'Standard Guarantee', premium: '0.10% - 0.15% (Lump sum)', bestFor: 'Home loan borrowers' },
+      { tier: 'Portfolio Guarantee', premium: 'Custom', bestFor: 'Institutional lenders' }
     ],
     useCase: {
-      title: 'Bangalore B-Khata Loan',
-      desc: 'Buyer rejected by 3 banks for B-Khata. TRUSTFLOWS issued a title guarantee. Bank approved the loan within 7 days.'
-    }
+      title: 'B-Khata Loan Approval',
+      desc: 'A buyer in Bangalore was rejected by 4 banks for a B-Khata house. TrustFlows issued a Title Guarantee, and a leading NBFC approved the loan at 8.7% ROI within 4 days.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Lender Audit', desc: 'Bank submits property collateral details for AI risk grading.' },
+      { step: '02', title: 'Risk Underwriting', desc: 'TrustFlows underwrites the technical title risk gaps.' },
+      { step: '03', title: 'Guarantee Issued', desc: 'A formal credit enhancement bond is issued to the bank.' }
+    ],
+    payoutStructure: [
+      { condition: 'Title Foreclosure', timeline: '30 Days', method: 'Direct payment of principal to Lender' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600', // Modern bank
+      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600', // Contract
+      'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1600'  // Office
+    ]
   },
+
   {
     id: 'legal-defense',
     sidebarLabel: 'Legal Defense',
-    title: 'Legal Defense Insurance',
-    definition: 'Covers the high cost of defending your ownership in court, regardless of whether the defect is covered by title insurance. Essential for boundary or frivolous claims.',
+    title: 'Integrated Legal Defense Insurance',
+    definition: 'A dedicated insurance product that covers 100% of your legal expenses if your property ownership is challenged in court at any point after purchase.',
     benefits: [
-      'Covers lawyer fees (up to ₹5 Lakhs)',
-      'Covers court fees and stamp duties',
-      'Expert witness & surveyor costs included',
-      'Counter-suit legal support'
+      'Covers senior advocate fees (High Court & Supreme Court)',
+      'Includes court filing fees, stamp duties, and processing costs',
+      'Payout for expert witnesses (Forensic experts, surveyors)',
+      'Zero out-of-pocket expense for property litigation',
+      'Works even if you don\'t have full Title Insurance'
     ],
     coverage: [
-      { item: 'Boundary Disputes', detail: 'Defending against neighbor\'s encroachment claims.' },
-      { item: 'Frivolous Suits', detail: 'Fighting false claims from previous owners\' heirs.' },
-      { item: 'Demolition Notices', detail: 'Challenging unauthorized municipal notices in court.' },
-      { item: 'RERA Complaints', detail: 'Legal help to file complaints against developers.' }
+      { item: 'Lawyer Payout', detail: 'Direct payment to empanelled top-tier property lawyers in 20 cities.' },
+      { item: 'Document Costs', detail: 'Costs of obtaining certified copies, old revenue records, and maps.' }
     ],
     pricing: [
-      { tier: 'Standalone', premium: '₹3,000/yr', bestFor: 'Basic residential' },
-      { tier: 'Add-on', premium: '+15%', bestFor: 'Added to Title Insurance' }
+      { tier: 'Individual Defense', premium: '₹3,000/yr', bestFor: 'Single property owners' },
+      { tier: 'Commercial Defense', premium: '₹15,000/yr+', bestFor: 'Retail shops and office spaces' }
     ],
     useCase: {
-      title: 'Kolkata Land Dispute',
-      desc: 'Neighbor filed a false claim on a common wall. TRUSTFLOWS assigned a senior lawyer and covered ₹1.2 Lakhs in court costs. Dispute settled in 6 months.'
-    }
+      title: 'Boundary Wall Dispute',
+      desc: 'A neighbor in Lucknow filed a stay order against a buyer\'s new construction. TrustFlows assigned a lawyer, vacated the stay in 3 weeks, and covered all ₹1.8L expenses.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Dispute Alert', desc: 'Owner uploads court notice or stay order to the platform.' },
+      { step: '02', title: 'Legal Strategy', desc: 'Empanelled High Court lawyer reviews files and drafts response.' },
+      { step: '03', title: 'Direct Defense', desc: 'TrustFlows pays lawyer fees and court costs directly.' }
+    ],
+    payoutStructure: [
+      { condition: 'Legal Expense', timeline: 'Real-time', method: 'Direct payment to empanelled lawyer' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600', // Justice
+      'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1600', // Law books
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600'  // Handshake
+    ]
   },
+
   {
     id: 'fraud-monitoring',
     sidebarLabel: 'Fraud Monitoring',
-    title: 'Post-Purchase Monitoring',
-    definition: 'Continuous surveillance of land records and court registries to alert you the moment any fraudulent activity is attempted on your property.',
+    title: '24/7 Digital Property Fraud Monitoring',
+    definition: 'A subscription service that monitors state land registries, court logs, and sub-registrar portals for any activity related to your property ID or survey number.',
     benefits: [
-      'Real-time SMS/Email alerts',
-      'Automatic freeze requests to registrars',
-      'Early detection of "fake mortgage" attempts',
-      'Investigation support by legal team'
+      'Instant SMS/Email alerts for any "Agreement to Sell" or "Sale Deed" draft',
+      'Alerts for new litigation or stay orders filed against your survey number',
+      'Monitoring of property tax name change requests',
+      'Quarterly digital audit report of your asset health',
+      'Prevention of "Double Sale" or fake mortgage attempts'
     ],
     coverage: [
-      { item: 'Registration Alerts', detail: 'If anyone tries to register a sale deed on your survey number.' },
-      { item: 'Mortgage Monitor', detail: 'Detection of loans taken using your property as collateral.' },
-      { item: 'Tax Record Changes', detail: 'Alerts if ownership name changes in municipal records.' },
-      { item: 'Litigation Scan', detail: 'If any new court case mentions your property.' }
+      { item: 'Registry Monitor', detail: 'Tracks IGR (Inspector General of Registration) logs for your property ID.' },
+      { item: 'Court Log Monitor', detail: 'Scans e-Court databases for any case mentioning your survey number.' }
     ],
     pricing: [
-      { tier: '1st Property', premium: '₹1,999/yr', bestFor: 'Main residence' },
-      { tier: 'Additional', premium: '₹999/yr', bestFor: 'Investment units' }
+      { tier: 'Asset Watch', premium: '₹1,999/yr', bestFor: 'Flat owners' },
+      { tier: 'Land Watch', premium: '₹4,999/yr', bestFor: 'Open land and plot owners' }
     ],
     useCase: {
-      title: 'Jaipur Plot Alert',
-      desc: 'Owner received alert that someone tried to update tax records for his vacant plot. TRUSTFLOWS legal team intervened at the municipal office, stopping a fraudulent sale.'
-    }
+      title: 'Impersonation Alert',
+      desc: 'An owner in Mumbai received an alert that someone was trying to register a rental agreement using their property ID. They blocked the fraudulent registration within 2 hours.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Asset Link', desc: 'Owner links their Property ID and Survey Number to the monitor.' },
+      { step: '02', title: 'Digital Scan', desc: 'System performs 24/7 scans of registrar and court databases.' },
+      { step: '03', title: 'Smart Alert', desc: 'SMS/Email sent instantly for any unauthorized activity.' }
+    ],
+    payoutStructure: [
+      { condition: 'Fraud Detected', timeline: 'Instant', method: 'Emergency legal helpdesk activation' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1600', // Digital security
+      'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600', // Cybersecurity
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600'  // Tech
+    ]
   },
+
   {
     id: 'trust-report',
-    sidebarLabel: 'Risk & Trust Score',
-    title: 'AI Risk Intelligence Report',
-    definition: 'The foundation of trust — a deep-dive AI report giving a score of 0-100 after analyzing 50 years of title history, encumbrances, and local risks.',
+    sidebarLabel: 'AI Trust Report',
+    title: 'The AI Property Trust Report (0-100 Score)',
+    definition: 'A comprehensive 45-page property risk audit report generated by our segment-specific AI engines, covering legal, municipal, and regional risk factors.',
     benefits: [
-      '99.1% data accuracy guarantee',
-      'Unified property trust score',
-      'Detailed 50-year title chain chain',
-      'Segment-specific risk algorithms'
+      'Unified Trust Score (0-100) for instant decision making',
+      'Deep scan of 30+ document types (Mother deed, Khata, EC, RTC)',
+      'Verification of survey maps and physical encroachments',
+      'Municipal dues and pending tax audit',
+      'Delivered in 48-72 hours across 20 cities'
     ],
     coverage: [
-      { item: 'Title Chain (50yr)', detail: 'Tracing from original govt grant to current seller.' },
-      { item: 'Litigation Search', detail: 'Scanning 10,000+ courts for survey-specific cases.' },
-      { item: 'Govt DB Connectors', detail: 'Live sync with DILRMP, RERA, and Land Records.' },
-      { item: 'Local Risk Scan', detail: 'Wakf, Acquisition, and Zoning overlap checks.' }
+      { item: 'Title Chain Audit', detail: 'Verification of ownership links for the past 13 to 30 years.' },
+      { item: 'Compliance Check', detail: 'RERA, OC, CC, and Sanctioned Plan deviation checks.' },
+      { item: 'Regional Risks', detail: 'Specific checks for SRA (Mumbai), B-Khata (Bangalore), Dharani (Hyderabad).' }
     ],
     pricing: [
-      { tier: 'Resale Flat', premium: '₹7,999', bestFor: '48hr delivery' },
-      { tier: 'Freehold Plot', premium: '₹24,999', bestFor: '72hr delivery' },
-      { tier: 'Commercial', premium: '₹49,999', bestFor: '5-day delivery' }
+      { tier: 'Quick Scan', premium: '₹7,999', bestFor: 'Resale flats' },
+      { tier: 'Deep Audit', premium: '₹19,999+', bestFor: 'Freehold plots and bungalows' }
     ],
     useCase: {
-      title: 'Tellapur Plot Scan',
-      desc: 'AI flagged a 1987 Wakf board claim hidden in old registers. Buyer avoided a ₹3.5 Cr loss on a "clear" plot.'
-    }
+      title: 'Hidden Society Dues',
+      desc: 'A buyer in Gurgaon was told "all dues clear". Our AI Trust Report found ₹12 Lakhs in pending maintenance and civil fines. Buyer negotiated the price down instantly.'
+    },
+    howItWorks: [
+      { step: '01', title: 'Data Ingestion', desc: 'Buyer uploads survey number or property draft deed.' },
+      { step: '02', title: 'AI Synthesis', desc: 'Our engines scan 30+ municipal and legal databases simultaneously.' },
+      { step: '03', title: 'Report Delivery', desc: 'A 45-page comprehensive risk audit is delivered in 48-72 hours.' }
+    ],
+    payoutStructure: [
+      { condition: 'Service Delivery', timeline: '48-72 Hours', method: 'Digital report delivery to dashboard' }
+    ],
+    heroImages: [
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600', // Analytics
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600', // Charts
+      'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1600'  // Research
+    ]
   }
 ];

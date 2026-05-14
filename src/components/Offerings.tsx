@@ -22,7 +22,7 @@ const Offerings = () => {
   const data = offeringData.find(o => o.id === active)!;
 
   return (
-    <section id="offerings" className="bg-white py-[80px] px-[5%] overflow-hidden">
+    <section id="offerings" className="bg-white py-[40px] px-[5%] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <div className="text-[11px] font-bold tracking-[2px] uppercase text-primary-blue mb-4">OUR SOLUTIONS & OFFERINGS</div>

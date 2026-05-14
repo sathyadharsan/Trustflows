@@ -1,57 +1,60 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const slides = [
   {
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600',
-    badge: "● INDIA'S END-TO-END PROPERTY TRUST PLATFORM",
-    subline: "One Platform. Eight Risk Solutions. Complete Transaction Certainty.",
-    headline: "Trust Every Property Transaction – \nResale Flat to Commercial Tower.",
-    body: "India's First AI-Powered Integrated Platform for\nTitle Insurance, Property Insurance, Escrow & Risk Intelligence.",
-    primaryCTA: "Get Free Property Risk Report →",
-    secondaryCTA: "Explore All Solutions"
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1600',
+    badge: "● ONE PLATFORM. COMPLETE PROPERTY PROTECTION. ZERO UNCERTAINTY.",
+    subline: "India's First AI-Powered Integrated Insurance Framework",
+    headline: "Protect Your Property Investment – \nFrom Title to Lifecycle.",
+    body: "Integrated Insurance for Title, Property, Earthquake & Escrow. Built for 20 Major Cities & Every Property Segment – From ₹30L Flats to ₹50Cr Commercial Towers.",
+    primaryCTA: "Get Free Property Risk Report",
+    secondaryCTA: "Explore Insurance Solutions"
   },
   {
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600',
-    badge: "● AI-POWERED RISK INTELLIGENCE",
-    subline: "Segment-Specific. City-Trained.",
-    headline: "23+ Checks Per Property.\n99.1% Accuracy.",
-    body: "Separate AI models for flats, plots, commercial — \ntrained on 5M+ Indian records for 20 major cities.",
-    primaryCTA: "See How It Works →",
-    secondaryCTA: "View Sample Report"
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600',
+    badge: "● ONE PLATFORM. ONE TRUST SCORE.",
+    subline: "Zero Uncertainty. Zero Hidden Risk.",
+    headline: "Universal Title Insurance.\nWorks Across All Segments.",
+    body: "From ₹25L flats to ₹50Cr commercial assets, we deliver segment-specific risk intelligence with insurance-backed protection.",
+    primaryCTA: "Get Your Trust Score",
+    secondaryCTA: "Explore Insurance Plans"
   },
   {
-    image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1600',
-    badge: "● TITLE INSURANCE & ESCROW",
-    subline: "Zero Payment Fraud. Zero Title Risk.",
-    headline: "Your Property Savings.\nCompletely Protected.",
-    body: "RBI-compliant escrow + IRDAI title insurance.\nMoney moves only after documents are verified.",
-    primaryCTA: "Protect My Property →",
-    secondaryCTA: "Learn About Escrow"
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1600',
+    badge: "● DIGITAL ESCROW INFRASTRUCTURE",
+    subline: "RERA & RBI Compliant Security.",
+    headline: "Secure Your Payments.\nMilestone-Based Escrow.",
+    body: "Customizable for under-construction, resale, or bulk deals. Money is released only after verified milestones or registration.",
+    primaryCTA: "Secure Your Transaction",
+    secondaryCTA: "View Escrow Workflows"
   },
   {
-    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600',
+    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80&w=1600',
     badge: "● LIVE IN 20 MAJOR CITIES",
     subline: "Mumbai. Delhi. Bangalore. Chennai. +16 More.",
-    headline: "Every City Has\nIts Own Risk Engine.",
-    body: "Mumbai AI knows SRA. Bangalore AI knows B-Khata. \nChennai AI knows Patta/Chitta complexities.",
-    primaryCTA: "Select My City →",
-    secondaryCTA: "View All 20 Cities"
+    headline: "City-Trained Risk Engines\nCatch Local Frauds.",
+    body: "Mumbai model knows SRA, Pune model knows PMRDA, Bangalore model knows B-Khata. Deep local intelligence at scale.",
+    primaryCTA: "Check Your City Risk",
+    secondaryCTA: "See All 20 Cities"
   },
   {
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1600',
     badge: "● FOR NRIs & REMOTE INVESTORS",
     subline: "Own Property. Remotely. Safely.",
-    headline: "Close Your India Deal\nFrom Anywhere in the World.",
-    body: "Digital Owner Insurance + NRI Escrow + \nRemote title verification. 100% secure.",
-    primaryCTA: "NRI Property Protection →",
-    secondaryCTA: "How It Works for NRIs"
+    headline: "Digital Owner Insurance.\nTotal Peace of Mind.",
+    body: "Protects against rent default, squatter removal legal costs, and identity theft. The ultimate NRI property shield.",
+    primaryCTA: "NRI Protection Plan",
+    secondaryCTA: "Consult NRI Advisors"
   }
 ];
 
+
 const Hero = () => {
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate();
 
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -84,46 +87,55 @@ const Hero = () => {
             style={{ backgroundImage: `url(${slides[current].image})` }}
           />
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/65" />
+          <div className="absolute inset-0 bg-black/80" />
 
           {/* Content */}
-          <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-[5%]">
+          <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6 pt-20 text-white">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               className="mb-8"
             >
-              <div className="inline-block px-4 py-2 rounded-full border border-white/30 mb-4">
-                <span className="text-[11px] font-medium text-white tracking-[2px] uppercase">{slides[current].badge}</span>
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-8 h-px bg-primary-blue" />
+                <span className="text-[12px] font-bold text-primary-blue tracking-[3px] uppercase">{slides[current].badge.replace('● ', '')}</span>
+                <div className="w-8 h-px bg-primary-blue" />
               </div>
-              <div className="text-[16px] font-medium text-[#60A5FA] mb-2">{slides[current].subline}</div>
+              <div className="text-[18px] md:text-[22px] font-bold !text-white mb-4 tracking-tight">{slides[current].subline}</div>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-[40px] md:text-[64px] font-[800] !text-white leading-[1.1] mb-8 whitespace-pre-line tracking-tight"
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-[44px] md:text-[82px] font-[900] !text-white leading-[1.1] mb-10 whitespace-pre-line tracking-tight"
             >
               {slides[current].headline}
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="max-w-2xl"
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="max-w-3xl"
             >
-              <p className="text-[18px] font-normal !text-white/80 leading-[1.8] mb-10 whitespace-pre-line">
+              <p className="text-[18px] md:text-[22px] font-medium !text-white/80 leading-[1.7] mb-12">
                 {slides[current].body}
               </p>
 
-              <div className="flex flex-wrap justify-center gap-4">
-                <button className="bg-[#185FA5] text-white px-8 py-[14px] rounded-lg font-semibold text-[15px] transition-all hover:bg-blue-700 hover:scale-105 active:scale-95">
+              <div className="flex flex-wrap justify-center gap-6">
+                <button 
+                  onClick={() => window.dispatchEvent(new CustomEvent('openRiskCalculator'))}
+                  className="bg-primary-blue text-white px-12 py-5 rounded-2xl font-bold text-[18px] transition-all hover:bg-blue-600 hover:shadow-2xl hover:shadow-primary-blue/30 active:scale-95 flex items-center gap-2 group"
+                >
                   {slides[current].primaryCTA}
+                  <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="bg-transparent text-white border-1.5 border-white px-8 py-[14px] rounded-lg font-semibold text-[15px] transition-all hover:bg-white/10 hover:scale-105 active:scale-95">
+                <button 
+                  onClick={() => navigate('/insurance')}
+                  className="bg-white/5 backdrop-blur-xl text-white border border-white/20 px-12 py-5 rounded-2xl font-bold text-[18px] transition-all hover:bg-white/10 active:scale-95"
+                >
                   {slides[current].secondaryCTA}
                 </button>
               </div>

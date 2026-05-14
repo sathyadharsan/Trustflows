@@ -12,6 +12,8 @@ import {
   Trophy
 } from 'lucide-react';
 import { outcomes } from '../data/outcomes';
+import DetailHeroSlider from '../components/DetailHeroSlider';
+
 
 const OutcomeDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,87 +37,119 @@ const OutcomeDetail = () => {
   }
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen pb-20 pt-24">
-      <div className="max-w-7xl mx-auto px-[5%]">
-        
-        {/* Breadcrumb */}
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-[#4a4a6a] hover:text-primary-blue transition-colors mb-8 text-sm font-bold tracking-wider uppercase"
-        >
-          <ArrowLeft size={16} /> PLATFORM OUTCOMES
-        </Link>
+    <div className="bg-[#F8FAFC] min-h-screen pb-20">
 
-        {/* Header Section */}
-        <div className="mb-16">
-          <div className="flex items-center gap-2 text-primary-blue font-bold tracking-[2px] uppercase text-[11px] mb-4">
-            <Trophy size={14} /> TRANSACTION PERFORMANCE METRIC
-          </div>
-          <h1 className="text-[40px] md:text-[64px] font-bold text-navy-900 leading-[1] tracking-tight mb-8">
-            {data.title}
-          </h1>
+      <DetailHeroSlider 
+        backLink="/"
+        backText="Platform Outcomes"
+        slides={[
+          {
+            badge: "TRANSACTION PERFORMANCE METRIC",
+            title: data.title,
+            description: data.description,
+            image: data.heroImages?.[0] || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600",
+            ctaText: "See How We Achieve This"
+          },
+          {
+            badge: "PROVEN PERFORMANCE",
+            title: "Data-Backed\nImpact Analysis",
+            description: `TrustFlows delivers a proven performance metric of ${data.metrics[0]?.value || '99%+'}. Our AI-driven approach fundamentally transforms property transaction reliability.`,
+            image: data.heroImages?.[1] || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600",
+            ctaText: "View Performance Data"
+          },
+          {
+            badge: "STRATEGIC BENEFIT",
+            title: "Your Competitive\nAdvantage",
+            description: data.benefits[0] || "Advanced protection for every transaction.",
+            image: data.heroImages?.[2] || "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600",
+            ctaText: "Get AI Risk Report"
+          }
+        ]}
+      />
+
+
+      <div className="max-w-7xl mx-auto px-[5%] mt-16">
+
+        {/* Impact Analysis Grid */}
+        <div className="grid lg:grid-cols-3 gap-12 mb-20">
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <p className="text-[20px] text-[#4a4a6a] leading-[1.8] font-medium">
-              {data.description}
-            </p>
-            <div className="bg-white border border-navy-900/5 rounded-[32px] p-10 shadow-sm flex items-center gap-8">
-              <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-                <BarChart className="text-primary-blue" size={40} />
-              </div>
-              <div>
-                <div className="text-primary-blue font-bold text-[11px] uppercase tracking-wider mb-1">PROVEN PERFORMANCE</div>
-                <div className="text-[32px] font-bold text-navy-900 leading-tight">{data.metric}</div>
+          {/* Detailed Benefits */}
+          <div className="lg:col-span-2 space-y-12">
+            
+            <div className="bg-white rounded-[40px] p-12 shadow-sm border border-navy-900/5">
+              <h2 className="text-[32px] font-[800] text-navy-900 mb-10 flex items-center gap-4 tracking-tight">
+                <CheckCircle2 size={32} className="text-primary-blue" />
+                Key Strategic Benefits
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                {data.benefits.map((benefit, i) => (
+                  <div key={i} className="flex items-start gap-4 p-6 bg-[#f8fafc] rounded-3xl group hover:bg-primary-blue hover:text-white transition-all">
+                    <ShieldCheck size={24} className="text-primary-blue group-hover:text-white shrink-0 mt-0.5" />
+                    <p className="text-[17px] font-[800] leading-tight">{benefit}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Analysis & Impact */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-20">
-          
-          {/* Detailed Impact */}
-          <div className="lg:col-span-2 bg-navy-900 rounded-[40px] p-12 text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-12 opacity-5">
-              <ShieldCheck size={200} />
-            </div>
-            <div className="relative z-10">
-              <h2 className="text-[28px] font-bold mb-8">Strategic Analysis</h2>
-              <p className="text-[20px] opacity-90 leading-[1.8] mb-12">
-                {data.detailedAnalysis}
-              </p>
-              <div className="flex items-center gap-4 p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm">
-                <CheckCircle2 size={24} className="text-primary-blue" />
-                <span className="text-[18px] font-bold italic">{data.benefit}</span>
+            {/* Long Term Impact */}
+            {data.longTermImpact && (
+              <div className="bg-[#0a0a1a] rounded-[40px] p-12 text-white relative overflow-hidden shadow-2xl">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary-blue/10 rounded-full blur-3xl -mr-32 -mt-32" />
+                <h2 className="text-[28px] font-[800] mb-6 relative z-10 flex items-center gap-4">
+                  <Trophy size={28} className="text-primary-blue" />
+                  Long-Term Value Impact
+                </h2>
+                <div className="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-sm relative z-10">
+                  <p className="text-[20px] leading-[1.8] italic text-white/90 font-medium">
+                    "{data.longTermImpact}"
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
-          {/* Quick Stats */}
+          {/* Quantifiable Metrics */}
           <div className="space-y-6">
-            <div className="bg-white p-8 rounded-[32px] border border-navy-900/5 shadow-sm">
-              <Zap size={32} className="text-primary-blue mb-4" />
-              <div className="text-[32px] font-bold text-navy-900 mb-2">48hr</div>
-              <div className="text-[13px] font-bold text-[#4a4a6a] uppercase tracking-widest">Industry Leading Speed</div>
-            </div>
-            <div className="bg-white p-8 rounded-[32px] border border-navy-900/5 shadow-sm">
-              <TrendingUp size={32} className="text-green-500 mb-4" />
-              <div className="text-[32px] font-bold text-navy-900 mb-2">99.1%</div>
-              <div className="text-[13px] font-bold text-[#4a4a6a] uppercase tracking-widest">Validation Accuracy</div>
+            <h3 className="text-[12px] font-[800] text-[#64748b] uppercase tracking-[3px] mb-8 pl-4">Quantifiable Proof</h3>
+            {data.metrics.map((metric, i) => (
+              <div key={i} className="bg-white p-10 rounded-[40px] border border-navy-900/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 group-hover:bg-primary-blue transition-colors">
+                  <BarChart size={24} className="text-primary-blue group-hover:text-white" />
+                </div>
+                <div className="text-[42px] font-[900] text-navy-900 mb-2 leading-none">{metric.value}</div>
+                <div className="text-[12px] font-[800] text-[#64748b] uppercase tracking-[2px]">{metric.label}</div>
+              </div>
+            ))}
+            
+            <div className="bg-primary-blue p-10 rounded-[40px] text-white shadow-xl shadow-primary-blue/20">
+              <Zap size={32} className="mb-4" />
+              <div className="text-[28px] font-[800] leading-tight mb-4">48-Hour Guarantee</div>
+              <p className="text-white/70 text-[14px] leading-relaxed">
+                Our AI engines deliver verified outcomes in under 48 hours, anywhere in India.
+              </p>
             </div>
           </div>
 
         </div>
 
         {/* CTA */}
-        <div className="bg-white border border-navy-900/5 rounded-[40px] p-12 text-center shadow-sm">
-          <h3 className="text-[28px] font-bold text-navy-900 mb-6">Experience this outcome for your transaction.</h3>
-          <button className="bg-primary-blue text-white px-10 py-4 rounded-xl font-bold hover:bg-blue-dark transition-all flex items-center justify-center gap-2 mx-auto">
-            Get Your Property Risk Report <ArrowRight size={18} />
-          </button>
+        <div className="bg-white border border-navy-900/5 rounded-[50px] p-16 text-center shadow-sm relative overflow-hidden group">
+          <div className="absolute inset-0 bg-blue-50/30 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          <div className="relative z-10">
+            <h3 className="text-[36px] font-[900] text-navy-900 mb-8 tracking-tight">Experience This Outcome For Your Property</h3>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <button className="bg-primary-blue text-white px-12 py-5 rounded-2xl font-[800] text-[18px] hover:bg-blue-600 transition-all shadow-xl shadow-primary-blue/20 flex items-center justify-center gap-3">
+                Request AI Risk Report <ArrowRight size={20} />
+              </button>
+              <button className="bg-navy-900 text-white px-12 py-5 rounded-2xl font-[800] text-[18px] hover:bg-navy-800 transition-all shadow-2xl">
+                Consult Legal Expert
+              </button>
+            </div>
+          </div>
         </div>
 
       </div>
+
     </div>
   );
 };
