@@ -1,4 +1,4 @@
-export const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtQ83HLKu9OnJeFKdvtDL0AMtBo2xx8SLvJt5hwl2e1oAlDfiXGGAo1KsTGm8uJSXV/exec';
+export const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtQ83HLKu9OnJeFKdvtDL0AMtBo2xx8SLvJt5hwl2e1oAIDfiXGGAo1KsTGm8uJSXV/exec';
 
 export const trackEvent = async (eventType: string, details: any = {}) => {
   if (!SCRIPT_URL) {
