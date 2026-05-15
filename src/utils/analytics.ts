@@ -1,7 +1,7 @@
 export const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtQ83HLKu9OnJeFKdvtDL0AMtBo2xx8SLvJt5hwl2e1oAlDfiXGGAo1KsTGm8uJSXV/exec';
 
 export const trackEvent = async (eventType: string, details: any = {}) => {
-  if (!SCRIPT_URL || SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+  if (!SCRIPT_URL) {
     console.warn('Analytics URL not set. Event not tracked:', eventType);
     return;
   }
