@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
+import { PageTracker } from './utils/analytics';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import CityDetail from './pages/CityDetail';
@@ -19,6 +20,7 @@ import FraudProtection from './pages/FraudProtection';
 function App() {
   return (
     <Router>
+      <PageTracker />
       <MainLayout>
         <Routes>
           <Route path="/" element={<Home />} />
