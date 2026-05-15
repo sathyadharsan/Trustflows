@@ -1,4 +1,4 @@
-export const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtQ83HLKu9OnJeFKdvtDL0AMtBo2xx8SLvJt5hwl2e1oAIDfiXGGAo1KsTGm8uJSXV/exec';
+export const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyd116U2crsF6LXdZh0xtUVoE01JEBeCFPFzDCRJ5tR-0_Os6PrNRP0ERwjATXrAPE/exec';
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
