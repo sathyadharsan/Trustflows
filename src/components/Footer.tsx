@@ -111,10 +111,16 @@ const Footer = () => {
           <div>
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white mb-8">Company</div>
             <ul className="space-y-4">
-              {['About Us', 'Our Mission', 'Team', 'Compliance', 'Contact'].map(item => (
-                <li key={item}>
-                  <Link to="#" className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
-                    {item}
+              {[
+                { name: 'About Us', path: '#' },
+                { name: 'Our Mission', path: '#' },
+                { name: 'Team', path: '#' },
+                { name: 'Compliance', path: '/compliance' },
+                { name: 'Contact', path: '/contact' }
+              ].map(item => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
+                    {item.name}
                   </Link>
                 </li>
               ))}

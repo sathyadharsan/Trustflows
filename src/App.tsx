@@ -16,6 +16,7 @@ import Privacy from './pages/Privacy';
 import Compliance from './pages/Compliance';
 import Insurance from './pages/Insurance';
 import FraudProtection from './pages/FraudProtection';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/outcomes/:id" element={<OutcomeDetail />} />
           <Route path="/insurance" element={<Insurance />} />
           <Route path="/fraud-protection" element={<FraudProtection />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />

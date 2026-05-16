@@ -249,7 +249,7 @@ const Navbar = () => {
     }
 
     // Handle anchor links
-    if (section) {
+    if (section && section.startsWith('#')) {
       const el = document.querySelector(section);
       if (el) {
         const offset = 80;
@@ -259,6 +259,11 @@ const Navbar = () => {
           behavior: 'smooth'
         });
       }
+    } else if (section && section.startsWith('/')) {
+      navigate(section);
+      setIsOpen(false);
+      setActiveDropdown(null);
+      return;
     }
 
     if (id) {
@@ -385,10 +390,16 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <Link 
+            to="/contact"
+            className="hidden sm:block bg-white text-primary-blue border-2 border-primary-blue px-6 py-2 rounded-lg font-bold text-[15px] tracking-[0.3px] transition-all hover:bg-primary-blue hover:text-white hover:shadow-lg"
+          >
+            Contact
+          </Link>
           <button 
             onClick={() => window.dispatchEvent(new CustomEvent('openRiskCalculator'))}
-            className="hidden sm:block bg-primary-blue text-white px-6 py-2.5 rounded-lg font-semibold text-[15px] tracking-[0.3px] transition-all hover:bg-blue-dark hover:shadow-lg"
+            className="hidden lg:block bg-primary-blue text-white px-6 py-2.5 rounded-lg font-bold text-[15px] tracking-[0.3px] transition-all hover:bg-blue-dark hover:shadow-lg"
           >
             Get Risk Report
           </button>
