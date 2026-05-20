@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Send, CheckCircle2, Loader2 } from 'lucide-react';
 
 // We will replace this URL with the new one the user creates for the Contact Form
-const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx3RyRBLAVz0d69bxo0ulHtUAYuBCN-_L0PrP2coQDUsiPNuOciHmxj-xWs_u-RHU-L/exec';
+const CONTACT_SCRIPT_URL: string = 'https://script.google.com/macros/s/AKfycbx3RyRBLAVz0d69bxo0ulHtUAYuBCN-_L0PrP2coQDUsiPNuOciHmxj-xWs_u-RHU-L/exec';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

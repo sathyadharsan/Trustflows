@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RiskCalculator from '../components/RiskCalculator';
+import ChatWidget from '../components/ChatWidget';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -28,6 +29,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         isOpen={isRiskCalcOpen} 
         onClose={() => setIsRiskCalcOpen(false)} 
       />
+      
+      <ChatWidget />
     </main>
   );
 };
