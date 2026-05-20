@@ -9,8 +9,22 @@ import {
   DollarSign, 
   AlertTriangle, 
   Headphones, 
-  Sparkles
+  RefreshCw,
+  User,
+  Mail,
+  Phone
 } from 'lucide-react';
+import { chatbotKnowledge } from '../data/chatbotKnowledge';
+import { useLocation } from 'react-router-dom';
+import { cities } from '../data/cities';
+import { segmentData } from '../data/segments';
+import { offeringData } from '../data/offerings';
+import { problems } from '../data/problems';
+import { solutions } from '../data/solutions';
+import { stakeholders } from '../data/stakeholders';
+import { outcomes } from '../data/outcomes';
+
+const CONTACT_SCRIPT_URL: string = 'https://script.google.com/macros/s/AKfycbx3RyRBLAVz0d69bxo0ulHtUAYuBCN-_L0PrP2coQDUsiPNuOciHmxj-xWs_u-RHU-L/exec';
 
 interface Message {
   id: string;
@@ -19,20 +33,175 @@ interface Message {
   timestamp: Date;
 }
 
+type LeadStage = 'none' | 'name' | 'email' | 'phone' | 'submitting' | 'done';
+
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'welcome',
-      text: "Hi there! Welcome to Trustflows. 🛡️ I'm Trusty, your secure transaction companion. How can I help you secure your deal today?",
-      sender: 'bot',
-      timestamp: new Date()
+  const location = useLocation();
+  const prevLocation = useRef(location.pathname);
+
+  // Auto-trigger contextual messages based on the page navigated
+  useEffect(() => {
+    if (prevLocation.current !== location.pathname) {
+      prevLocation.current = location.pathname;
+      
+      const path = location.pathname;
+      let autoMessage = '';
+
+      if (path === '/') {
+        autoMessage = "Welcome back to Trustflows Home! 🏠 How can I help you secure your real estate deal today?";
+      } 
+      else if (path.includes('/cities/')) {
+        const id = path.split('/cities/')[1]?.split('/')[0]?.toLowerCase();
+        const city = cities.find(c => c.id === id);
+        if (city) {
+          autoMessage = `I see you're looking at **${city.name}**! 🏙️ SRA, registry, or local land record complexities are high here. Want to check the critical risks we scan in ${city.name}?`;
+        } else {
+          autoMessage = `Looking at properties in our active cities? We are operational in 20 major Indian cities. Need details on a specific city?`;
+        }
+      }
+      else if (path.includes('/segments/')) {
+        const id = path.split('/segments/')[1]?.split('/')[0]?.toLowerCase();
+        const segment = segmentData.find(s => s.id === id);
+        if (segment) {
+          autoMessage = `Exploring **${segment.sidebarLabel}**? 🏢 Common risks here include ${segment.content.pain[0]} and legacy title disputes. Want to run an AI scan for your ${segment.sidebarLabel}?`;
+        } else {
+          autoMessage = `Analyzing a specific property segment? We have tailored risk-scans for flat, plot, commercial layout, and more. Which one are you buying?`;
+        }
+      }
+      else if (path.includes('/offerings/')) {
+        const id = path.split('/offerings/')[1]?.split('/')[0]?.toLowerCase();
+        const offering = offeringData.find(o => o.id === id);
+        if (offering) {
+          autoMessage = `Looking into **${offering.sidebarLabel}**? 🛡️ Let me know if you want details about its exact features, coverage, or customized pricing structures!`;
+        } else {
+          autoMessage = `Exploring our property protection offerings? We offer Escrow, Title Insurance, and Fraud Monitoring. What are you looking to secure?`;
+        }
+      }
+      else if (path.includes('/problems/')) {
+        const id = path.split('/problems/')[1]?.split('/')[0]?.toLowerCase();
+        const problem = problems.find(p => p.id === id);
+        if (problem) {
+          autoMessage = `Concerned about **${problem.title}**? ⚠️ This is a major risk in real estate transactions. Would you like to know how our AI engines audit and mitigate this specific risk?`;
+        } else {
+          autoMessage = `Concerned about transaction risks? I can explain how we detect double sales, SRA violations, and unauthorized mortgages. Ask me anything!`;
+        }
+      }
+      else if (path.includes('/solutions/')) {
+        const id = path.split('/solutions/')[1]?.split('/')[0]?.toLowerCase();
+        const solution = solutions.find(s => s.id === id);
+        if (solution) {
+          autoMessage = `Reviewing our solution: **${solution.title}**? ✨ Would you like to see how this fits into your property transaction for 100% peace of mind?`;
+        } else {
+          autoMessage = `Exploring our real estate risk mitigation solutions? We use segment-specific AI models, milestone escrow, and title insurance bonds. Need details?`;
+        }
+      }
+      else if (path.includes('/stakeholders/')) {
+        const id = path.split('/stakeholders/')[1]?.split('/')[0]?.toLowerCase();
+        const stakeholder = stakeholders.find(s => s.id === id);
+        if (stakeholder) {
+          autoMessage = `Checking how we help **${stakeholder.title}**? 🤝 I can explain how we custom-tailored our transaction safety bundles to match your exact role and needs!`;
+        } else {
+          autoMessage = `Looking for customized transaction safety? We have specific bundles for homebuyers, NRIs, developers, brokers, and banks. What is your role?`;
+        }
+      }
+      else if (path.includes('/outcomes/')) {
+        const id = path.split('/outcomes/')[1]?.split('/')[0]?.toLowerCase();
+        const outcome = outcomes.find(o => o.id === id);
+        if (outcome) {
+          autoMessage = `Interested in the outcome of: **${outcome.title}**? 📈 Let me share some case studies and explain how we guarantee this safe outcome for you!`;
+        } else {
+          autoMessage = `Looking at our proven transaction safety outcomes? We guarantee zero title fraud, safe fund transfers, and fast 48-hour delivery. Ask me how!`;
+        }
+      }
+      else if (path.includes('/insurance')) {
+        autoMessage = "I see you're looking at Insurance & Asset Protection! 🛡️ Need help calculating premiums or understanding what's covered?";
+      }
+      else if (path.includes('/fraud-protection')) {
+        autoMessage = "Checking out 24/7 Fraud Monitoring? 🚨 Get instant SMS/email alerts on state land registry (IGR) updates or unauthorized registration attempts.";
+      }
+      else if (path.includes('/contact')) {
+        autoMessage = "Need help reaching out? You can leave your details here and our property experts will call you in 15 minutes! 📞";
+      }
+      else if (path.includes('/terms') || path.includes('/privacy') || path.includes('/disclaimer') || path.includes('/compliance')) {
+        autoMessage = "Reviewing our legal policies & compliance? 🛡️ Trustflows is committed to 100% transparency. Do you have any compliance questions for me?";
+      }
+
+      if (autoMessage) {
+        setMessages(prev => {
+          const lastMsg = prev[prev.length - 1];
+          if (lastMsg && lastMsg.text === autoMessage) return prev;
+          
+          return [...prev, {
+            id: Math.random().toString(36).substr(2, 9),
+            text: autoMessage,
+            sender: 'bot',
+            timestamp: new Date()
+          }];
+        });
+        
+        if (!isOpen) {
+          setIsOpen(true);
+        }
+      }
     }
-  ]);
+  }, [location.pathname, isOpen]);
+  
+  // 1. Initialize states from sessionStorage for persistence
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const saved = sessionStorage.getItem('trustflows_chat_messages');
+    if (saved) {
+      try {
+        return JSON.parse(saved).map((m: any) => ({
+          ...m,
+          timestamp: new Date(m.timestamp)
+        }));
+      } catch (e) {
+        // Fallback to default welcome message
+      }
+    }
+    return [
+      {
+        id: 'welcome',
+        text: "Hi there! Welcome to Trustflows. 🛡️ I'm Trusty, your secure transaction companion. How can I help you secure your deal today?",
+        sender: 'bot',
+        timestamp: new Date()
+      }
+    ];
+  });
+
+  const [leadStage, setLeadStage] = useState<LeadStage>(() => {
+    return (sessionStorage.getItem('trustflows_chat_lead_stage') as LeadStage) || 'none';
+  });
+
+  const [leadData, setLeadData] = useState<{ fullName: string; email: string; phone: string }>(() => {
+    const saved = sessionStorage.getItem('trustflows_chat_lead_data');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        // Fallback
+      }
+    }
+    return { fullName: '', email: '', phone: '' };
+  });
+
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // 2. Persist states in sessionStorage when updated
+  useEffect(() => {
+    sessionStorage.setItem('trustflows_chat_messages', JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    sessionStorage.setItem('trustflows_chat_lead_stage', leadStage);
+  }, [leadStage]);
+
+  useEffect(() => {
+    sessionStorage.setItem('trustflows_chat_lead_data', JSON.stringify(leadData));
+  }, [leadData]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -42,31 +211,105 @@ const ChatWidget: React.FC = () => {
     scrollToBottom();
   }, [messages, isTyping]);
 
+  const resetChat = () => {
+    sessionStorage.removeItem('trustflows_chat_messages');
+    sessionStorage.removeItem('trustflows_chat_lead_stage');
+    sessionStorage.removeItem('trustflows_chat_lead_data');
+    setMessages([
+      {
+        id: 'welcome',
+        text: "Hi there! Welcome to Trustflows. 🛡️ I'm Trusty, your secure transaction companion. How can I help you secure your deal today?",
+        sender: 'bot',
+        timestamp: new Date()
+      }
+    ]);
+    setLeadStage('none');
+    setLeadData({ fullName: '', email: '', phone: '' });
+    setInputValue('');
+  };
+
   const quickReplies = [
     { 
       label: 'How Escrow Works?', 
       icon: <HelpCircle size={14} />,
-      reply: "Trustflows Escrow protects your money by holding it in a secure account. 🤝 The buyer deposits funds, both parties verify the legal paperwork/assets, and once everything is checked, the funds are released safely. It mitigates the risk of advance-payment fraud."
+      category: 'escrow'
     },
     { 
       label: 'Calculate Fees?', 
       icon: <DollarSign size={14} />,
-      reply: "Our transaction fees range between 0.5% and 1.5% depending on the property volume and level of legal verification required. You get enterprise-grade safety for a fraction of traditional transaction risk."
+      category: 'pricing'
     },
     { 
       label: 'Check Transaction Risk', 
       icon: <AlertTriangle size={14} />,
-      reply: "Starting AI Risk analysis for you! I will open the Property Risk Engine right now. Please complete the assessment form to check your score.",
-      action: () => {
-        window.dispatchEvent(new Event('openRiskCalculator'));
-      }
+      category: 'risk'
     },
     { 
       label: 'Talk to an Agent', 
       icon: <Headphones size={14} />,
-      reply: "Sure thing! You can connect with our escrow officers at support@trustflows.com, or check out our contact page to leave your phone number. We'll get back to you within 15 minutes."
+      category: 'agent'
     }
   ];
+
+  // Submit Lead details to Google Sheets Apps Script
+  const submitLead = async (name: string, email: string, phone: string) => {
+    try {
+      const payload = {
+        fullName: name,
+        email: email,
+        phone: phone,
+        city: 'Chatbot Lead',
+        segment: 'Chatbot',
+        message: 'Lead captured automatically via Trusty chatbot conversation.'
+      };
+      
+      await fetch(CONTACT_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      return true;
+    } catch (err) {
+      console.error('Error submitting chatbot lead', err);
+      return false;
+    }
+  };
+
+  // Process rules-based matches from the knowledge base
+  const matchKnowledgeBase = (userInput: string): string => {
+    const input = userInput.toLowerCase().trim();
+    let bestMatch: { response: string; score: number } = { response: '', score: 0 };
+
+    // Search through all groups in chatbotKnowledge
+    for (const groupName of Object.keys(chatbotKnowledge)) {
+      const items = chatbotKnowledge[groupName];
+      for (const item of items) {
+        let currentScore = 0;
+        for (const kw of item.keywords) {
+          if (input.includes(kw)) {
+            // Give higher weight if input has a whole word match rather than substring
+            const regex = new RegExp(`\\b${kw}\\b`, 'i');
+            if (regex.test(input)) {
+              currentScore += 2;
+            } else {
+              currentScore += 1;
+            }
+          }
+        }
+        if (currentScore > bestMatch.score) {
+          bestMatch = { response: item.response, score: currentScore };
+        }
+      }
+    }
+
+    // Default Fallback
+    if (bestMatch.score === 0) {
+      return "Sorry, I didn't understand. Try asking about pricing, features, or contact.";
+    }
+
+    return bestMatch.response;
+  };
 
   const handleSendMessage = (text: string, isUserMessage = true) => {
     if (!text.trim()) return;
@@ -85,21 +328,79 @@ const ChatWidget: React.FC = () => {
       setInputValue('');
       setIsTyping(true);
 
-      // Simple chatbot auto-responses
-      setTimeout(() => {
+      setTimeout(async () => {
         setIsTyping(false);
-        const lowerText = text.toLowerCase();
-        let replyText = "Thanks for asking! I'm still learning custom queries, but our team at support@trustflows.com can provide the exact details you need.";
-
-        if (lowerText.includes('escrow') || lowerText.includes('work')) {
-          replyText = "Trustflows Escrow holds funds in a safe vault. The buyer deposits, property verification is done, and funds release only upon mutual confirmation. 🛡️";
-        } else if (lowerText.includes('fee') || lowerText.includes('price') || lowerText.includes('cost')) {
-          replyText = "Our transaction fee ranges from 0.5% to 1.5% of the transaction volume. Check out our Pricing section for more specifics!";
-        } else if (lowerText.includes('risk') || lowerText.includes('calculate') || lowerText.includes('score')) {
-          replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan.";
-          window.dispatchEvent(new Event('openRiskCalculator'));
-        } else if (lowerText.includes('agent') || lowerText.includes('contact') || lowerText.includes('call')) {
-          replyText = "Our agents are available! You can reach us at support@trustflows.com or visit the contact page to speak to a specialist.";
+        let replyText = '';
+        
+        // --- LEAD CAPTURE STATE MACHINE ---
+        if (leadStage === 'name') {
+          const cleanedName = text.trim();
+          setLeadData(prev => ({ ...prev, fullName: cleanedName }));
+          setLeadStage('email');
+          replyText = `Nice to meet you, ${cleanedName}! Could you please share your email address so we can send you our corporate pricing and agreement drafts?`;
+        } 
+        
+        else if (leadStage === 'email') {
+          const cleanedEmail = text.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (emailRegex.test(cleanedEmail)) {
+            setLeadData(prev => ({ ...prev, email: cleanedEmail }));
+            setLeadStage('phone');
+            replyText = `Thank you! And finally, what is your phone number (including country code if outside India) so our escrow manager can call you?`;
+          } else {
+            // Keep in email stage, request correct email
+            replyText = `Oops, that doesn't look like a valid email address. Please enter a valid email (e.g., name@example.com):`;
+          }
+        } 
+        
+        else if (leadStage === 'phone') {
+          const cleanedPhone = text.trim();
+          setLeadStage('submitting');
+          
+          // Submit data to google sheets spreadsheet
+          const success = await submitLead(leadData.fullName, leadData.email, cleanedPhone);
+          
+          setLeadData(prev => ({ ...prev, phone: cleanedPhone }));
+          setLeadStage('done');
+          
+          if (success) {
+            replyText = `Awesome, ${leadData.fullName}! Your request has been securely submitted. An escrow specialist will get back to you at ${cleanedPhone} or ${leadData.email} within 15 minutes. 📞`;
+          } else {
+            replyText = `Got it, ${leadData.fullName}! We saved your callback request. Our team will contact you at ${cleanedPhone} or ${leadData.email} within 15 minutes.`;
+          }
+        } 
+        
+        // --- STANDARD CHAT STATE ---
+        else {
+          const lowerText = text.toLowerCase();
+          
+          // Check if user specifically wants agent connection
+          if (
+            lowerText.includes('agent') || 
+            lowerText.includes('talk') || 
+            lowerText.includes('call') || 
+            lowerText.includes('contact') || 
+            lowerText.includes('human') || 
+            lowerText.includes('support') || 
+            lowerText.includes('connect')
+          ) {
+            setLeadStage('name');
+            replyText = "I would be happy to connect you with our property experts! Could you please share your full name?";
+          } 
+          
+          // Check if user is asking to run the risk calculator
+          else if (
+            lowerText.includes('risk') && 
+            (lowerText.includes('calculator') || lowerText.includes('calculate') || lowerText.includes('score'))
+          ) {
+            replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan. Please complete the assessment form in the dialog.";
+            window.dispatchEvent(new Event('openRiskCalculator'));
+          } 
+          
+          // Otherwise do rules-based matching from knowledge base
+          else {
+            replyText = matchKnowledgeBase(text);
+          }
         }
 
         setMessages(prev => [...prev, {
@@ -112,7 +413,7 @@ const ChatWidget: React.FC = () => {
     }
   };
 
-  const handleQuickReply = (label: string, reply: string, action?: () => void) => {
+  const handleQuickReply = (label: string, category: string) => {
     // Add user's selected choice
     const userMsg: Message = {
       id: Math.random().toString(36).substr(2, 9),
@@ -124,17 +425,34 @@ const ChatWidget: React.FC = () => {
     setMessages(prev => [...prev, userMsg]);
     setIsTyping(true);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsTyping(false);
+      let replyText = '';
+
+      if (category === 'agent') {
+        setLeadStage('name');
+        replyText = "I would be happy to connect you with our property experts! Could you please share your full name?";
+      } 
+      
+      else if (category === 'risk') {
+        replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan. Please complete the assessment form in the dialog.";
+        window.dispatchEvent(new Event('openRiskCalculator'));
+      } 
+      
+      else if (category === 'escrow') {
+        replyText = "Trustflows Escrow protects your money by holding it in a secure account. 🤝 The buyer deposits funds, both parties verify the legal paperwork/assets, and once everything is checked, the funds are released safely. It mitigates the risk of advance-payment fraud.";
+      } 
+      
+      else if (category === 'pricing') {
+        replyText = "Our transaction fees range between 0.5% and 1.5% depending on the property volume and level of legal verification required. You get enterprise-grade safety for a fraction of traditional transaction risk.";
+      }
+
       setMessages(prev => [...prev, {
         id: Math.random().toString(36).substr(2, 9),
-        text: reply,
+        text: replyText,
         sender: 'bot',
         timestamp: new Date()
       }]);
-      if (action) {
-        action();
-      }
     }, 1000);
   };
 
@@ -184,12 +502,22 @@ const ChatWidget: React.FC = () => {
                   <p className="text-[10px] text-white/50 mt-1 font-medium">Always online & secure</p>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="text-white/40 hover:text-white transition-colors p-1.5 hover:bg-white/5 rounded-lg"
-              >
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-1">
+                {/* Reset button to clear session storage chat history */}
+                <button
+                  onClick={resetChat}
+                  title="Reset conversation"
+                  className="text-white/40 hover:text-white transition-colors p-1.5 hover:bg-white/5 rounded-lg"
+                >
+                  <RefreshCw size={16} />
+                </button>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="text-white/40 hover:text-white transition-colors p-1.5 hover:bg-white/5 rounded-lg"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
             {/* Messages Area */}
@@ -228,7 +556,7 @@ const ChatWidget: React.FC = () => {
               {quickReplies.map((qr) => (
                 <button
                   key={qr.label}
-                  onClick={() => handleQuickReply(qr.label, qr.reply, qr.action)}
+                  onClick={() => handleQuickReply(qr.label, qr.category)}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-navy-900/5 bg-gray-50 hover:bg-blue-light hover:text-primary-blue hover:border-primary-blue transition-all text-xs font-bold whitespace-nowrap text-navy-900/70"
                 >
                   {qr.icon}
@@ -245,16 +573,27 @@ const ChatWidget: React.FC = () => {
               }}
               className="p-4 bg-white border-t border-navy-900/5 flex gap-2 items-center"
             >
+              {/* Dynamic icon indicator based on lead capture stage */}
+              <div className="text-navy-900/40 px-1">
+                {leadStage === 'name' && <User size={16} className="text-primary-blue" />}
+                {leadStage === 'email' && <Mail size={16} className="text-primary-blue" />}
+                {leadStage === 'phone' && <Phone size={16} className="text-primary-blue" />}
+              </div>
               <input
-                type="text"
-                placeholder="Ask Trusty a question..."
+                type={leadStage === 'email' ? 'email' : 'text'}
+                placeholder={
+                  leadStage === 'name' ? 'Enter your full name...' :
+                  leadStage === 'email' ? 'Enter your email address...' :
+                  leadStage === 'phone' ? 'Enter your phone number...' :
+                  'Ask Trusty a question...'
+                }
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 className="flex-1 bg-[#F8FAFC] border border-navy-900/5 rounded-xl py-3 px-4 text-xs font-medium text-navy-900 outline-none focus:border-primary-blue transition-all"
               />
               <button
                 type="submit"
-                disabled={!inputValue.trim()}
+                disabled={!inputValue.trim() || leadStage === 'submitting'}
                 className="p-3 bg-primary-blue text-white rounded-xl hover:bg-blue-dark transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
                 <Send size={14} />
