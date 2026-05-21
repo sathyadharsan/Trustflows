@@ -33,7 +33,7 @@ interface Message {
   timestamp: Date;
 }
 
-type LeadStage = 'none' | 'name' | 'email' | 'phone' | 'submitting' | 'done';
+type LeadStage = 'none' | 'offer' | 'name' | 'email' | 'phone' | 'submitting' | 'done';
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -121,7 +121,7 @@ const ChatWidget: React.FC = () => {
         autoMessage = "Checking out 24/7 Fraud Monitoring? 🚨 Get instant SMS/email alerts on state land registry (IGR) updates or unauthorized registration attempts.";
       }
       else if (path.includes('/contact')) {
-        autoMessage = "Need help reaching out? You can leave your details here and our property experts will call you in 15 minutes! 📞";
+        autoMessage = "Need help reaching out? You can leave your details here and our property experts will call you shortly! 📞";
       }
       else if (path.includes('/terms') || path.includes('/privacy') || path.includes('/disclaimer') || path.includes('/compliance')) {
         autoMessage = "Reviewing our legal policies & compliance? 🛡️ Trustflows is committed to 100% transparency. Do you have any compliance questions for me?";
@@ -143,6 +143,26 @@ const ChatWidget: React.FC = () => {
         if (!isOpen) {
           setIsOpen(true);
         }
+
+        // Trigger follow-up question after a small delay
+        setTimeout(() => {
+          setIsTyping(true);
+          setTimeout(() => {
+            setIsTyping(false);
+            setLeadStage('offer');
+            setMessages(prev => {
+              const lastMsg = prev[prev.length - 1];
+              if (lastMsg && lastMsg.text === "Would you like to know more information about this topic?") return prev;
+              
+              return [...prev, {
+                id: Math.random().toString(36).substr(2, 9),
+                text: "Would you like to know more information about this topic?",
+                sender: 'bot',
+                timestamp: new Date()
+              }];
+            });
+          }, 600);
+        }, 800);
       }
     }
   }, [location.pathname, isOpen]);
@@ -333,7 +353,21 @@ const ChatWidget: React.FC = () => {
         let replyText = '';
         
         // --- LEAD CAPTURE STATE MACHINE ---
-        if (leadStage === 'name') {
+        if (leadStage === 'offer') {
+          const lowerText = text.toLowerCase().trim();
+          const positiveKeywords = ['yes', 'yeah', 'sure', 'ok', 'okay', 'yup', 'please', 'connect', 'yap'];
+          const isPositive = positiveKeywords.some(kw => lowerText.includes(kw));
+
+          if (isPositive) {
+            setLeadStage('name');
+            replyText = "I would be happy to connect you with our property experts! Could you please share your full name?";
+          } else {
+            setLeadStage('none');
+            replyText = "No problem! Let me know if you need help with anything else. 😊";
+          }
+        } 
+        
+        else if (leadStage === 'name') {
           const cleanedName = text.trim();
           setLeadData(prev => ({ ...prev, fullName: cleanedName }));
           setLeadStage('email');
@@ -364,9 +398,9 @@ const ChatWidget: React.FC = () => {
           setLeadStage('done');
           
           if (success) {
-            replyText = `Awesome, ${leadData.fullName}! Your request has been securely submitted. An escrow specialist will get back to you at ${cleanedPhone} or ${leadData.email} within 15 minutes. 📞`;
+            replyText = `Awesome, ${leadData.fullName}! Your request has been securely submitted. An escrow specialist will get back to you at ${cleanedPhone} or ${leadData.email} shortly. 📞`;
           } else {
-            replyText = `Got it, ${leadData.fullName}! We saved your callback request. Our team will contact you at ${cleanedPhone} or ${leadData.email} within 15 minutes.`;
+            replyText = `Got it, ${leadData.fullName}! We saved your callback request. Our team will contact you at ${cleanedPhone} or ${leadData.email} shortly.`;
           }
         } 
         
@@ -432,27 +466,86 @@ const ChatWidget: React.FC = () => {
       if (category === 'agent') {
         setLeadStage('name');
         replyText = "I would be happy to connect you with our property experts! Could you please share your full name?";
+        
+        setMessages(prev => [...prev, {
+          id: Math.random().toString(36).substr(2, 9),
+          text: replyText,
+          sender: 'bot',
+          timestamp: new Date()
+        }]);
       } 
       
-      else if (category === 'risk') {
-        replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan. Please complete the assessment form in the dialog.";
-        window.dispatchEvent(new Event('openRiskCalculator'));
-      } 
-      
-      else if (category === 'escrow') {
-        replyText = "Trustflows Escrow protects your money by holding it in a secure account. 🤝 The buyer deposits funds, both parties verify the legal paperwork/assets, and once everything is checked, the funds are released safely. It mitigates the risk of advance-payment fraud.";
-      } 
-      
-      else if (category === 'pricing') {
-        replyText = "Our transaction fees range between 0.5% and 1.5% depending on the property volume and level of legal verification required. You get enterprise-grade safety for a fraction of traditional transaction risk.";
-      }
+      else {
+        if (category === 'risk') {
+          replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan. Please complete the assessment form in the dialog.";
+          window.dispatchEvent(new Event('openRiskCalculator'));
+        } 
+        
+        else if (category === 'escrow') {
+          replyText = "Trustflows Escrow protects your money by holding it in a secure account. 🤝 The buyer deposits funds, both parties verify the legal paperwork/assets, and once everything is checked, the funds are released safely. It mitigates the risk of advance-payment fraud.";
+        } 
+        
+        else if (category === 'pricing') {
+          replyText = "Our transaction fees range between 0.5% and 1.5% depending on the property volume and level of legal verification required. You get enterprise-grade safety for a fraction of traditional transaction risk.";
+        }
 
-      setMessages(prev => [...prev, {
-        id: Math.random().toString(36).substr(2, 9),
-        text: replyText,
-        sender: 'bot',
-        timestamp: new Date()
-      }]);
+        // Add the main response
+        setMessages(prev => [...prev, {
+          id: Math.random().toString(36).substr(2, 9),
+          text: replyText,
+          sender: 'bot',
+          timestamp: new Date()
+        }]);
+
+        // After a small delay, offer connection to agent
+        setTimeout(() => {
+          setIsTyping(true);
+          setTimeout(() => {
+            setIsTyping(false);
+            setLeadStage('offer');
+            setMessages(prev => [...prev, {
+              id: Math.random().toString(36).substr(2, 9),
+              text: "Would you like to know more information about this topic?",
+              sender: 'bot',
+              timestamp: new Date()
+            }]);
+          }, 600);
+        }, 800);
+      }
+    }, 1000);
+  };
+
+  const handleOfferResponse = (accepts: boolean) => {
+    // Add user's choice to messages
+    const userMsg: Message = {
+      id: Math.random().toString(36).substr(2, 9),
+      text: accepts ? "Yes, please!" : "No, thank you.",
+      sender: 'user',
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMsg]);
+    setIsTyping(true);
+
+    setTimeout(() => {
+      setIsTyping(false);
+      if (accepts) {
+        setLeadStage('name');
+        setMessages(prev => [...prev, {
+          id: Math.random().toString(36).substr(2, 9),
+          text: "I would be happy to connect you with our property experts! Could you please share your full name?",
+          sender: 'bot',
+          timestamp: new Date()
+        }]);
+      } else {
+        setLeadStage('none');
+        setMessages(prev => [...prev, {
+          id: Math.random().toString(36).substr(2, 9),
+          text: "No problem! Let me know if you need help with anything else. 😊",
+          sender: 'bot',
+          timestamp: new Date()
+        }]);
+      }
     }, 1000);
   };
 
@@ -553,16 +646,33 @@ const ChatWidget: React.FC = () => {
 
             {/* Quick Replies Chips */}
             <div className="px-4 py-2 bg-white border-t border-navy-900/5 flex gap-2 overflow-x-auto scrollbar-hide shrink-0">
-              {quickReplies.map((qr) => (
-                <button
-                  key={qr.label}
-                  onClick={() => handleQuickReply(qr.label, qr.category)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-navy-900/5 bg-gray-50 hover:bg-blue-light hover:text-primary-blue hover:border-primary-blue transition-all text-xs font-bold whitespace-nowrap text-navy-900/70"
-                >
-                  {qr.icon}
-                  {qr.label}
-                </button>
-              ))}
+              {leadStage === 'offer' ? (
+                <div className="flex gap-2 w-full justify-start py-1">
+                  <button
+                    onClick={() => handleOfferResponse(true)}
+                    className="flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-green-500 bg-green-50 text-green-700 hover:bg-green-100 transition-all text-xs font-bold whitespace-nowrap cursor-pointer"
+                  >
+                    Yes, please!
+                  </button>
+                  <button
+                    onClick={() => handleOfferResponse(false)}
+                    className="flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-gray-300 bg-gray-50 text-gray-600 hover:bg-gray-100 transition-all text-xs font-bold whitespace-nowrap cursor-pointer"
+                  >
+                    No, thank you.
+                  </button>
+                </div>
+              ) : (
+                quickReplies.map((qr) => (
+                  <button
+                    key={qr.label}
+                    onClick={() => handleQuickReply(qr.label, qr.category)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-navy-900/5 bg-gray-50 hover:bg-blue-light hover:text-primary-blue hover:border-primary-blue transition-all text-xs font-bold whitespace-nowrap text-navy-900/70"
+                  >
+                    {qr.icon}
+                    {qr.label}
+                  </button>
+                ))
+              )}
             </div>
 
             {/* Input Box */}
@@ -582,6 +692,7 @@ const ChatWidget: React.FC = () => {
               <input
                 type={leadStage === 'email' ? 'email' : 'text'}
                 placeholder={
+                  leadStage === 'offer' ? 'Type Yes or No...' :
                   leadStage === 'name' ? 'Enter your full name...' :
                   leadStage === 'email' ? 'Enter your email address...' :
                   leadStage === 'phone' ? 'Enter your phone number...' :
