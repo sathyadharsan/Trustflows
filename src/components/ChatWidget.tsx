@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  MessageSquare, 
-  X, 
-  Send, 
-  ShieldCheck, 
-  HelpCircle, 
-  DollarSign, 
-  AlertTriangle, 
-  Headphones, 
+import {
+  MessageSquare,
+  X,
+  Send,
+  ShieldCheck,
+  HelpCircle,
+  DollarSign,
+  AlertTriangle,
+  Headphones,
   RefreshCw,
   User,
   Mail,
@@ -24,7 +24,8 @@ import { solutions } from '../data/solutions';
 import { stakeholders } from '../data/stakeholders';
 import { outcomes } from '../data/outcomes';
 
-const CONTACT_SCRIPT_URL: string = 'https://script.google.com/macros/s/AKfycbx3RyRBLAVz0d69bxo0ulHtUAYuBCN-_L0PrP2coQDUsiPNuOciHmxj-xWs_u-RHU-L/exec';
+const CONTACT_SCRIPT_URL: string = 'https://script.google.com/macros/s/AKfycbz8QYn5AMsa2j-_ZEpnB1JSAuAEu_4szdZBLx2Mvuk5WIymKZfhGytIjx7I1OQPDq-X/exec';
+
 
 interface Message {
   id: string;
@@ -59,13 +60,13 @@ const ChatWidget: React.FC = () => {
   useEffect(() => {
     if (prevLocation.current !== location.pathname) {
       prevLocation.current = location.pathname;
-      
+
       const path = location.pathname;
       let autoMessage = '';
 
       if (path === '/') {
         autoMessage = "Welcome back to Trustflows Home! 🏠 How can I help you secure your real estate deal today?";
-      } 
+      }
       else if (path.includes('/cities/')) {
         const id = path.split('/cities/')[1]?.split('/')[0]?.toLowerCase();
         const city = cities.find(c => c.id === id);
@@ -146,7 +147,7 @@ const ChatWidget: React.FC = () => {
         setMessages(prev => {
           const lastMsg = prev[prev.length - 1];
           if (lastMsg && lastMsg.text === autoMessage) return prev;
-          
+
           return [...prev, {
             id: Math.random().toString(36).substr(2, 9),
             text: autoMessage,
@@ -154,7 +155,7 @@ const ChatWidget: React.FC = () => {
             timestamp: new Date()
           }];
         });
-        
+
         if (!isOpen) {
           setIsOpen(true);
         }
@@ -168,7 +169,7 @@ const ChatWidget: React.FC = () => {
             setMessages(prev => {
               const lastMsg = prev[prev.length - 1];
               if (lastMsg && lastMsg.text === "Would you like to know more information about this topic?") return prev;
-              
+
               return [...prev, {
                 id: Math.random().toString(36).substr(2, 9),
                 text: "Would you like to know more information about this topic?",
@@ -181,7 +182,7 @@ const ChatWidget: React.FC = () => {
       }
     }
   }, [location.pathname, isOpen]);
-  
+
   // 1. Initialize states from sessionStorage for persistence
   const [messages, setMessages] = useState<Message[]>(() => {
     const saved = sessionStorage.getItem('trustflows_chat_messages');
@@ -264,23 +265,23 @@ const ChatWidget: React.FC = () => {
   };
 
   const quickReplies = [
-    { 
-      label: 'How Escrow Works?', 
+    {
+      label: 'How Escrow Works?',
       icon: <HelpCircle size={14} />,
       category: 'escrow'
     },
-    { 
-      label: 'Calculate Fees?', 
+    {
+      label: 'Calculate Fees?',
       icon: <DollarSign size={14} />,
       category: 'pricing'
     },
-    { 
-      label: 'Check Transaction Risk', 
+    {
+      label: 'Check Transaction Risk',
       icon: <AlertTriangle size={14} />,
       category: 'risk'
     },
-    { 
-      label: 'Talk to an Agent', 
+    {
+      label: 'Talk to an Agent',
       icon: <Headphones size={14} />,
       category: 'agent'
     }
@@ -297,7 +298,7 @@ const ChatWidget: React.FC = () => {
         segment: 'Chatbot',
         message: 'Lead captured automatically via Trusty chatbot conversation.'
       };
-      
+
       await fetch(CONTACT_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -358,7 +359,7 @@ const ChatWidget: React.FC = () => {
     };
 
     setMessages(prev => [...prev, userMsg]);
-    
+
     if (isUserMessage) {
       setInputValue('');
       setIsTyping(true);
@@ -366,7 +367,7 @@ const ChatWidget: React.FC = () => {
       setTimeout(async () => {
         setIsTyping(false);
         let replyText = '';
-        
+
         // --- LEAD CAPTURE STATE MACHINE ---
         if (leadStage === 'offer') {
           const lowerText = text.toLowerCase().trim();
@@ -380,15 +381,15 @@ const ChatWidget: React.FC = () => {
             setLeadStage('none');
             replyText = "No problem! Let me know if you need help with anything else. 😊";
           }
-        } 
-        
+        }
+
         else if (leadStage === 'name') {
           const cleanedName = text.trim();
           setLeadData(prev => ({ ...prev, fullName: cleanedName }));
           setLeadStage('email');
           replyText = `Nice to meet you, ${cleanedName}! Could you please share your email address so we can send you our corporate pricing and agreement drafts?`;
-        } 
-        
+        }
+
         else if (leadStage === 'email') {
           const cleanedEmail = text.trim();
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -400,52 +401,52 @@ const ChatWidget: React.FC = () => {
             // Keep in email stage, request correct email
             replyText = `Oops, that doesn't look like a valid email address. Please enter a valid email (e.g., name@example.com):`;
           }
-        } 
-        
+        }
+
         else if (leadStage === 'phone') {
           const cleanedPhone = text.trim();
           setLeadStage('submitting');
-          
+
           // Submit data to google sheets spreadsheet
           const success = await submitLead(leadData.fullName, leadData.email, cleanedPhone);
-          
+
           setLeadData(prev => ({ ...prev, phone: cleanedPhone }));
           setLeadStage('done');
-          
+
           if (success) {
             replyText = `Awesome, ${leadData.fullName}! Your request has been securely submitted. An escrow specialist will get back to you at ${cleanedPhone} or ${leadData.email} shortly. 📞`;
           } else {
             replyText = `Got it, ${leadData.fullName}! We saved your callback request. Our team will contact you at ${cleanedPhone} or ${leadData.email} shortly.`;
           }
-        } 
-        
+        }
+
         // --- STANDARD CHAT STATE ---
         else {
           const lowerText = text.toLowerCase();
-          
+
           // Check if user specifically wants agent connection
           if (
-            lowerText.includes('agent') || 
-            lowerText.includes('talk') || 
-            lowerText.includes('call') || 
-            lowerText.includes('contact') || 
-            lowerText.includes('human') || 
-            lowerText.includes('support') || 
+            lowerText.includes('agent') ||
+            lowerText.includes('talk') ||
+            lowerText.includes('call') ||
+            lowerText.includes('contact') ||
+            lowerText.includes('human') ||
+            lowerText.includes('support') ||
             lowerText.includes('connect')
           ) {
             setLeadStage('name');
             replyText = "I would be happy to connect you with our property experts! Could you please share your full name?";
-          } 
-          
+          }
+
           // Check if user is asking to run the risk calculator
           else if (
-            lowerText.includes('risk') && 
+            lowerText.includes('risk') &&
             (lowerText.includes('calculator') || lowerText.includes('calculate') || lowerText.includes('score'))
           ) {
             replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan. Please complete the assessment form in the dialog.";
             window.dispatchEvent(new Event('openRiskCalculator'));
-          } 
-          
+          }
+
           // Otherwise do rules-based matching from knowledge base
           else {
             replyText = matchKnowledgeBase(text);
@@ -470,7 +471,7 @@ const ChatWidget: React.FC = () => {
       sender: 'user',
       timestamp: new Date()
     };
-    
+
     setMessages(prev => [...prev, userMsg]);
     setIsTyping(true);
 
@@ -481,25 +482,25 @@ const ChatWidget: React.FC = () => {
       if (category === 'agent') {
         setLeadStage('name');
         replyText = "I would be happy to connect you with our property experts! Could you please share your full name?";
-        
+
         setMessages(prev => [...prev, {
           id: Math.random().toString(36).substr(2, 9),
           text: replyText,
           sender: 'bot',
           timestamp: new Date()
         }]);
-      } 
-      
+      }
+
       else {
         if (category === 'risk') {
           replyText = "Opening our AI Risk Calculator popup for you to run a full diagnostic scan. Please complete the assessment form in the dialog.";
           window.dispatchEvent(new Event('openRiskCalculator'));
-        } 
-        
+        }
+
         else if (category === 'escrow') {
           replyText = "Trustflows Escrow protects your money by holding it in a secure account. 🤝 The buyer deposits funds, both parties verify the legal paperwork/assets, and once everything is checked, the funds are released safely. It mitigates the risk of advance-payment fraud.";
-        } 
-        
+        }
+
         else if (category === 'pricing') {
           replyText = "Our transaction fees range between 0.5% and 1.5% depending on the property volume and level of legal verification required. You get enterprise-grade safety for a fraction of traditional transaction risk.";
         }
@@ -619,7 +620,7 @@ const ChatWidget: React.FC = () => {
                 >
                   <RefreshCw size={16} />
                 </button>
-                <button 
+                <button
                   onClick={() => setIsOpen(false)}
                   className="text-white/40 hover:text-white transition-colors p-1.5 hover:bg-white/5 rounded-lg"
                 >
@@ -631,15 +632,14 @@ const ChatWidget: React.FC = () => {
             {/* Messages Area */}
             <div className="flex-1 p-5 overflow-y-auto space-y-4 bg-gray-50/50">
               {messages.map((msg) => (
-                <div 
+                <div
                   key={msg.id}
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[80%] p-3.5 rounded-2xl text-[13px] font-medium leading-relaxed ${
-                    msg.sender === 'user'
-                      ? 'bg-primary-blue text-white rounded-br-none shadow-md shadow-primary-blue/10'
-                      : 'bg-white text-navy-900 border border-navy-900/5 rounded-bl-none shadow-sm'
-                  }`}>
+                  <div className={`max-w-[80%] p-3.5 rounded-2xl text-[13px] font-medium leading-relaxed ${msg.sender === 'user'
+                    ? 'bg-primary-blue text-white rounded-br-none shadow-md shadow-primary-blue/10'
+                    : 'bg-white text-navy-900 border border-navy-900/5 rounded-bl-none shadow-sm'
+                    }`}>
                     {msg.text}
                   </div>
                 </div>
@@ -655,7 +655,7 @@ const ChatWidget: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -691,7 +691,7 @@ const ChatWidget: React.FC = () => {
             </div>
 
             {/* Input Box */}
-            <form 
+            <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSendMessage(inputValue);
@@ -708,10 +708,10 @@ const ChatWidget: React.FC = () => {
                 type={leadStage === 'email' ? 'email' : 'text'}
                 placeholder={
                   leadStage === 'offer' ? 'Type Yes or No...' :
-                  leadStage === 'name' ? 'Enter your full name...' :
-                  leadStage === 'email' ? 'Enter your email address...' :
-                  leadStage === 'phone' ? 'Enter your phone number...' :
-                  'Ask Trusty a question...'
+                    leadStage === 'name' ? 'Enter your full name...' :
+                      leadStage === 'email' ? 'Enter your email address...' :
+                        leadStage === 'phone' ? 'Enter your phone number...' :
+                          'Ask Trusty a question...'
                 }
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}

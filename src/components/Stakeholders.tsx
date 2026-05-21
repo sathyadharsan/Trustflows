@@ -44,7 +44,7 @@ const Stakeholders = () => {
           {stakeholderData.map((item) => (
             <Link
               key={item.id}
-              to={`/stakeholders/${item.id === 'buyer' ? 'homebuyer' : item.id === 'investor' ? 'homebuyer' : item.id}`}
+              to={`/stakeholders/${item.id === 'buyer' ? 'homebuyer' : item.id}`}
               className="block"
             >
               <motion.div

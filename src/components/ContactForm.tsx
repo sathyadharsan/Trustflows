@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Loader2 } from 'lucide-react';
 
-// We will replace this URL with the new one the user creates for the Contact Form
-const CONTACT_SCRIPT_URL: string = 'https://script.google.com/macros/s/AKfycbx3RyRBLAVz0d69bxo0ulHtUAYuBCN-_L0PrP2coQDUsiPNuOciHmxj-xWs_u-RHU-L/exec';
+// Google Apps Script Web App URL — receives form submissions and writes to Google Sheet
+const CONTACT_SCRIPT_URL: string = 'https://script.google.com/macros/s/AKfycbz8QYn5AMsa2j-_ZEpnB1JSAuAEu_4szdZBLx2Mvuk5WIymKZfhGytIjx7I1OQPDq-X/exec';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ export default function ContactForm() {
     segment: '',
     message: ''
   });
-  
+
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,21 +26,30 @@ export default function ContactForm() {
     setStatus('submitting');
 
     try {
+      // URLSearchParams is required for no-cors mode.
+      // JSON bodies are silently dropped by the browser in no-cors requests.
+      const params = new URLSearchParams({
+        ...formData,
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      });
+
       await fetch(CONTACT_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
       });
-      
+
       setStatus('success');
       setFormData({ fullName: '', email: '', phone: '', city: '', segment: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setStatus('idle'), 5000);
+
+      // Reset success message after 6 seconds
+      setTimeout(() => setStatus('idle'), 6000);
     } catch (err) {
-      console.error(err);
+      console.error('Contact form error:', err);
       setStatus('error');
+      // Auto-clear error after 5s
+      setTimeout(() => setStatus('idle'), 5000);
     }
   };
 
@@ -62,7 +71,7 @@ export default function ContactForm() {
           </div>
           <h4 className="text-xl font-bold text-green-800 mb-2">Request Received!</h4>
           <p className="text-green-700">Thank you. Check your email for confirmation.</p>
-          <button 
+          <button
             onClick={() => setStatus('idle')}
             className="mt-6 text-green-700 font-medium hover:underline"
           >
@@ -74,9 +83,9 @@ export default function ContactForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-              <input 
+              <input
                 required
-                type="text" 
+                type="text"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
@@ -86,9 +95,9 @@ export default function ContactForm() {
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
-              <input 
+              <input
                 required
-                type="email" 
+                type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -101,8 +110,8 @@ export default function ContactForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
-              <input 
-                type="tel" 
+              <input
+                type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
@@ -112,8 +121,8 @@ export default function ContactForm() {
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">City</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
@@ -125,7 +134,7 @@ export default function ContactForm() {
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Property Segment</label>
-            <select 
+            <select
               name="segment"
               value={formData.segment}
               onChange={handleChange}
@@ -141,7 +150,7 @@ export default function ContactForm() {
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">How can we help? *</label>
-            <textarea 
+            <textarea
               required
               name="message"
               value={formData.message}
@@ -153,11 +162,14 @@ export default function ContactForm() {
           </div>
 
           {status === 'error' && (
-            <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+            <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">
+              <strong>Submission failed.</strong> Please try again or email us directly at{' '}
+              <a href="mailto:solutions@trustflows.in" className="underline font-semibold">solutions@trustflows.in</a>
+            </div>
           )}
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={status === 'submitting'}
             className="w-full bg-primary-blue hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
           >

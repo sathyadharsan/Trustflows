@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom';
 import { X, MapPin, Mail, Phone, Globe } from 'lucide-react';
+import { cities } from '../data/cities';
 
 const Footer = () => {
-  const cities = [
-    'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata',
-    'Pune', 'Ahmedabad', 'Surat', 'Jaipur', 'Lucknow', 'Nagpur',
-    'Indore', 'Bhopal', 'Visakhapatnam', 'Patna', 'Vadodara',
-    'Ludhiana', 'Agra', 'Nashik'
-  ];
 
   return (
     <footer id="footer" className="bg-[#0a0a1c] border-t border-white/5 pt-20 pb-10 px-[5%] text-white">
@@ -56,13 +51,13 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center gap-3">
-                <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
+                <a href="https://www.linkedin.com/company/trustflows" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 </a>
-                <a href="#" aria-label="X (Twitter)" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
+                <a href="https://twitter.com/trustflows" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
                 </a>
-                <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
+                <a href="https://www.facebook.com/trustflows" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary-blue hover:text-primary-blue transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
             </div>
@@ -72,10 +67,16 @@ const Footer = () => {
           <div>
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white mb-8">Platform</div>
             <ul className="space-y-4">
-              {['Resale Flats', 'Independent Houses', 'Freehold Plots', 'Freehold Layouts', 'Commercial Properties'].map(item => (
-                <li key={item}>
-                  <Link to="#" className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
-                    {item}
+              {[
+                { name: 'Resale Flats', path: '/segments/resale-flat' },
+                { name: 'Independent Houses', path: '/segments/house' },
+                { name: 'Freehold Plots', path: '/segments/plot' },
+                { name: 'Freehold Layouts', path: '/segments/layout' },
+                { name: 'Commercial Properties', path: '/segments/commercial' }
+              ].map(item => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -85,10 +86,16 @@ const Footer = () => {
           <div>
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white mb-8">Solutions</div>
             <ul className="space-y-4">
-              {['Homebuyer Security', 'NRI Portfolio', 'Investor Protection', 'Developer Trust', 'Lender Collateral'].map(item => (
-                <li key={item}>
-                  <Link to="#" className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
-                    {item}
+              {[
+                { name: 'Homebuyer Security', path: '/stakeholders/homebuyer' },
+                { name: 'NRI Portfolio', path: '/stakeholders/nri' },
+                { name: 'Investor Protection', path: '/stakeholders/investor' },
+                { name: 'Developer Trust', path: '/stakeholders/developer' },
+                { name: 'Lender Collateral', path: '/stakeholders/bank' }
+              ].map(item => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -98,10 +105,16 @@ const Footer = () => {
           <div>
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white mb-8">Offerings</div>
             <ul className="space-y-4">
-              {['AI Trust Report', 'Title Insurance', 'Escrow Services', 'Fraud Monitoring', 'Legal Defense'].map(item => (
-                <li key={item}>
-                  <Link to="#" className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
-                    {item}
+              {[
+                { name: 'AI Trust Report', path: '/offerings/trust-report' },
+                { name: 'Title Insurance', path: '/offerings/title-insurance' },
+                { name: 'Escrow Services', path: '/offerings/escrow' },
+                { name: 'Fraud Monitoring', path: '/offerings/fraud-monitoring' },
+                { name: 'Legal Defense', path: '/offerings/legal-defense' }
+              ].map(item => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-[13px] text-slate-400 hover:text-primary-blue transition-colors font-medium no-underline">
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -112,9 +125,9 @@ const Footer = () => {
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white mb-8">Company</div>
             <ul className="space-y-4">
               {[
-                { name: 'About Us', path: '#' },
-                { name: 'Our Mission', path: '#' },
-                { name: 'Team', path: '#' },
+                { name: 'About Us', path: '/contact' },
+                { name: 'Our Mission', path: '/contact' },
+                { name: 'Team', path: '/contact' },
                 { name: 'Compliance', path: '/compliance' },
                 { name: 'Contact', path: '/contact' }
               ].map(item => (
@@ -196,9 +209,9 @@ const Footer = () => {
         <div className="border-y border-white/10 py-10 mb-10">
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
             {cities.map((city) => (
-              <span key={city} className="text-[11px] font-bold text-slate-400 hover:text-primary-blue transition-colors cursor-default tracking-wider uppercase">
-                {city}
-              </span>
+              <Link key={city.id} to={`/cities/${city.id}`} className="text-[11px] font-bold text-slate-400 hover:text-primary-blue transition-colors tracking-wider uppercase no-underline">
+                {city.name}
+              </Link>
             ))}
           </div>
         </div>
