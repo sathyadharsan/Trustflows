@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cities } from '../data/cities';
+import { segmentData } from '../data/segments';
 import { 
   X, 
   ChevronRight, 
@@ -186,12 +188,9 @@ const RiskCalculator: React.FC<RiskCalculatorProps> = ({ isOpen, onClose }) => {
                           onChange={e => setFormData({ ...formData, city: e.target.value })}
                         >
                           <option value="">Select City</option>
-                          <option value="mumbai">Mumbai</option>
-                          <option value="bangalore">Bangalore</option>
-                          <option value="delhi">Delhi NCR</option>
-                          <option value="chennai">Chennai</option>
-                          <option value="hyderabad">Hyderabad</option>
-                          <option value="pune">Pune</option>
+                          {cities.map(city => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -203,10 +202,9 @@ const RiskCalculator: React.FC<RiskCalculatorProps> = ({ isOpen, onClose }) => {
                         onChange={e => setFormData({ ...formData, propertyType: e.target.value })}
                       >
                         <option value="">Select Type</option>
-                        <option value="apartment">Apartment / Flat</option>
-                        <option value="plot">Plotted Layout</option>
-                        <option value="commercial">Commercial Tower</option>
-                        <option value="warehouse">Industrial / Warehouse</option>
+                        {segmentData.map(seg => (
+                          <option key={seg.id} value={seg.id}>{seg.sidebarLabel}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -309,7 +307,7 @@ const RiskCalculator: React.FC<RiskCalculatorProps> = ({ isOpen, onClose }) => {
                 
                 <div>
                   <h3 className="text-3xl font-[900] text-navy-900 mb-3 tracking-tight">AI Assessment Ready</h3>
-                  <p className="text-[#4a4a6a] font-medium max-w-md">We've generated a preliminary risk preview based on your context in {formData.city}.</p>
+                  <p className="text-[#4a4a6a] font-medium max-w-md">We've generated a preliminary risk preview based on your context in {cities.find(c => c.id === formData.city)?.name || formData.city}.</p>
                 </div>
 
                 <div className="w-full bg-[#F8FAFC] border-2 border-navy-900/5 rounded-[40px] p-8 space-y-6">

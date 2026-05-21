@@ -61,7 +61,7 @@ const DetailHeroSlider: React.FC<DetailHeroSliderProps> = ({ slides, backLink, b
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute top-10 left-[5%]"
+              className="absolute top-24 left-[5%] z-30"
             >
               <Link 
                 to={backLink} 

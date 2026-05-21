@@ -40,6 +40,21 @@ const ChatWidget: React.FC = () => {
   const location = useLocation();
   const prevLocation = useRef(location.pathname);
 
+  // Auto-open chatbot after 15 seconds on first visit (once per session)
+  useEffect(() => {
+    const alreadyOpened = sessionStorage.getItem('trustflows_chat_auto_opened');
+    if (alreadyOpened) return;
+
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setIsOpen(true);
+        sessionStorage.setItem('trustflows_chat_auto_opened', 'true');
+      }
+    }, 15000);
+
+    return () => clearTimeout(timer);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Auto-trigger contextual messages based on the page navigated
   useEffect(() => {
     if (prevLocation.current !== location.pathname) {
